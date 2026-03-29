@@ -142,10 +142,10 @@ export function FAQSection() {
               <p className="text-muted-foreground">
                 {t("contact")}
                 <a
-                  href="mailto:support@videoai.pro"
+                  href="mailto:support@donney.pro"
                   className="text-primary hover:underline mx-1"
                 >
-                  support@videoai.pro
+                  support@donney.pro
                 </a>
               </p>
             </motion.div>

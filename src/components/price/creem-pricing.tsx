@@ -268,9 +268,9 @@ export function CreemPricing({
           Email{" "}
           <a
             className="font-medium text-primary hover:underline"
-            href="mailto:support@videoai.pro"
+            href="mailto:support@donney.pro"
           >
-            support@videoai.pro
+            support@donney.pro
           </a>{" "}
           {dictPrice.contact}
           <br />
