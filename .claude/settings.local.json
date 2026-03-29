@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install:*)",
+      "mcp__fetch__fetch",
+      "WebSearch",
+      "Bash(ls -la /Users/donney/IdeaProjects/videofly-template/src/app/\\\\[locale\\\\]/\\\\\\(marketing\\\\\\)/ 2>/dev/null || echo \"Directory not found\")",
+      "Bash(ls -la /Users/donney/IdeaProjects/videofly-template/src/app/\\\\[locale\\\\]/\\\\\\(marketing\\\\\\)/privacy-policy/)",
+      "Bash(ls -la /Users/donney/IdeaProjects/videofly-template/src/app/\\\\[locale\\\\]/\\\\\\(marketing\\\\\\)/terms-of-service/)",
+      "Bash(cd /Users/donney/IdeaProjects/videofly-template/public && magick favicon.svg -resize 180x180 -background \"#7c3aed\" -flatten apple-touch-icon.png && magick favicon.svg -resize 192x192 icon-192.png && magick favicon.svg -resize 512x512 icon-512.png && magick favicon.svg -resize 16x16 -alpha off /tmp/f16.png && magick /tmp/f16.png /tmp/f16.png favicon.ico && echo \"Icons generated successfully\")",
+      "Bash(cd /Users/donney/IdeaProjects/videofly-template/public && magick -size 180x180 xc:\"#7c3aed\" -fill white -gravity center -font Helvetica -pointsize 100 -annotate 0 \"V\" apple-touch-icon.png 2>&1 || echo \"Skipping PNG generation\")",
+      "Bash(cd /Users/donney/IdeaProjects/videofly-template && pnpm typecheck 2>&1 | head -50)"
+    ]
+  }
+}

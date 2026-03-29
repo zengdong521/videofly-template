@@ -48,6 +48,8 @@ export const metadata = {
     "AI video",
     "video generation",
     "AI tools",
+    "VideoAI",
+    "AI-powered video creation",
   ],
   authors: [
     {
