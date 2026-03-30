@@ -68,5 +68,5 @@ ResetPasswordEmail.PreviewProps = {
     },
   },
   name: "John Doe",
-  resetUrl: "https://videoai.pro/reset-password?token=abc123",
+  resetUrl: "https://donney.pro/reset-password?token=abc123",
 };

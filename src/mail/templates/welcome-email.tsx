@@ -11,7 +11,7 @@ interface WelcomeEmailProps extends BaseEmailProps {
 
 export default function WelcomeEmail({
   name = "there",
-  appUrl = "https://videoai.pro",
+  appUrl = "https://donney.pro",
   locale,
   messages,
 }: WelcomeEmailProps) {
@@ -76,5 +76,5 @@ WelcomeEmail.PreviewProps = {
     },
   },
   name: "John Doe",
-  appUrl: "https://videoai.pro",
+  appUrl: "https://donney.pro",
 };

@@ -36,7 +36,7 @@ export function MainNav({
         </LocaleLink>
 
         <a
-          href="https://docs.videoai.pro"
+          href="https://docs.donney.pro"
           target="_blank"
           rel="noopener noreferrer"
           className="ml-4 hidden md:flex lg:flex xl:flex"

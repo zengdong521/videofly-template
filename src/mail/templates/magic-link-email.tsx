@@ -63,5 +63,5 @@ MagicLinkEmail.PreviewProps = {
     },
   },
   name: "John Doe",
-  magicLink: "https://videoai.pro/auth/callback?token=abc123",
+  magicLink: "https://donney.pro/auth/callback?token=abc123",
 };

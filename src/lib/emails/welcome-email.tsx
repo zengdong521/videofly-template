@@ -37,7 +37,7 @@ export const WelcomeEmail = ({
   name = "",
   locale = "en",
   translations,
-  appUrl = "https://videoai.pro",
+  appUrl = "https://donney.pro",
 }: WelcomeEmailProps) => {
   const currentYear = new Date().getFullYear();
 

@@ -35,7 +35,7 @@ export const ResetPasswordEmail = ({
   locale = "en",
   translations,
   resetUrl,
-  appUrl = "https://videoai.pro",
+  appUrl = "https://donney.pro",
 }: ResetPasswordEmailProps) => {
   const currentYear = new Date().getFullYear();
 

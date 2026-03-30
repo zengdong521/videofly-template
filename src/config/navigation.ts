@@ -123,7 +123,7 @@ export const headerTools = [
 export const headerDocs = {
   id: "docs",
   title: "Docs",
-  href: "https://docs.videoai.pro",
+  href: "https://docs.donney.pro",
   external: true,
 };
 
