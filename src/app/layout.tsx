@@ -50,7 +50,14 @@ export const metadata = {
     "AI tools",
     "VideoAI",
     "AI-powered video creation",
+    "Sora 2",
+    "Veo 3.1",
+    "Seedance",
+    "AI video SaaS",
+    "video AI tool",
+    "生成AI视频",
   ],
+  category: "Software",
   authors: [
     {
       name: siteConfig.name,
@@ -64,11 +71,20 @@ export const metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: "/og-home.jpg",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
+    images: ["/og-home.jpg"],
   },
   icons: {
     icon: [
