@@ -16,7 +16,6 @@ import {
  *
  * Supported models:
  * - sora-2
- * - wan2.6
  * - veo3.1-fast / veo3.1-quality
  * - doubao-seedance-1-5-pro
  * - doubao-seedance-1-0-pro-fast / doubao-seedance-1-0-pro-quality

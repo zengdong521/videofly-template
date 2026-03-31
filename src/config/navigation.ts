@@ -94,7 +94,6 @@ export const headerModels = [
     subtitle: "by ByteDance",
     href: "/seedance-1-5",
   },
-  { id: "wan", title: "Wan 2.6", subtitle: "by Alibaba", href: "/wan-2-6" },
 ];
 
 // 落地页顶部导航 - Tools 下拉菜单

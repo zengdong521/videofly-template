@@ -157,15 +157,6 @@ function evolinkParamsTransformer(
   result.outputNumber = undefined;
   result.generateAudio = undefined;
 
-  // Model-specific adjustments
-  if (internalModelId === "wan2.6") {
-    // Wan 2.6 uses quality instead of remove_watermark
-    if (params.quality) {
-      result.quality = quality;
-      result.remove_watermark = undefined;
-    }
-  }
-
   return result;
 }
 
@@ -203,10 +194,6 @@ function kieParamsTransformer(
     if (internalModelId === "sora-2") {
       baseInput.image_urls = imageUrls;
     }
-    // Wan 2.6 uses image_urls
-    else if (internalModelId === "wan2.6") {
-      baseInput.image_urls = imageUrls;
-    }
     // Seedance uses input_urls
     else if (internalModelId === "seedance-1.5-pro") {
       baseInput.input_urls = imageUrls;
@@ -230,13 +217,6 @@ function kieParamsTransformer(
     if (size) {
       baseInput.size = size;
     }
-  }
-
-  // Wan 2.6 specific parameters
-  if (internalModelId === "wan2.6") {
-    baseInput.resolution =
-      normalizeQuality(params.quality, "kie", internalModelId) || "1080p";
-    baseInput.multi_shots = params.multiShots || false;
   }
 
   // Veo 3.1 specific parameters
@@ -328,42 +308,6 @@ export const MODEL_MAPPINGS: Record<string, ModelMapping> = {
           (Array.isArray(params.imageUrls) && params.imageUrls.length > 0) || params.imageUrl
             ? "sora-2-image-to-video"
             : "sora-2-text-to-video",
-        supported: true,
-        transformParams: kieParamsTransformer,
-      },
-    },
-  },
-
-  // -------------------------------------------------------------------------
-  // Wan 2.6
-  // -------------------------------------------------------------------------
-  "wan2.6": {
-    internalId: "wan2.6",
-    displayName: "Wan 2.6",
-    providers: {
-      evolink: {
-        providerModelId: (params: any) => {
-          // Select model based on mode
-          if (params.mode === "reference-to-video") {
-            return "wan2.6-reference-video";
-          }
-          const hasImage =
-            (Array.isArray(params.imageUrls) && params.imageUrls.length > 0) || params.imageUrl;
-          return hasImage ? "wan2.6-image-to-video" : "wan2.6-text-to-video";
-        },
-        supported: true,
-        transformParams: evolinkParamsTransformer,
-      },
-      kie: {
-        providerModelId: (params: any) => {
-          // Select model based on mode
-          if (params.mode === "reference-to-video") {
-            return "wan/2-6-video-to-video";
-          }
-          const hasImage =
-            (Array.isArray(params.imageUrls) && params.imageUrls.length > 0) || params.imageUrl;
-          return hasImage ? "wan/2-6-image-to-video" : "wan/2-6-text-to-video";
-        },
         supported: true,
         transformParams: kieParamsTransformer,
       },
@@ -488,10 +432,6 @@ const MODEL_MODE_SUPPORT: Record<
   "sora-2": {
     evolink: ["text-to-video", "image-to-video"],
     kie: ["text-to-video", "image-to-video"],
-  },
-  "wan2.6": {
-    evolink: ["text-to-video", "image-to-video", "reference-to-video"],
-    kie: ["text-to-video", "image-to-video", "reference-to-video"],
   },
   "veo-3.1": {
     evolink: ["text-to-video", "image-to-video"],

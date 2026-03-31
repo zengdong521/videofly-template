@@ -35,6 +35,7 @@ export function LandingFooter() {
       links: [
         { title: t('privacy'), href: "/privacy" },
         { title: t('terms'), href: "/terms" },
+        { title: "AI Disclaimer", href: "/ai-disclaimer" },
         // { title: t('cookie'), href: "/cookies" },
       ],
     },
@@ -90,6 +91,22 @@ export function LandingFooter() {
             Made with
             <Heart className="h-4 w-4 fill-pink-500 text-pink-500" />
             by VideoAI Team
+          </p>
+        </div>
+
+        {/* AI Model Disclaimer */}
+        <div className="mt-8 pt-8 border-t border-border">
+          <p className="text-xs text-muted-foreground text-center leading-relaxed">
+            {locale === "zh"
+              ? "VideoAI 与 OpenAI、Google DeepMind、ByteDance 之间无关联。整合第三方 AI 模型技术。"
+              : "VideoAI is not affiliated with OpenAI, Google DeepMind, or ByteDance."}
+            {" "}
+            <LocaleLink
+              href="/ai-disclaimer"
+              className="underline hover:text-foreground transition-colors"
+            >
+              {locale === "zh" ? "了解更多" : "Learn more"}
+            </LocaleLink>
           </p>
         </div>
       </div>

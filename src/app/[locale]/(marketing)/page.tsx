@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   };
 
   const descriptions = {
-    en: "Transform your ideas into stunning videos with AI. Access Sora 2, Veo 3.1, Wan 2.6, and more. Fast, easy, and professional quality video generation in minutes. Start creating today!",
-    zh: "用AI将您的想法转化为精彩视频。访问Sora 2、Veo 3.1、Wan 2.6等模型。快速、简单、专业品质的视频生成，几分钟内完成。立即开始创作！",
+    en: "Transform your ideas into stunning videos with AI. Access Sora 2, Veo 3.1, and more. Fast, easy, and professional quality video generation in minutes. Start creating today!",
+    zh: "用AI将您的想法转化为精彩视频。访问Sora 2、Veo 3.1等模型。快速、简单、专业品质的视频生成，几分钟内完成。立即开始创作！",
   };
 
   const canonicalUrl = `${siteConfig.url}${locale === i18n.defaultLocale ? "" : `/${locale}`}`;

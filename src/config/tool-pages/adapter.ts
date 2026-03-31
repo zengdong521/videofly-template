@@ -40,7 +40,6 @@ function getModelColor(modelId: string): string {
   const colorMap: Record<string, string> = {
     "sora-2": "#000000",
     "veo-3.1": "#4285f4",
-    "wan2.6": "#8b5cf6",
     "seedance-1.5": "#ec4899",
     "seedance-1.5-pro": "#ec4899",
     "kling-2": "#f59e0b",

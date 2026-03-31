@@ -73,29 +73,6 @@ function calculateSora2Credits(params: CreditCalculationParams): number {
 }
 
 /**
- * Wan 2.6 积分计算（基于 Evolink 1:1 成本）
- * 720p 5s = 25 Credits, 每秒 = 5 Credits
- * 1080p × 1.67 倍
- *
- * 计算公式: duration × 5 + quality_bonus
- */
-function calculateWan26Credits(params: CreditCalculationParams): number {
-  const duration = parseDuration(params.duration) || 5;
-  const isHighRes = parseResolution(params.resolution) >= 1080;
-
-  // Evolink 成本: 每秒 5 Credits
-  let credits = duration * 5;
-
-  // 1080p 乘数
-  if (isHighRes) {
-    credits = credits * 1.67;
-  }
-
-  // 向上取整
-  return Math.ceil(credits) * params.outputNumber;
-}
-
-/**
  * Veo 3.1 Fast Lite 积分计算（基于 Evolink 1:1 成本）
  * 固定价格 9.6 Credits → 10 积分 (720p/1080p)
  * 4K = 28.8 Credits → 29 积分
@@ -174,9 +151,6 @@ export function calculateVideoCredits(params: CreditCalculationParams): number {
   switch (model.id) {
     case "sora-2":
       return calculateSora2Credits(params);
-
-    case "wan2.6":
-      return calculateWan26Credits(params);
 
     case "veo-3.1":
       return calculateVeo31Credits(params);
@@ -259,13 +233,6 @@ export function getCreditRangeText(model: VideoModel): string {
     maxCredits = calculateVideoCredits({
       model,
       duration: "15s",
-      outputNumber: 1,
-    });
-  } else if (model.id === "wan2.6") {
-    maxCredits = calculateVideoCredits({
-      model,
-      duration: "15s",
-      resolution: "1080P",
       outputNumber: 1,
     });
   } else if (model.id === "veo-3.1") {

@@ -39,10 +39,26 @@ export default async function TermsPage({
                         <p>您同意不使用本服务从事以下行为：</p>
                         <ul>
                             <li>生成非法、有害、威胁、辱骂、骚扰、诽谤、淫秽或其他令人反感的内容。</li>
+                            <li>生成露骨的性内容、不适宜工作场所观看的内容，或任何形式的色情内容。</li>
                             <li>侵犯任何人的知识产权或其他权利。</li>
                             <li>干扰或破坏服务的完整性或性能。</li>
                             <li>试图未经授权访问服务或其相关系统或网络。</li>
                         </ul>
+
+                        <h2>4.1 内容安全与适度性</h2>
+                        <p>
+                            VideoAI 严格禁止使用本服务生成以下类型的内容：
+                        </p>
+                        <ul>
+                            <li>露骨的性内容、色情内容或任何性暗示内容</li>
+                            <li>不适宜工作场所观看的内容</li>
+                            <li>暴力、血腥或令人极度反感的内容</li>
+                            <li>未成年人相关的任何不当内容</li>
+                            <li>骚扰、歧视或仇恨内容</li>
+                        </ul>
+                        <p>
+                            任何违反本条款的内容生成行为将导致账户立即终止，且已消耗的积分不予退还。我们保留对违规内容进行报告的权利。
+                        </p>
 
                         <h2>5. 知识产权</h2>
                         <p>
@@ -98,10 +114,26 @@ export default async function TermsPage({
                         <p>You agree not to use the Service to:</p>
                         <ul>
                             <li>Generate content that is illegal, harmful, threatening, abusive, harassing, defamatory, obscene, or otherwise objectionable.</li>
+                            <li>Generate explicit sexual content, content not suitable for workplace viewing, or any form of pornographic material.</li>
                             <li>Infringe upon the intellectual property or other rights of any person or entity.</li>
                             <li>Interfere with or disrupt the integrity or performance of the Service.</li>
                             <li>Attempt to gain unauthorized access to the Service or its related systems or networks.</li>
                         </ul>
+
+                        <h2>4.1 Content Safety and Appropriateness</h2>
+                        <p>
+                            VideoAI strictly prohibits the use of this Service to generate the following types of content:
+                        </p>
+                        <ul>
+                            <li>Explicit sexual content, pornographic material, or any sexually suggestive content</li>
+                            <li>Content not suitable for workplace viewing</li>
+                            <li>Violent, gory, or highly offensive content</li>
+                            <li>Any inappropriate content involving minors</li>
+                            <li>Harassment, discrimination, or hate speech</li>
+                        </ul>
+                        <p>
+                            Any content generation that violates these terms will result in immediate account termination, and consumed credits will not be refunded. We reserve the right to report violating content.
+                        </p>
 
                         <h2>5. Intellectual Property</h2>
                         <p>

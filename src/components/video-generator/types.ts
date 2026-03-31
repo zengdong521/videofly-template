@@ -185,7 +185,7 @@ export interface VideoModel {
   };
 
   /**
-   * Reference video constraints for models that accept video input (e.g., wan2.6 in reference-to-video mode).
+   * Reference video constraints for models that accept video input (e.g., Veo 3.1 in reference-to-video mode).
    */
   videoInputConstraints?: {
     /** Minimum number of reference videos */
@@ -269,7 +269,7 @@ export interface ImageModel {
  *   icon: "text",
  *   uploadType: "single",
  *   // Optional: restrict to specific models
- *   supportedModels: ["sora-2", "wan2.6", "veo-3.1"],
+ *   supportedModels: ["sora-2", "veo-3.1", "seedance-1.5-pro"],
  *   // Optional: override default durations for this mode
  *   durations: ["4s", "5s", "8s"],
  * };

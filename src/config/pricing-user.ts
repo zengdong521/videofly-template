@@ -243,9 +243,7 @@ export const CREDIT_PACKAGES: CreditPackageConfig[] = [
  *
  * 1. **Veo 3.1 Fast Lite**: 固定 10 积分（基准价格）
  * 2. **Sora 2 Lite**: 10s=2积分, 15s=3积分 (无水印)
- * 3. **Wan 2.6**: 720p: 5s=25积分, 10s=50积分, 15s=75积分
- *              1080p × 1.67 倍
- * 4. **Seedance 1.5 Pro**: 按秒计费, 默认有音频
+ * 3. **Seedance 1.5 Pro**: 按秒计费, 默认有音频
  *                          480p: 1.636 Credits/秒 → 2 积分/秒
  *                          720p: 3.557 Credits/秒 → 4 积分/秒
  *                          1080p: 7.932 Credits/秒 → 8 积分/秒
@@ -291,14 +289,6 @@ export const VIDEO_MODEL_PRICING: Record<string, VideoModelPricing> = {
   "sora-2": {
     baseCredits: 2,
     perSecond: 0,
-    enabled: false,
-  },
-
-  /** Wan 2.6 (暂时隐藏) */
-  "wan2.6": {
-    baseCredits: 25,
-    perSecond: 5,
-    qualityMultiplier: 1.67,
     enabled: false,
   },
 };
