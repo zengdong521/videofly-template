@@ -88,17 +88,21 @@ async function scanPages(
 
         if (routePath === '' || routePath === '/') {
           priority = 1.0;
-          changeFrequency = 'daily';
+          changeFrequency = 'weekly';
         } else if (routePath.includes('pricing')) {
           priority = 0.9;
-          changeFrequency = 'weekly';
+          changeFrequency = 'monthly';
         } else if (routePath.includes('privacy') || routePath.includes('terms')) {
           priority = 0.3;
           changeFrequency = 'monthly';
-        } else if (routePath.includes('-to-') || /\d/.test(routePath)) {
-          // 工具页面和模型页面
-          priority = 0.7;
+        } else if (routePath.includes('-to-')) {
+          // 工具页面是核心收入页，给予高优先级
+          priority = 0.9;
           changeFrequency = 'weekly';
+        } else if (/\d/.test(routePath)) {
+          // 模型页面（如 sora-2 等，虽然已被排除但保留逻辑）
+          priority = 0.6;
+          changeFrequency = 'monthly';
         }
 
         pages.push({
