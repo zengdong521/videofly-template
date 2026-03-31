@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import { PricingSection } from "@/components/landing/pricing-section";
 import { FAQSection } from "@/components/landing/faq-section";
 import type { Locale } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
+import { buildFAQPageSchema } from "@/components/seo/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -13,7 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const alternates = buildAlternates("/pricing", locale);
-  const ogImage = resolveOgImage();
+  const ogImage = resolveOgImage("/og-pricing.jpg");
   const titles = {
     en: "AI Video Pricing Plans",
     zh: "AI 视频生成定价方案",
@@ -48,11 +50,25 @@ export async function generateMetadata({
   };
 }
 
-export default async function PricingPage() {
+export default async function PricingPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const faqSchema = buildFAQPageSchema(locale);
+
   return (
-    <div className="flex w-full flex-col gap-0">
-      <PricingSection />
-      <FAQSection />
-    </div>
+    <>
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: faqSchema }}
+      />
+      <div className="flex w-full flex-col gap-0">
+        <PricingSection />
+        <FAQSection />
+      </div>
+    </>
   );
 }

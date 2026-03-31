@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageMetadataProps) {
 
   const canonicalUrl = `${siteConfig.url}${locale === i18n.defaultLocale ? "" : `/${locale}`}`;
   const alternates = buildAlternates("/", locale);
-  const ogImage = resolveOgImage();
+  const ogImage = resolveOgImage("/og-home.jpg");
 
   return {
     title: titles[locale] || titles.en,

@@ -4,6 +4,8 @@ import type { Locale } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
+import { buildHowToSchema } from "@/components/seo/howto-schema";
+import Script from "next/script";
 
 interface TextToVideoPageProps {
   params: Promise<{
@@ -50,11 +52,29 @@ export default async function TextToVideoPage({ params }: TextToVideoPageProps) 
     getConfiguredAIProvider()
   );
   const { locale } = await params;
+  const howToSchema = buildHowToSchema({
+    locale,
+    toolName: config.seo.title,
+    toolDescription: config.seo.description,
+    steps: [
+      { name: "Enter Prompt", text: "Describe the video you want to create in the text input field" },
+      { name: "Select Settings", text: "Choose video duration, aspect ratio, and other options" },
+      { name: "Generate Video", text: "Click generate and wait 2-5 minutes for your AI video to be created" },
+      { name: "Download & Share", text: "Preview, download, or share your generated video" },
+    ],
+  });
   return (
-    <ToolPageLayout
-      config={config}
-      locale={locale}
-      toolRoute="text-to-video"
-    />
+    <>
+      <Script
+        id="howto-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: howToSchema }}
+      />
+      <ToolPageLayout
+        config={config}
+        locale={locale}
+        toolRoute="text-to-video"
+      />
+    </>
   );
 }

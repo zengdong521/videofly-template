@@ -4,6 +4,8 @@ import type { Locale } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
+import { buildHowToSchema } from "@/components/seo/howto-schema";
+import Script from "next/script";
 
 interface ImageToVideoPageProps {
   params: Promise<{
@@ -50,11 +52,29 @@ export default async function ImageToVideoPage({ params }: ImageToVideoPageProps
     getConfiguredAIProvider()
   );
   const { locale } = await params;
+  const howToSchema = buildHowToSchema({
+    locale,
+    toolName: config.seo.title,
+    toolDescription: config.seo.description,
+    steps: [
+      { name: "Upload Image", text: "Upload a photo (JPG, PNG, WEBP up to 10MB)" },
+      { name: "Add Description", text: "Describe how you want the image to be animated" },
+      { name: "Set Options", text: "Choose video duration and aspect ratio" },
+      { name: "Generate & Download", text: "Generate and download your animated video in minutes" },
+    ],
+  });
   return (
-    <ToolPageLayout
-      config={config}
-      locale={locale}
-      toolRoute="image-to-video"
-    />
+    <>
+      <Script
+        id="howto-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: howToSchema }}
+      />
+      <ToolPageLayout
+        config={config}
+        locale={locale}
+        toolRoute="image-to-video"
+      />
+    </>
   );
 }
