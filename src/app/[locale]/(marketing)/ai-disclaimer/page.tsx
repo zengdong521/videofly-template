@@ -1,9 +1,50 @@
-import type { Locale } from "@/config/i18n-config";
+import type { Metadata } from "next";
 
-export const metadata = {
-    title: "AI Disclaimer - VideoAI",
-    description: "AI Disclaimer for VideoAI",
-};
+import type { Locale } from "@/config/i18n-config";
+import { siteConfig } from "@/config/site";
+import { buildAlternates, resolveOgImage } from "@/lib/seo";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const alternates = buildAlternates("/ai-disclaimer", locale);
+    const ogImage = resolveOgImage();
+    const titles = {
+        en: "AI Provider Disclaimer",
+        zh: "AI 模型免责声明",
+    };
+    const descriptions = {
+        en: "Review VideoAI's disclaimer about OpenAI, Google DeepMind, ByteDance, and third-party AI model providers.",
+        zh: "查看 VideoAI 关于 OpenAI、Google DeepMind、ByteDance 等第三方 AI 模型提供商的免责声明。",
+    };
+
+    return {
+        title: titles[locale] || titles.en,
+        description: descriptions[locale] || descriptions.en,
+        alternates: {
+            canonical: alternates.canonical,
+            languages: alternates.languages,
+        },
+        openGraph: {
+            title: titles[locale] || titles.en,
+            description: descriptions[locale] || descriptions.en,
+            url: alternates.canonical,
+            siteName: siteConfig.name,
+            locale: locale === "zh" ? "zh_CN" : "en_US",
+            type: "article",
+            images: ogImage ? [ogImage] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: titles[locale] || titles.en,
+            description: descriptions[locale] || descriptions.en,
+            images: ogImage ? [ogImage] : undefined,
+        },
+    };
+}
 
 export default async function AIDisclaimerPage({
     params,

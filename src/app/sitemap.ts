@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
+import { execSync } from "node:child_process";
+import { readdir } from "node:fs/promises";
+import { join } from "node:path";
+
 import { i18n } from "@/config/i18n-config";
-import { execSync } from "child_process";
-import { readdir, stat } from "fs/promises";
-import { join } from "path";
 
 // Allow sitemap to be revalidated every hour (3600 seconds)
 export const revalidate = 3600;
@@ -23,6 +24,15 @@ const getLastModified = (filePath: string): Date => {
   }
   return new Date();
 };
+
+const EXCLUDED_ROUTE_GROUPS = ["/(dashboard)/", "/(admin)/", "/(auth)/"];
+const EXCLUDED_ROUTE_PATHS = new Set([
+  "privacy-policy",
+  "terms-of-service",
+  "sora-2",
+  "veo-3-1",
+  "seedance-1-5",
+]);
 
 /**
  * 递归扫描目录，查找所有 page.tsx 文件
@@ -54,6 +64,10 @@ async function scanPages(
         const subPages = await scanPages(fullPath, baseDir);
         pages.push(...subPages);
       } else if (entry.name === 'page.tsx') {
+        if (EXCLUDED_ROUTE_GROUPS.some((segment) => fullPath.includes(segment))) {
+          continue;
+        }
+
         // 计算路由路径
         const relativePath = fullPath.replace(baseDir, '');
         const routePath = relativePath
@@ -64,9 +78,7 @@ async function scanPages(
           .replace(/^\//, '')                     // 移除开头的斜杠
           || '/';                                 // 根路径
 
-        // 跳过 dashboard、admin 等不需要 SEO 的页面
-        const skipRoutes = ['dashboard', 'admin', 'auth', 'login', 'register', 'settings'];
-        if (skipRoutes.some(route => routePath.includes(route))) {
+        if (EXCLUDED_ROUTE_PATHS.has(routePath)) {
           continue;
         }
 

@@ -1,9 +1,50 @@
-import type { Locale } from "@/config/i18n-config";
+import type { Metadata } from "next";
 
-export const metadata = {
-    title: "Privacy Policy - VideoAI",
-    description: "Privacy Policy for VideoAI",
-};
+import type { Locale } from "@/config/i18n-config";
+import { siteConfig } from "@/config/site";
+import { buildAlternates, resolveOgImage } from "@/lib/seo";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const alternates = buildAlternates("/privacy", locale);
+    const ogImage = resolveOgImage();
+    const titles = {
+        en: "Privacy Policy",
+        zh: "隐私政策",
+    };
+    const descriptions = {
+        en: "Read the VideoAI privacy policy and learn how we collect, use, and protect your data.",
+        zh: "查看 VideoAI 隐私政策，了解我们如何收集、使用和保护你的数据。",
+    };
+
+    return {
+        title: titles[locale] || titles.en,
+        description: descriptions[locale] || descriptions.en,
+        alternates: {
+            canonical: alternates.canonical,
+            languages: alternates.languages,
+        },
+        openGraph: {
+            title: titles[locale] || titles.en,
+            description: descriptions[locale] || descriptions.en,
+            url: alternates.canonical,
+            siteName: siteConfig.name,
+            locale: locale === "zh" ? "zh_CN" : "en_US",
+            type: "article",
+            images: ogImage ? [ogImage] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: titles[locale] || titles.en,
+            description: descriptions[locale] || descriptions.en,
+            images: ogImage ? [ogImage] : undefined,
+        },
+    };
+}
 
 export default async function PrivacyPage({
     params,

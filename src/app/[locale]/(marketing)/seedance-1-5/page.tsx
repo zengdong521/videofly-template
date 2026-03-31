@@ -16,8 +16,12 @@ export async function generateMetadata({
   const alternates = buildAlternates(`/${pathSegment}`, locale);
 
   return {
-    title: "Seedance 1.5 - VideoAI",
+    title: "Seedance 1.5",
     description: "Professional AI video generation",
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: alternates.canonical,
       languages: alternates.languages,

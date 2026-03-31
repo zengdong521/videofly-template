@@ -16,8 +16,12 @@ export async function generateMetadata({
   const alternates = buildAlternates(`/${pathSegment}`, locale);
 
   return {
-    title: "Veo 3.1 - VideoAI",
+    title: "Veo 3.1",
     description: "High-quality video generation by Google DeepMind",
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: alternates.canonical,
       languages: alternates.languages,

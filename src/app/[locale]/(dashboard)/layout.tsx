@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { requireAuth } from "@/lib/auth";
@@ -12,6 +13,13 @@ interface DashboardLayoutProps {
     locale: string;
   }>;
 }
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));

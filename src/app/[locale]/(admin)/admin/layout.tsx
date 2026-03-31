@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { requireAdmin } from "@/lib/auth/admin";
@@ -9,6 +10,13 @@ interface AdminLayoutProps {
     locale: string;
   }>;
 }
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function AdminLayout({
   children,

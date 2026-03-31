@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
 import { i18n, localeConfig, type Locale } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
 
@@ -28,7 +31,18 @@ export function buildAlternates(pathname: string, locale: Locale) {
   };
 }
 
-export function resolveOgImage(fallback?: string): string | undefined {
-  const ogImage = siteConfig.ogImage || fallback;
-  return ogImage || undefined;
+function hasPublicAsset(assetPath: string): boolean {
+  if (!assetPath.startsWith("/")) {
+    return true;
+  }
+
+  return existsSync(join(process.cwd(), "public", assetPath.replace(/^\/+/, "")));
+}
+
+export function resolveOgImage(preferred?: string): string | undefined {
+  const candidates = [preferred, siteConfig.ogImage].filter(
+    (value): value is string => Boolean(value)
+  );
+
+  return candidates.find(hasPublicAsset);
 }

@@ -105,7 +105,7 @@ export function LandingFooter() {
               href="/ai-disclaimer"
               className="underline hover:text-foreground transition-colors"
             >
-              {locale === "zh" ? "了解更多" : "Learn more"}
+              {locale === "zh" ? "查看 AI 免责声明" : "Read the AI disclaimer"}
             </LocaleLink>
           </p>
         </div>

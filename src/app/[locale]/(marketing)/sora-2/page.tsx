@@ -20,8 +20,12 @@ export async function generateMetadata({ params }: ModelPageProps) {
   const info = modelInfo[pathSegment];
 
   return {
-    title: `${info?.name || "Model"} - VideoAI`,
+    title: info?.name || "Model",
     description: info?.description || "AI Video Generation Platform",
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: alternates.canonical,
       languages: alternates.languages,

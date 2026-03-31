@@ -1,9 +1,50 @@
-import type { Locale } from "@/config/i18n-config";
+import type { Metadata } from "next";
 
-export const metadata = {
-    title: "Terms of Service - VideoAI",
-    description: "Terms of Service for VideoAI",
-};
+import type { Locale } from "@/config/i18n-config";
+import { siteConfig } from "@/config/site";
+import { buildAlternates, resolveOgImage } from "@/lib/seo";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const alternates = buildAlternates("/terms", locale);
+    const ogImage = resolveOgImage();
+    const titles = {
+        en: "Terms of Service",
+        zh: "服务条款",
+    };
+    const descriptions = {
+        en: "Read the VideoAI terms of service, billing rules, and platform usage requirements.",
+        zh: "查看 VideoAI 服务条款、计费规则和平台使用要求。",
+    };
+
+    return {
+        title: titles[locale] || titles.en,
+        description: descriptions[locale] || descriptions.en,
+        alternates: {
+            canonical: alternates.canonical,
+            languages: alternates.languages,
+        },
+        openGraph: {
+            title: titles[locale] || titles.en,
+            description: descriptions[locale] || descriptions.en,
+            url: alternates.canonical,
+            siteName: siteConfig.name,
+            locale: locale === "zh" ? "zh_CN" : "en_US",
+            type: "article",
+            images: ogImage ? [ogImage] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: titles[locale] || titles.en,
+            description: descriptions[locale] || descriptions.en,
+            images: ogImage ? [ogImage] : undefined,
+        },
+    };
+}
 
 export default async function TermsPage({
     params,
