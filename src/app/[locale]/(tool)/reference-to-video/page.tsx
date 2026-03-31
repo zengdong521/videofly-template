@@ -5,6 +5,7 @@ import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
 import { buildHowToSchema } from "@/components/seo/howto-schema";
+import { buildToolBreadcrumbs } from "@/components/seo/breadcrumb-schema";
 import Script from "next/script";
 
 interface ReferenceToVideoPageProps {
@@ -63,12 +64,22 @@ export default async function ReferenceToVideoPage({ params }: ReferenceToVideoP
       { name: "Generate & Download", text: "Generate and download your AI video using reference style" },
     ],
   });
+  const breadcrumbSchema = buildToolBreadcrumbs(
+    locale === "zh" ? "参考视频生成" : "Reference to Video",
+    "/reference-to-video",
+    locale
+  );
   return (
     <>
       <Script
         id="howto-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: howToSchema }}
+      />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
       />
       <ToolPageLayout
         config={config}

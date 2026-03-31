@@ -5,6 +5,7 @@ import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
 import { buildHowToSchema } from "@/components/seo/howto-schema";
+import { buildToolBreadcrumbs } from "@/components/seo/breadcrumb-schema";
 import Script from "next/script";
 
 interface TextToVideoPageProps {
@@ -63,12 +64,22 @@ export default async function TextToVideoPage({ params }: TextToVideoPageProps) 
       { name: "Download & Share", text: "Preview, download, or share your generated video" },
     ],
   });
+  const breadcrumbSchema = buildToolBreadcrumbs(
+    locale === "zh" ? "文字转视频" : "Text to Video",
+    "/text-to-video",
+    locale
+  );
   return (
     <>
       <Script
         id="howto-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: howToSchema }}
+      />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
       />
       <ToolPageLayout
         config={config}

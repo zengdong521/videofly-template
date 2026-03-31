@@ -5,6 +5,7 @@ import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
 import { buildHowToSchema } from "@/components/seo/howto-schema";
+import { buildToolBreadcrumbs } from "@/components/seo/breadcrumb-schema";
 import Script from "next/script";
 
 interface ImageToVideoPageProps {
@@ -63,12 +64,22 @@ export default async function ImageToVideoPage({ params }: ImageToVideoPageProps
       { name: "Generate & Download", text: "Generate and download your animated video in minutes" },
     ],
   });
+  const breadcrumbSchema = buildToolBreadcrumbs(
+    locale === "zh" ? "图片转视频" : "Image to Video",
+    "/image-to-video",
+    locale
+  );
   return (
     <>
       <Script
         id="howto-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: howToSchema }}
+      />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
       />
       <ToolPageLayout
         config={config}

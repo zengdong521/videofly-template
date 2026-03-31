@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 import { HeroSection } from "@/components/landing/hero-section";
 import { FeaturesSection } from "@/components/landing/features-section";
 // import { ShowcaseSection } from "@/components/landing/showcase-section";
@@ -11,6 +13,7 @@ import { siteConfig } from "@/config/site";
 import { i18n } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { getConfiguredAIProvider } from "@/ai";
+import { buildServiceSchema } from "@/components/seo/service-schema";
 
 interface HomePageProps {
   params: Promise<{
@@ -66,9 +69,17 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   };
 }
 
-export default async function HomePage({ params }: HomePageProps) {
+export default async function HomePage({ params: _params }: HomePageProps) {
+  // params awaited for Next.js 15 compatibility
+  void _params;
+  const serviceSchema = buildServiceSchema();
   return (
     <>
+      <Script
+        id="service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serviceSchema }}
+      />
       <HeroSection currentProvider={getConfiguredAIProvider()} />
       {/* <ShowcaseSection /> */}
       <FeaturesSection />
