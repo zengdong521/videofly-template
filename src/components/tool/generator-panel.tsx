@@ -15,6 +15,7 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 import { cn } from "@/components/ui";
 import { DEFAULT_VIDEO_MODELS } from "@/components/video-generator";
 import { getAvailableModels, calculateModelCredits } from "@/config/credits";
+import { useTranslations } from "next-intl";
 import { ChevronDown, X, Sparkles, Image as ImageIcon, Clock, Check } from "lucide-react";
 import {
   DropdownMenu,
@@ -85,6 +86,7 @@ export function GeneratorPanel({
   initialQuality,
   initialImageUrl,
 }: GeneratorPanelProps) {
+  const t = useTranslations("ToolPage");
   const models = getAvailableModels();
   const [prompt, setPrompt] = useState(initialPrompt || "");
   const [selectedModel, setSelectedModel] = useState(initialModelId || defaultModelId || models[0]?.id || "");
@@ -303,7 +305,7 @@ export function GeneratorPanel({
           {/* Model Selection */}
           <div className="flex items-center justify-between gap-3">
             <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-              MODEL
+              {t("model")}
             </span>
             {currentModel && (
                 <DropdownMenu open={isModelDropdownOpen} onOpenChange={setIsModelDropdownOpen}>
@@ -319,7 +321,7 @@ export function GeneratorPanel({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-zinc-900 border-zinc-800 w-80 max-h-[400px] overflow-y-scroll custom-scrollbar">
                   <DropdownMenuLabel className="text-zinc-400 text-xs">
-                    Video Models
+                    {t("videoModels")}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-zinc-800" />
                   {availableModels.map((model) => (
@@ -368,7 +370,7 @@ export function GeneratorPanel({
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Describe the video you want to create, e.g., A cat playing in a sunny garden with natural lighting and fresh atmosphere..."
+              placeholder={t("promptPlaceholder")}
               disabled={isLoading}
               className="w-full min-h-[100px] max-h-[200px] px-4 py-3 rounded-lg bg-muted/40 border border-border text-foreground placeholder:text-muted-foreground/70 resize-none focus:outline-none focus:border-primary transition-colors text-sm leading-relaxed"
               rows={4}
@@ -381,7 +383,7 @@ export function GeneratorPanel({
             currentModel?.supportImageToVideo && (
               <div>
                 <SectionLabel required={toolType === "image-to-video"}>
-                  {toolType === "reference-to-video" ? "REFERENCE IMAGE" : "IMAGE SOURCE"}
+                  {toolType === "reference-to-video" ? t("referenceImage") : t("imageSource")}
                 </SectionLabel>
                 {imageFile || imageUrl ? (
                   <div className="relative group h-32 rounded-lg overflow-hidden border-2 border-zinc-700">
@@ -411,8 +413,8 @@ export function GeneratorPanel({
                     <div className="w-12 h-12 rounded-full flex items-center justify-center bg-muted/60 group-hover:bg-muted transition-colors">
                       <ImageIcon className="w-6 h-6 text-muted-foreground group-hover:text-primary" />
                     </div>
-                    <p className="text-sm text-muted-foreground mt-3">Upload image</p>
-                    <p className="text-xs text-muted-foreground/70 mt-1">JPG, PNG, WEBP • Max 10MB</p>
+                    <p className="text-sm text-muted-foreground mt-3">{t("uploadImage")}</p>
+                    <p className="text-xs text-muted-foreground/70 mt-1">{t("uploadImageHint")}</p>
                     <input
                       type="file"
                       accept="image/*"
@@ -431,7 +433,7 @@ export function GeneratorPanel({
             {/* Aspect Ratio */}
             {currentModel?.aspectRatios && (
               <div>
-                <SectionLabel>ASPECT RATIO</SectionLabel>
+                <SectionLabel>{t("aspectRatio")}</SectionLabel>
                 <div className="grid grid-cols-3 gap-3">
                   {currentModel.aspectRatios.map((ar) => (
                     <button
@@ -468,7 +470,7 @@ export function GeneratorPanel({
             <div className="grid grid-cols-2 gap-4">
               {currentModel?.durations && (
                 <div>
-                  <SectionLabel>VIDEO LENGTH</SectionLabel>
+                  <SectionLabel>{t("videoLength")}</SectionLabel>
                   <div className="grid grid-cols-3 gap-2">
                     {currentModel.durations.map((d) => (
                       <button
@@ -492,7 +494,7 @@ export function GeneratorPanel({
 
               {currentModel?.qualities && (
                 <div>
-                  <SectionLabel>RESOLUTION</SectionLabel>
+                  <SectionLabel>{t("resolution")}</SectionLabel>
                   <div className="grid grid-cols-3 gap-2">
                     {currentModel.qualities.map((q) => (
                       <button
@@ -523,7 +525,7 @@ export function GeneratorPanel({
         <div className="px-5 py-4 bg-muted/40 border-t border-border space-y-4 shrink-0">
           {/* Credits Display */}
           <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Total Credits:</span>
+            <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">{t("totalCredits")}:</span>
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
               <span className="text-foreground font-medium">{estimatedCredits} Credits</span>
@@ -545,12 +547,12 @@ export function GeneratorPanel({
             {isLoading ? (
               <>
                 <div className="w-4 h-4 border-2 border-primary-foreground/40 border-t-primary-foreground rounded-full animate-spin" />
-                Generating...
+                {t("generating")}
               </>
             ) : (
               <>
                 <Sparkles className="w-4 h-4" />
-                Generate Video
+                {t("generateVideo")}
               </>
             )}
           </button>

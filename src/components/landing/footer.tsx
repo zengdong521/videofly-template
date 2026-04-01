@@ -15,35 +15,25 @@ export function LandingFooter() {
     {
       title: t('product'),
       links: [
-        { title: "Image to Video", href: "/image-to-video" },
-        { title: "Text to Video", href: "/text-to-video" },
-        { title: "Reference to Video", href: "/reference-to-video" },
-        { title: "Pricing", href: "/pricing" },
+        { title: t('imageToVideo'), href: "/image-to-video" },
+        { title: t('textToVideo'), href: "/text-to-video" },
+        { title: t('referenceToVideo'), href: "/reference-to-video" },
+        { title: t('pricing'), href: "/pricing" },
       ],
     },
-    // {
-    //   title: t('company'),
-    //   links: [
-    //     { title: "About", href: "/about" },
-    //     { title: "Blog", href: "/blog" },
-    //     { title: "Careers", href: "/careers" },
-    //     { title: "Contact", href: "/contact" },
-    //   ],
-    // },
     {
       title: t('legal'),
       links: [
         { title: t('privacy'), href: "/privacy" },
         { title: t('terms'), href: "/terms" },
-        { title: "AI Disclaimer", href: "/ai-disclaimer" },
-        // { title: t('cookie'), href: "/cookies" },
+        { title: t('aiDisclaimer'), href: "/ai-disclaimer" },
       ],
     },
     {
-      title: locale === "zh" ? "资源" : "Resources",
+      title: t('resources'),
       links: [
-        { title: locale === "zh" ? "模型对比" : "Compare Models", href: "/compare" },
-        { title: locale === "zh" ? "创作指南" : "Guides", href: "/guides" },
+        { title: t('compareModels'), href: "/compare" },
+        { title: t('guides'), href: "/guides" },
       ],
     },
   ];
@@ -63,7 +53,7 @@ export function LandingFooter() {
               🎬 VideoAI
             </LocaleLink>
             <p className="text-sm text-muted-foreground mb-4">
-              Transform your ideas into stunning videos with AI.
+              {t('description')}
             </p>
           </div>
 
@@ -95,24 +85,22 @@ export function LandingFooter() {
             {t('copyright', { year: currentYear })}
           </p>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with
+            {t('madeWith')}
             <Heart className="h-4 w-4 fill-pink-500 text-pink-500" />
-            by VideoAI Team
+            {t('byTeam')}
           </p>
         </div>
 
         {/* AI Model Disclaimer */}
         <div className="mt-8 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground text-center leading-relaxed">
-            {locale === "zh"
-              ? "VideoAI 与 OpenAI、Google DeepMind、ByteDance 之间无关联。整合第三方 AI 模型技术。"
-              : "VideoAI is not affiliated with OpenAI, Google DeepMind, or ByteDance."}
+            {t('affiliation')}
             {" "}
             <LocaleLink
               href="/ai-disclaimer"
               className="underline hover:text-foreground transition-colors"
             >
-              {locale === "zh" ? "查看 AI 免责声明" : "Read the AI disclaimer"}
+              {t('readAiDisclaimer')}
             </LocaleLink>
           </p>
         </div>

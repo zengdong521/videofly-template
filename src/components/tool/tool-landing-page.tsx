@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/components/ui";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { useTranslations } from "next-intl";
 import type { ToolPageConfig } from "@/config/tool-pages";
 
 // ============================================================================
@@ -68,6 +69,7 @@ export function ToolLandingPage({
   locale = "en",
   className,
 }: ToolLandingPageProps) {
+  const t = useTranslations("ToolLanding");
   const { landing, i18nPrefix } = config;
 
   return (
@@ -92,7 +94,7 @@ export function ToolLandingPage({
             >
               <Sparkles className="h-4 w-4 text-blue-500" />
               <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                AI-Powered
+                {t("aiPowered")}
               </span>
             </motion.div>
 
@@ -140,7 +142,7 @@ export function ToolLandingPage({
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h2 className="text-xl font-semibold">Examples</h2>
+              <h2 className="text-xl font-semibold">{t("examples")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {landing.examples.map((example, index: number) => (
                   <motion.div
@@ -184,7 +186,7 @@ export function ToolLandingPage({
             >
               <h3 className="font-semibold flex items-center gap-2 text-lg">
                 <Sparkles className="h-5 w-5 text-purple-500" />
-                Features
+                {t("features")}
               </h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {landing.features.map((feature, index: number) => (
@@ -215,7 +217,7 @@ export function ToolLandingPage({
               transition={{ duration: 0.5, delay: 0.3 }}
               className="space-y-4"
             >
-              <h3 className="text-lg font-semibold text-center">Powered by Leading AI Models</h3>
+              <h3 className="text-lg font-semibold text-center">{t("poweredByLeadingAIModels")}</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {landing.supportedModels.map((model, index: number) => (
                   <motion.div
@@ -262,7 +264,7 @@ export function ToolLandingPage({
                     <Video className="h-5 w-5 text-blue-500" />
                     {landing.stats.videosGenerated}
                   </div>
-                  <div className="text-xs text-muted-foreground">Videos Generated</div>
+                  <div className="text-xs text-muted-foreground">{t("videosGenerated")}</div>
                 </div>
               )}
               {landing.stats.usersCount && (
@@ -271,7 +273,7 @@ export function ToolLandingPage({
                     <Users className="h-5 w-5 text-purple-500" />
                     {landing.stats.usersCount}
                   </div>
-                  <div className="text-xs text-muted-foreground">Happy Users</div>
+                  <div className="text-xs text-muted-foreground">{t("happyUsers")}</div>
                 </div>
               )}
               {landing.stats.avgRating && (
@@ -279,7 +281,7 @@ export function ToolLandingPage({
                   <div className="text-2xl font-bold text-yellow-500">
                     {landing.stats.avgRating} ★
                   </div>
-                  <div className="text-xs text-muted-foreground">Average Rating</div>
+                  <div className="text-xs text-muted-foreground">{t("averageRating")}</div>
                 </div>
               )}
             </motion.div>
@@ -296,7 +298,7 @@ export function ToolLandingPage({
             className="text-center pt-8 border-t border-border"
           >
             <p className="text-muted-foreground mb-4">
-              Ready to create amazing videos? Sign up now and get started!
+              {t("readyToCreate")}
             </p>
             <Link href={`/${locale}/login`}>
               <ShimmerButton
@@ -307,7 +309,7 @@ export function ToolLandingPage({
                 background="linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)"
                 className="px-8 py-3 text-base font-medium"
               >
-                Get Started Free
+                {t("getStartedFree")}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </ShimmerButton>
             </Link>

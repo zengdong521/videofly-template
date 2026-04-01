@@ -158,7 +158,11 @@ export function LandingHeader({ user }: { user?: User | null }) {
                 <NavigationMenuTrigger>{t('Header.tools')}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="w-48 p-2">
-                    {headerTools.map((tool) => {
+                    {[
+                      { id: "txt2vid", title: t('Header.textToVideo'), href: "/text-to-video", icon: "Type" },
+                      { id: "img2vid", title: t('Header.imageToVideo'), href: "/image-to-video", icon: "ImagePlay" },
+                      { id: "ref2vid", title: t('Header.referenceToVideo'), href: "/reference-to-video", icon: "Video" },
+                    ].map((tool) => {
                       const Icon = iconMap[tool.icon || ""];
                       return (
                         <li key={tool.id}>
@@ -201,7 +205,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     )}
                   >
                     <Scale className="h-4 w-4" />
-                    Compare
+                    {t('Header.compare')}
                   </LocaleLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -215,7 +219,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     )}
                   >
                     <BookOpen className="h-4 w-4" />
-                    Guides
+                    {t('Header.guides')}
                   </LocaleLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -420,7 +424,11 @@ export function LandingHeader({ user }: { user?: User | null }) {
                         {t('Header.tools')}
                       </AccordionTrigger>
                       <AccordionContent className="mt-2">
-                        {headerTools.map((tool) => {
+                        {[
+                          { id: "txt2vid", title: t('Header.textToVideo'), href: "/text-to-video", icon: "Type" },
+                          { id: "img2vid", title: t('Header.imageToVideo'), href: "/image-to-video", icon: "ImagePlay" },
+                          { id: "ref2vid", title: t('Header.referenceToVideo'), href: "/reference-to-video", icon: "Video" },
+                        ].map((tool) => {
                           const Icon = iconMap[tool.icon || ""];
                           return (
                             <LocaleLink
@@ -450,7 +458,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     <Scale className="h-4 w-4" />
-                    Compare
+                    {t('Header.compare')}
                   </LocaleLink>
 
                   <LocaleLink
@@ -458,7 +466,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     <BookOpen className="h-4 w-4" />
-                    Guides
+                    {t('Header.guides')}
                   </LocaleLink>
 
                   {/* Docs (Hidden for audit) */}

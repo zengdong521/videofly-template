@@ -10,7 +10,6 @@ import { usePathname } from "next/navigation";
 import { ImagePlay, Type, Video, FolderOpen, Gem, User, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/components/ui";
-import { sidebarNavigation } from "@/config/navigation";
 import {
   Sheet,
   SheetContent,
@@ -42,6 +41,32 @@ export function Sidebar({ lang = "en", mobileOpen, onMobileClose }: SidebarProps
   const t = useTranslations("Sidebar");
   const { openModal } = useUpgradeModal();
 
+  // 构建导航项（使用翻译）
+  const navigation = useMemo(() => [
+    {
+      id: "video",
+      title: t("videoSection"),
+      items: [
+        { id: "txt2vid", title: t("textToVideo"), href: "/text-to-video", icon: "Type" },
+        { id: "img2vid", title: t("imageToVideo"), href: "/image-to-video", icon: "ImagePlay" },
+        { id: "ref2vid", title: t("referenceVideo"), href: "/reference-to-video", icon: "Video" },
+      ],
+    },
+    {
+      id: "user",
+      items: [
+        { id: "creations", title: t("myCreations"), href: "/my-creations", icon: "FolderOpen" },
+      ],
+    },
+    {
+      id: "account",
+      items: [
+        { id: "credits", title: t("credits"), href: "/credits", icon: "Gem" },
+        { id: "settings", title: t("account"), href: "/settings", icon: "User" },
+      ],
+    },
+  ], [t]);
+
   // 判断是否为免费用户（可根据实际业务调整）
   const isFreeUser = useMemo(() => true, []);
 
@@ -57,7 +82,7 @@ export function Sidebar({ lang = "en", mobileOpen, onMobileClose }: SidebarProps
   };
 
   // 渲染导航项
-  const renderNavItem = (item: any, isActive: boolean) => {
+  const renderNavItem = (item: { id: string; title: string; href: string; icon: string }, isActive: boolean) => {
     const Icon = iconMap[item.icon as keyof typeof iconMap];
 
     return (
@@ -82,7 +107,7 @@ export function Sidebar({ lang = "en", mobileOpen, onMobileClose }: SidebarProps
     <div className="flex flex-col h-full py-4">
       {/* 主导航 */}
       <nav className="flex-1 px-3 space-y-6 overflow-y-auto">
-        {sidebarNavigation.map((group) => (
+        {navigation.map((group) => (
           <div key={group.id} className="space-y-1">
             {group.title && (
               <div className="px-2 mb-2 text-xs font-medium text-muted-foreground">
@@ -134,7 +159,7 @@ export function Sidebar({ lang = "en", mobileOpen, onMobileClose }: SidebarProps
   const MobileNav = () => (
     <div className="flex flex-col h-full py-4">
       <nav className="flex-1 px-3 space-y-6 overflow-y-auto">
-        {sidebarNavigation.map((group) => (
+        {navigation.map((group) => (
           <div key={group.id} className="space-y-1">
             {group.title && (
               <div className="px-2 mb-2 text-xs font-medium text-muted-foreground">

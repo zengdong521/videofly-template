@@ -22,9 +22,14 @@
     "tools": "工具",
     "pricing": "定价",
     "docs": "文档",
+    "compare": "模型对比",
+    "guides": "使用指南",
     "myCreations": "我的作品",
     "credits": "积分",
-    "settings": "设置"
+    "settings": "设置",
+    "textToVideo": "文生视频",
+    "imageToVideo": "图生视频",
+    "referenceToVideo": "参考视频生成"
   },
   "Hero": {
     "badge": "支持 Sora 2、Veo 3.1 等模型",
@@ -58,6 +63,8 @@
   "ToolPage": {
     "generator": "生成器",
     "result": "结果",
+    "previewTitle": "详细预览",
+    "previewDescription": "登录后生成并查看您的 AI 视频。",
     "queueTitle": "生成队列",
     "queueEmpty": "暂无进行中的任务",
     "recentTitle": "最近结果",
@@ -78,8 +85,22 @@
     "tipsLine3": "补充情绪词：电影感、梦幻、极简。",
     "generatingTag": "生成中",
     "generatingHint": "视频生成中，可继续发起新任务。",
+    "generating": "生成中...",
+    "generateVideo": "生成视频",
+    "uploadImage": "上传图片",
     "modelLabel": "模型",
-    "download": "下载"
+    "download": "下载",
+    "model": "模型",
+    "videoModels": "视频模型",
+    "prompt": "提示词",
+    "promptPlaceholder": "描述您想创建的视频，例如：阳光下的猫在花园里玩耍，自然光线氛围感...",
+    "referenceImage": "参考图片",
+    "imageSource": "图片来源",
+    "aspectRatio": "宽高比",
+    "videoLength": "视频时长",
+    "resolution": "分辨率",
+    "totalCredits": "总积分",
+    "uploadImageHint": "JPG、PNG、WEBP • 最大 10MB"
   },
   "Showcase": {
     "badge": "亲眼见证",
@@ -226,10 +247,23 @@
     "product": "产品",
     "company": "公司",
     "legal": "法律",
+    "resources": "资源",
     "copyright": "© {year} VideoAI. 保留所有权利。",
     "privacy": "隐私政策",
     "terms": "服务条款",
-    "cookie": "Cookie 政策"
+    "cookie": "Cookie 政策",
+    "imageToVideo": "图生视频",
+    "textToVideo": "文生视频",
+    "referenceToVideo": "参考视频生成",
+    "pricing": "定价",
+    "compareModels": "模型对比",
+    "guides": "使用指南",
+    "aiDisclaimer": "免责声明",
+    "description": "使用 AI 将您的想法转化为精彩视频。",
+    "madeWith": "",
+    "byTeam": "VideoAI 团队用心打造",
+    "affiliation": "VideoAI 与 OpenAI、Google DeepMind、ByteDance 之间无关联。整合第三方 AI 模型技术。",
+    "readAiDisclaimer": "查看 AI 免责声明"
   },
   "Credits": {
     "title": "积分",
@@ -319,7 +353,14 @@
   "Sidebar": {
     "title": "导航菜单",
     "upgradeTitle": "升级专业版",
-    "upgradeSubtitle": "解锁更快生成与更多额度"
+    "upgradeSubtitle": "解锁更快生成与更多额度",
+    "videoSection": "视频",
+    "textToVideo": "文生视频",
+    "imageToVideo": "图生视频",
+    "referenceVideo": "参考视频",
+    "myCreations": "我的作品",
+    "credits": "积分",
+    "account": "账户"
   },
   "UpgradeModal": {
     "default_title": "升级您的方案",
@@ -539,5 +580,16 @@
     "copyLink": "复制链接",
     "removeFromHistory": "从历史中移除",
     "generationFailed": "生成失败"
+  },
+  "ToolLanding": {
+    "aiPowered": "AI 驱动",
+    "examples": "示例",
+    "features": "功能特点",
+    "poweredByLeadingAIModels": "由领先 AI 模型驱动",
+    "videosGenerated": "已生成视频",
+    "happyUsers": "满意用户",
+    "averageRating": "平均评分",
+    "readyToCreate": "准备好创作精彩视频了吗？立即注册开始使用！",
+    "getStartedFree": "免费开始使用"
   }
 }
