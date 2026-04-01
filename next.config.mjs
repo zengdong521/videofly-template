@@ -24,6 +24,12 @@ const config = {
   /** We already do linting and typechecking as separate tasks in CI */
   typescript: { ignoreBuildErrors: true },
   output: "standalone",
+  webpack: (config) => {
+    config.ignoreWarnings = [
+      /Parsing of.*for build dependencies failed at 'import\(t\)'/,
+    ];
+    return config;
+  },
 };
 
 // Compose plugins

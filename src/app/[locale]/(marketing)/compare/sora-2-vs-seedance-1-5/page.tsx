@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-import { ModelLandingPage } from "@/components/marketing/model-landing-page";
+import { CompareLandingPage } from "@/components/marketing/compare-landing-page";
+import { getComparePageConfig } from "@/config/compare-pages";
 import type { Locale } from "@/config/i18n-config";
-import { getModelPageConfig } from "@/config/model-pages";
 import { siteConfig } from "@/config/site";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 
-const config = getModelPageConfig("veo-3-1");
+const config = getComparePageConfig("sora-2-vs-seedance-1-5");
 
 export async function generateMetadata({
   params,
@@ -15,19 +15,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const copy = config.copy[locale];
-  const alternates = buildAlternates("/veo-3-1", locale);
+  const alternates = buildAlternates(`/compare/${config.slug}`, locale);
   const ogImage = resolveOgImage(config.ogImage);
 
   return {
     title: copy.title,
     description: copy.description,
     keywords: [
-      "Veo 3.1",
-      "Veo 3.1 AI video generator",
-      "Google DeepMind video model",
-      "realistic AI video",
-      "text to video",
-      "AI video generator",
+      "Sora 2 vs Seedance 1.5",
+      "AI video model comparison",
+      "Sora vs Seedance",
+      "short form AI video comparison",
+      "AI video generator comparison",
     ],
     alternates: {
       canonical: alternates.canonical,
@@ -51,12 +50,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function Veo31Page({
+export default async function ComparePage({
   params,
 }: {
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-
-  return <ModelLandingPage config={config} locale={locale} />;
+  return <CompareLandingPage config={config} locale={locale} />;
 }

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { execSync } from "node:child_process";
-import { readdir } from "node:fs/promises";
+import { readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
 
 import { i18n } from "@/config/i18n-config";
@@ -19,19 +19,15 @@ const getLastModified = (filePath: string): Date => {
       return new Date(timestamp);
     }
   } catch (e) {
-    // If git command fails (e.g. in environments without git), fall back to current date
     console.warn(`Failed to get git timestamp for ${filePath}`, e);
   }
-  return new Date();
+  return new Date(0);
 };
 
 const EXCLUDED_ROUTE_GROUPS = ["/(dashboard)/", "/(admin)/", "/(auth)/"];
 const EXCLUDED_ROUTE_PATHS = new Set([
   "privacy-policy",
   "terms-of-service",
-  "sora-2",
-  "veo-3-1",
-  "seedance-1-5",
 ]);
 
 /**
@@ -132,7 +128,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemap: MetadataRoute.Sitemap = [];
 
   for (const route of routes) {
-    const lastModified = getLastModified(route.file);
+    let lastModified: Date | undefined = getLastModified(route.file);
+
+    if (lastModified.getTime() === 0) {
+      try {
+        const fileStats = await stat(route.file);
+        lastModified = fileStats.mtime;
+      } catch (error) {
+        console.warn(`Failed to read mtime for ${route.file}`, error);
+        lastModified = undefined;
+      }
+    }
 
     for (const locale of i18n.locales) {
       const localePath = locale === i18n.defaultLocale ? "" : `/${locale}`;
@@ -140,7 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
       sitemap.push({
         url,
-        lastModified,
+        ...(lastModified ? { lastModified } : {}),
         changeFrequency: route.changeFrequency,
         priority: route.priority,
       });

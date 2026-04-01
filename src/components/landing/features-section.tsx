@@ -2,12 +2,13 @@
 
 import { Video, Image, Layers, Zap, Shield, Clock } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { MagicCard } from "@/components/magicui/magic-card";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/components/ui";
 import { LocaleLink } from "@/i18n/navigation";
 
@@ -82,6 +83,7 @@ const benefits = [
 
 export function FeaturesSection() {
   const t = useTranslations("Features");
+  const locale = useLocale();
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -259,6 +261,57 @@ export function FeaturesSection() {
         </div>
 
         {/* 底部 CTA */}
+        <div className="mt-16 grid gap-4 md:grid-cols-2">
+          <BlurFade delay={0.55} inView>
+            <div className="rounded-3xl border border-border/70 bg-card p-6">
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary/80">
+                {locale === "zh" ? "模型对比" : "Compare Models"}
+              </p>
+              <h3 className="mt-3 text-2xl font-semibold">
+                {locale === "zh"
+                  ? "先看差异，再决定用哪条生成路线"
+                  : "See the differences before you choose a generation path"}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                {locale === "zh"
+                  ? "通过模型对比页更快理解 Sora 2、Veo 3.1 和 Seedance 1.5 在真实感、电影感与短视频效率上的差别。"
+                  : "Use the comparison pages to understand how Sora 2, Veo 3.1, and Seedance 1.5 differ across realism, cinematic style, and short-form speed."}
+              </p>
+              <div className="mt-5">
+                <Button asChild variant="outline">
+                  <LocaleLink href="/compare">
+                    {locale === "zh" ? "查看模型对比" : "Explore comparisons"}
+                  </LocaleLink>
+                </Button>
+              </div>
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.6} inView>
+            <div className="rounded-3xl border border-border/70 bg-card p-6">
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary/80">
+                {locale === "zh" ? "创作指南" : "Guides"}
+              </p>
+              <h3 className="mt-3 text-2xl font-semibold">
+                {locale === "zh"
+                  ? "从 Prompt 到广告创作的实战内容"
+                  : "Practical content from prompting to ad creation"}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                {locale === "zh"
+                  ? "阅读 prompt 写法、产品发布工作流和 TikTok 风格广告指南，把创作方法沉淀成可复用流程。"
+                  : "Read guides on prompts, launch workflows, and TikTok-style ad creation so your team can turn experimentation into repeatable process."}
+              </p>
+              <div className="mt-5">
+                <Button asChild variant="outline">
+                  <LocaleLink href="/guides">
+                    {locale === "zh" ? "阅读指南" : "Explore guides"}
+                  </LocaleLink>
+                </Button>
+              </div>
+            </div>
+          </BlurFade>
+        </div>
+
         <BlurFade delay={0.6} inView>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

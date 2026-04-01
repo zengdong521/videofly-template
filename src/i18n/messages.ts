@@ -1,19 +1,17 @@
-/**
- * Load translation messages for a given locale
- */
-async function getMessagesForLocale(locale: string) {
-  try {
-    const messages = (await import(`@/messages/${locale}.json`)).default;
-    return messages;
-  } catch (error) {
-    // Fallback to default locale (en) if translation not found
-    console.warn(`Translation for locale "${locale}" not found, falling back to "en"`);
-    const defaultMessages = (await import(`@/messages/en.json`)).default;
-    return defaultMessages;
-  }
-}
+import enMessages from "@/messages/en.json";
+import zhMessages from "@/messages/zh.json";
 
 /**
- * Export for use in request.ts
+ * Static translation messages map for each supported locale
  */
-export { getMessagesForLocale };
+const messagesMap: Record<string, object> = {
+  en: enMessages,
+  zh: zhMessages,
+};
+
+/**
+ * Get translation messages for a given locale
+ */
+export function getMessagesForLocale(locale: string): object {
+  return messagesMap[locale] ?? messagesMap["en"];
+}

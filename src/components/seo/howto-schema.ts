@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 
 interface HowToSchemaProps {
   locale: Locale;
+  pathname: string;
   toolName: string;
   toolDescription: string;
   steps: Array<{ name: string; text: string }>;
@@ -10,17 +11,19 @@ interface HowToSchemaProps {
 
 export function buildHowToSchema({
   locale,
+  pathname,
   toolName,
   toolDescription,
   steps,
 }: HowToSchemaProps): string {
+  const localePrefix = locale === "en" ? "" : `/${locale}`;
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: toolName,
     description: toolDescription,
     inLanguage: locale === "zh" ? "zh-CN" : "en-US",
-    url: `${siteConfig.url}/${toolName.toLowerCase().replace(/\s+/g, "-")}`,
+    url: `${siteConfig.url}${localePrefix}${pathname}`,
     step: steps.map((step, index) => ({
       "@type": "HowToStep",
       position: index + 1,

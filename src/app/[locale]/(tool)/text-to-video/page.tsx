@@ -55,6 +55,7 @@ export default async function TextToVideoPage({ params }: TextToVideoPageProps) 
   const { locale } = await params;
   const howToSchema = buildHowToSchema({
     locale,
+    pathname: "/text-to-video",
     toolName: config.seo.title,
     toolDescription: config.seo.description,
     steps: [

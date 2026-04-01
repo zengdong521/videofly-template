@@ -1,13 +1,8 @@
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import type { Locale } from "@/config/i18n-config";
+import { getLocale } from "next-intl/server";
 
-interface NotFoundProps {
-  params: Promise<{ locale: Locale }>;
-}
-
-export default async function NotFound({ params }: NotFoundProps) {
-  const { locale } = await params;
+export default async function NotFound() {
+  const locale = await getLocale();
   const isZh = locale === "zh";
 
   return (

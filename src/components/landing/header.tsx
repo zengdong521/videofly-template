@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { Menu, Globe, Sun, Moon, Monitor } from "lucide-react";
+import { Menu, Globe, Sun, Moon, Monitor, Scale, BookOpen } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { useTheme } from "next-themes";
@@ -39,7 +39,7 @@ import {
 import { cn } from "@/components/ui";
 import { useCredits } from "@/stores/credits-store";
 import { headerModels, headerTools, headerDocs } from "@/config/navigation";
-import { Gem, ImagePlay, Type, Video, BookOpen } from "lucide-react";
+import { Gem, ImagePlay, Type, Video } from "lucide-react";
 import { LocaleLink } from "@/i18n/navigation";
 import type { User } from "@/lib/auth/client";
 import { useSigninModal } from "@/hooks/use-signin-modal";
@@ -188,6 +188,34 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     )}
                   >
                     {t('Header.pricing')}
+                  </LocaleLink>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <LocaleLink
+                    href="/compare"
+                    className={cn(
+                      "group inline-flex h-10 w-max items-center justify-center gap-2 rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
+                    )}
+                  >
+                    <Scale className="h-4 w-4" />
+                    Compare
+                  </LocaleLink>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <LocaleLink
+                    href="/guides"
+                    className={cn(
+                      "group inline-flex h-10 w-max items-center justify-center gap-2 rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
+                    )}
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    Guides
                   </LocaleLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -415,6 +443,22 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     className="font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     {t('Header.pricing')}
+                  </LocaleLink>
+
+                  <LocaleLink
+                    href="/compare"
+                    className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
+                  >
+                    <Scale className="h-4 w-4" />
+                    Compare
+                  </LocaleLink>
+
+                  <LocaleLink
+                    href="/guides"
+                    className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    Guides
                   </LocaleLink>
 
                   {/* Docs (Hidden for audit) */}

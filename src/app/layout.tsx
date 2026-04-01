@@ -1,5 +1,6 @@
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
+import type { Metadata } from "next";
 import { getLocale, getMessages } from "next-intl/server";
 
 import "@/styles/globals.css";
@@ -17,6 +18,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { PlausibleAnalytics } from "@/components/plausible-provider";
 import { i18n } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
+import { env } from "@/env.mjs";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -35,7 +37,19 @@ export function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
 }
 
-export const metadata = {
+const verification =
+  env.GOOGLE_SITE_VERIFICATION || env.BING_SITE_VERIFICATION
+    ? {
+        google: env.GOOGLE_SITE_VERIFICATION,
+        other: env.BING_SITE_VERIFICATION
+          ? {
+              "msvalidate.01": env.BING_SITE_VERIFICATION,
+            }
+          : undefined,
+      }
+    : undefined;
+
+export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -64,6 +78,8 @@ export const metadata = {
     },
   ],
   creator: siteConfig.name,
+  manifest: "/site.webmanifest",
+  applicationName: siteConfig.name,
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -93,7 +109,15 @@ export const metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
+  verification,
   metadataBase: new URL(siteConfig.url),
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
 
 interface RootLayoutProps {

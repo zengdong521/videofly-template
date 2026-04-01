@@ -39,6 +39,13 @@ export function LandingFooter() {
         // { title: t('cookie'), href: "/cookies" },
       ],
     },
+    {
+      title: locale === "zh" ? "资源" : "Resources",
+      links: [
+        { title: locale === "zh" ? "模型对比" : "Compare Models", href: "/compare" },
+        { title: locale === "zh" ? "创作指南" : "Guides", href: "/guides" },
+      ],
+    },
   ];
 
 
@@ -46,7 +53,7 @@ export function LandingFooter() {
     <footer className="border-t border-border bg-background">
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <LocaleLink

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-import { ModelLandingPage } from "@/components/marketing/model-landing-page";
+import { GuideArticlePage } from "@/components/marketing/guide-article-page";
+import { getGuideConfig } from "@/config/guides";
 import type { Locale } from "@/config/i18n-config";
-import { getModelPageConfig } from "@/config/model-pages";
 import { siteConfig } from "@/config/site";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 
-const config = getModelPageConfig("veo-3-1");
+const config = getGuideConfig("how-to-write-better-ai-video-prompts");
 
 export async function generateMetadata({
   params,
@@ -15,19 +15,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const copy = config.copy[locale];
-  const alternates = buildAlternates("/veo-3-1", locale);
+  const alternates = buildAlternates(`/guides/${config.slug}`, locale);
   const ogImage = resolveOgImage(config.ogImage);
 
   return {
     title: copy.title,
     description: copy.description,
     keywords: [
-      "Veo 3.1",
-      "Veo 3.1 AI video generator",
-      "Google DeepMind video model",
-      "realistic AI video",
-      "text to video",
-      "AI video generator",
+      "AI video prompts",
+      "how to write AI video prompts",
+      "text to video prompt guide",
+      "AI video prompt examples",
     ],
     alternates: {
       canonical: alternates.canonical,
@@ -51,12 +49,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function Veo31Page({
+export default async function GuidePage({
   params,
 }: {
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-
-  return <ModelLandingPage config={config} locale={locale} />;
+  return <GuideArticlePage config={config} locale={locale} />;
 }

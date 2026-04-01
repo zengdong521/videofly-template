@@ -46,26 +46,8 @@ const faqData: FAQItem[] = [
 export function FAQSection() {
   const t = useTranslations("FAQ");
 
-  // Generate FAQPage JSON-LD for SEO/GEO (+40% AI search visibility)
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqData.map((item) => ({
-      "@type": "Question",
-      name: t(item.questionKey),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: t(item.answerKey),
-      },
-    })),
-  };
-
   return (
     <section className="py-24 md:py-32 bg-background">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           {/* 标题 */}

@@ -55,6 +55,7 @@ export default async function ImageToVideoPage({ params }: ImageToVideoPageProps
   const { locale } = await params;
   const howToSchema = buildHowToSchema({
     locale,
+    pathname: "/image-to-video",
     toolName: config.seo.title,
     toolDescription: config.seo.description,
     steps: [
