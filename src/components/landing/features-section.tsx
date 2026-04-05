@@ -274,8 +274,8 @@ export function FeaturesSection() {
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 {locale === "zh"
-                  ? "通过模型对比页更快理解 Sora 2、Veo 3.1 和 Seedance 1.5 在真实感、电影感与短视频效率上的差别。"
-                  : "Use the comparison pages to understand how Sora 2, Veo 3.1, and Seedance 1.5 differ across realism, cinematic style, and short-form speed."}
+                  ? "通过模型对比页更快理解 Seedance 2.0 与其他路线在真实感、电影感与短视频效率上的差别。"
+                  : "Use the comparison pages to understand how Seedance 2.0 differs from other workflows across realism, cinematic style, and short-form speed."}
               </p>
               <div className="mt-5">
                 <Button asChild variant="outline">

@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "title": "VideoAI - AI Video Generation Platform",
-    "description": "Create stunning AI-generated videos in minutes with Sora 2, Veo 3.1, and more"
+    "description": "Create stunning AI-generated videos in minutes with Seedance 2.0"
   },
   "Common": {
     "login": "Login",
@@ -32,7 +32,7 @@
     "referenceToVideo": "Reference to Video"
   },
   "Hero": {
-    "badge": "Powered by Sora 2, Veo 3.1 & more",
+    "badge": "Powered by Seedance 2.0",
     "title": "Transform Your Ideas Into Stunning Videos",
     "subtitle": "with AI",
     "description": "Create professional AI-generated videos in minutes. From text to video, image to video, or enhance existing footage.",
@@ -220,7 +220,7 @@
     "contact": "Still have questions? Contact us at",
     "general": {
       "question": "What is VideoAI?",
-      "answer": "VideoAI is a cutting-edge AI video generation platform that allows you to transform text and images into high-quality videos in minutes. Powered by advanced models like Sora 2 and Veo 3.1, it enables creators to bring their visions to life without expensive equipment."
+      "answer": "VideoAI is a cutting-edge AI video generation platform that allows you to transform text and images into high-quality videos in minutes. Powered by Seedance 2.0, it enables creators to bring their visions to life without expensive equipment."
     },
     "commercial": {
       "question": "Can I use the videos for commercial purposes?",
@@ -228,7 +228,7 @@
     },
     "aiModels": {
       "question": "Which AI models do you use?",
-      "answer": "We integrate the industry's best video generation models, including Sora 2, Veo 3.1, and others. We continuously update our platform to include the latest and most capable models available."
+      "answer": "Our current primary video generation workflow is built around Seedance 2.0. We continuously update the platform to keep the output quality, speed, and reliability aligned with the latest production needs."
     },
     "credits": {
       "question": "How does the credit system work?",
@@ -426,7 +426,7 @@
       "features": "With VideoAI, you can:",
       "featuresList": {
         "generate": "Generate stunning AI videos in minutes",
-        "models": "Use multiple AI models like Sora 2, Veo 3.1, and more",
+        "models": "Create with our Seedance 2.0 powered workflow",
         "share": "Download and share your creations anywhere"
       },
       "cta": "Start Creating Videos",
@@ -465,7 +465,7 @@
       "features": "With VideoAI, you can:",
       "featuresList": {
         "generate": "Generate stunning AI videos in minutes",
-        "models": "Use multiple AI models like Sora 2, Veo 3.1, and more",
+        "models": "Create with our Seedance 2.0 powered workflow",
         "share": "Download and share your creations anywhere"
       },
       "cta": "Start Creating Videos",

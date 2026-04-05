@@ -57,19 +57,6 @@ export function GuideArticlePage({ config, locale }: GuideArticlePageProps) {
     },
   });
 
-  const faqSchema = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: copy.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  });
-
   return (
     <>
       <Script
@@ -82,11 +69,6 @@ export function GuideArticlePage({ config, locale }: GuideArticlePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: articleSchema }}
       />
-      <Script
-        id={`${config.slug}-faq-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: faqSchema }}
-      />
       <div className="bg-background">
         <section className="border-b border-border/60 bg-gradient-to-b from-primary/5 via-background to-background">
           <div className="container mx-auto px-4 py-20 md:py-28">
@@ -96,6 +78,16 @@ export function GuideArticlePage({ config, locale }: GuideArticlePageProps) {
                   {copy.category}
                 </span>
                 <span>{copy.readTime}</span>
+                <span>
+                  {locale === "zh"
+                    ? `作者：${siteConfig.name} Team`
+                    : `By ${siteConfig.name} Team`}
+                </span>
+                <span>
+                  {locale === "zh"
+                    ? `发布于 ${copy.publishedAt}`
+                    : `Published ${copy.publishedAt}`}
+                </span>
               </div>
               <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
                 {copy.heroTitle}

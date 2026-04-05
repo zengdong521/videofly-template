@@ -176,7 +176,7 @@ export const CREDITS_CONFIG = {
           },
           "seedance-1.5-pro": {
             id: "seedance-1.5-pro",
-            name: "Seedance 1.5 Pro",
+            name: "Seedance 2.0",
             provider: "apimart" as const,
             description: "models.seedance.description",
             supportImageToVideo: true,

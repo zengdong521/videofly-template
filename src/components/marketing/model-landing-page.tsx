@@ -34,19 +34,6 @@ export function ModelLandingPage({ config, locale }: ModelLandingPageProps) {
     ],
   });
 
-  const faqSchema = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: copy.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  });
-
   const webPageSchema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -72,11 +59,6 @@ export function ModelLandingPage({ config, locale }: ModelLandingPageProps) {
         dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
       />
       <Script
-        id={`${config.slug}-faq-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: faqSchema }}
-      />
-      <Script
         id={`${config.slug}-webpage-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: webPageSchema }}
@@ -88,6 +70,18 @@ export function ModelLandingPage({ config, locale }: ModelLandingPageProps) {
               <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-primary/80">
                 {config.provider}
               </p>
+              <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-primary/80">
+                <span>
+                  {locale === "zh"
+                    ? `作者：${siteConfig.name} Team`
+                    : `By ${siteConfig.name} Team`}
+                </span>
+                <span>
+                  {locale === "zh"
+                    ? "更新于 2026-04-01"
+                    : "Updated 2026-04-01"}
+                </span>
+              </div>
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
                 {copy.heroTitle}
               </h1>
@@ -118,6 +112,11 @@ export function ModelLandingPage({ config, locale }: ModelLandingPageProps) {
               {locale === "zh" ? "快速判断" : "Quick take"}
             </p>
             <p className="mt-4 leading-8 text-muted-foreground">{copy.comparisonBody}</p>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">
+              {locale === "zh"
+                ? "这是一页由 VideoAI 团队整理的工作流与使用建议，不代表模型提供方的官方产品文档。"
+                : "This page is an editorial workflow guide prepared by the VideoAI team and should not be treated as official documentation from the model provider."}
+            </p>
           </aside>
         </section>
 

@@ -4,7 +4,6 @@ import type { Locale } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
-import { buildHowToSchema } from "@/components/seo/howto-schema";
 import { buildToolBreadcrumbs } from "@/components/seo/breadcrumb-schema";
 import Script from "next/script";
 
@@ -53,18 +52,6 @@ export default async function TextToVideoPage({ params }: TextToVideoPageProps) 
     getConfiguredAIProvider()
   );
   const { locale } = await params;
-  const howToSchema = buildHowToSchema({
-    locale,
-    pathname: "/text-to-video",
-    toolName: config.seo.title,
-    toolDescription: config.seo.description,
-    steps: [
-      { name: "Enter Prompt", text: "Describe the video you want to create in the text input field" },
-      { name: "Select Settings", text: "Choose video duration, aspect ratio, and other options" },
-      { name: "Generate Video", text: "Click generate and wait 2-5 minutes for your AI video to be created" },
-      { name: "Download & Share", text: "Preview, download, or share your generated video" },
-    ],
-  });
   const breadcrumbSchema = buildToolBreadcrumbs(
     locale === "zh" ? "文字转视频" : "Text to Video",
     "/text-to-video",
@@ -72,11 +59,6 @@ export default async function TextToVideoPage({ params }: TextToVideoPageProps) 
   );
   return (
     <>
-      <Script
-        id="howto-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: howToSchema }}
-      />
       <Script
         id="breadcrumb-schema"
         type="application/ld+json"

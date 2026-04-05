@@ -10,7 +10,7 @@ export function buildServiceSchema(): string {
     "@type": "SoftwareApplication",
     name: "VideoAI",
     description:
-      "AI-powered short video creation platform. Generate stunning videos from text, images, or reference footage using Sora 2, Veo 3.1, and Seedance AI models.",
+      "AI-powered short video creation platform. Generate stunning videos from text, images, or reference footage using Seedance 2.0.",
     url: siteConfig.url,
     applicationCategory: "MultimediaApplication",
     operatingSystem: "Web",
@@ -27,7 +27,7 @@ export function buildServiceSchema(): string {
       "Text to Video AI generation",
       "Image to Video animation",
       "Reference Video style transfer",
-      "Multiple AI models (Sora 2, Veo 3.1, Seedance)",
+      "Seedance 2.0 powered video generation",
       "Multiple aspect ratios",
       "Commercial license",
       "No watermark on paid plans",

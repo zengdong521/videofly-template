@@ -67,7 +67,7 @@ WelcomeEmail.PreviewProps = {
         features: "With VideoAI, you can:",
         featuresList: {
           generate: "Generate stunning AI videos in minutes",
-          models: "Use multiple AI models like Sora 2, Veo 3.1, and more",
+          models: "Create with our Seedance 2.0 powered workflow",
           share: "Download and share your creations anywhere",
         },
         cta: "Start Creating Videos",

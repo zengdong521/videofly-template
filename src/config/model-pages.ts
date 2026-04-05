@@ -268,20 +268,20 @@ export const modelPageConfigs: Record<ModelPageSlug, ModelPageConfig> = {
   },
   "seedance-1-5": {
     slug: "seedance-1-5",
-    modelName: "Seedance 1.5",
+    modelName: "Seedance 2.0",
     provider: "ByteDance",
     ogImage: "/og-home.jpg",
     copy: {
       en: {
-        title: "Seedance 1.5 AI Video Generator",
+        title: "Seedance 2.0 AI Video Generator",
         description:
-          "Discover Seedance 1.5 style AI video generation for social-native clips, fast experimentation, and efficient creator workflows inside VideoAI.",
-        heroTitle: "Seedance 1.5 style generation for fast-moving social video teams",
+          "Discover Seedance 2.0 style AI video generation for social-native clips, fast experimentation, and efficient creator workflows inside VideoAI.",
+        heroTitle: "Seedance 2.0 style generation for fast-moving social video teams",
         heroDescription:
           "Build scroll-stopping short videos, iterate on hooks quickly, and turn creative ideas into social-ready motion with less friction.",
         intro:
-          "Seedance 1.5 style workflows are especially relevant when speed, experimentation, and short-form output matter. This page gives the model keyword a real landing page with practical context instead of a placeholder.",
-        strengthsTitle: "Why teams look at Seedance 1.5 style workflows",
+          "Seedance 2.0 style workflows are especially relevant when speed, experimentation, and short-form output matter. This page gives the model keyword a real landing page with practical context instead of a placeholder.",
+        strengthsTitle: "Why teams look at Seedance 2.0 style workflows",
         strengths: [
           "Good fit for social-first short-form video production",
           "Fast experimentation for hooks, pacing, and attention-grabbing openings",
@@ -302,13 +302,13 @@ export const modelPageConfigs: Record<ModelPageSlug, ModelPageConfig> = {
           "Move to image-to-video when a brand visual or product shot must stay consistent",
           "Choose the strongest clip and repurpose it across short-form channels",
         ],
-        comparisonTitle: "When Seedance 1.5 style generation is a smart choice",
+        comparisonTitle: "When Seedance 2.0 style generation is a smart choice",
         comparisonBody:
           "Choose this direction when you care about speed, variation volume, and social-native creativity. It is especially effective for short-form teams optimizing for attention and iteration velocity.",
-        faqTitle: "Seedance 1.5 FAQ",
+        faqTitle: "Seedance 2.0 FAQ",
         faqs: [
           {
-            question: "What is Seedance 1.5 best for?",
+            question: "What is Seedance 2.0 best for?",
             answer:
               "It is best for social video experimentation, creator workflows, and short clips where you want multiple strong variants quickly.",
           },
@@ -327,15 +327,15 @@ export const modelPageConfigs: Record<ModelPageSlug, ModelPageConfig> = {
         secondaryCta: "Start Image to Video",
       },
       zh: {
-        title: "Seedance 1.5 AI 视频生成器",
+        title: "Seedance 2.0 AI 视频生成器",
         description:
-          "体验接近 Seedance 1.5 风格的 AI 视频生成能力，更适合社媒短视频、高频试稿和创作者团队的高效率工作流。",
-        heroTitle: "更适合社媒短视频团队的 Seedance 1.5 风格生成",
+          "体验接近 Seedance 2.0 风格的 AI 视频生成能力，更适合社媒短视频、高频试稿和创作者团队的高效率工作流。",
+        heroTitle: "更适合社媒短视频团队的 Seedance 2.0 风格生成",
         heroDescription:
           "快速产出更有停留感的短视频内容，高频测试不同 hook 和节奏，让创意团队更快找到有效版本。",
         intro:
-          "Seedance 1.5 风格工作流更适合短视频和社媒内容生产。这个页面会把这个关键词页做成真正可收录、可解释、可转化的落地页，而不是简单占位。",
-        strengthsTitle: "为什么会关注 Seedance 1.5",
+          "Seedance 2.0 风格工作流更适合短视频和社媒内容生产。这个页面会把这个关键词页做成真正可收录、可解释、可转化的落地页，而不是简单占位。",
+        strengthsTitle: "为什么会关注 Seedance 2.0",
         strengths: [
           "适合以社媒传播为导向的短视频内容生产",
           "便于快速测试不同开头、节奏和吸引注意力的方式",
@@ -356,13 +356,13 @@ export const modelPageConfigs: Record<ModelPageSlug, ModelPageConfig> = {
           "如果品牌视觉必须保持一致，就改用图生视频",
           "挑出最强的一版，再同步分发到不同短视频渠道",
         ],
-        comparisonTitle: "什么时候适合选 Seedance 1.5 风格",
+        comparisonTitle: "什么时候适合选 Seedance 2.0 风格",
         comparisonBody:
-          "如果你更在意产能、变体数量、社媒原生感和快速试错效率，那么 Seedance 1.5 风格通常比偏电影感路线更适合短视频团队。",
-        faqTitle: "Seedance 1.5 常见问题",
+          "如果你更在意产能、变体数量、社媒原生感和快速试错效率，那么 Seedance 2.0 风格通常比偏电影感路线更适合短视频团队。",
+        faqTitle: "Seedance 2.0 常见问题",
         faqs: [
           {
-            question: "Seedance 1.5 最适合做什么？",
+            question: "Seedance 2.0 最适合做什么？",
             answer:
               "它更适合短视频实验、社媒内容批量生产，以及需要快速产出多个创意版本的场景。",
           },

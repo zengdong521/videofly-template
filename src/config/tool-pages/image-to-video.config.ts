@@ -8,7 +8,7 @@ export const imageToVideoConfig: ToolPageConfig = {
   // SEO 配置
   seo: {
     title: "Image to Video - Transform Photos into AI Videos",
-    description: "Convert your images into stunning videos using AI. Upload any photo and watch it come to life with smooth, realistic motion powered by Seedance AI models.",
+    description: "Convert your images into stunning videos using AI. Upload any photo and watch it come to life with smooth, realistic motion powered by Seedance 2.0.",
     keywords: [
       "image to video",
       "image to video AI",
@@ -19,7 +19,7 @@ export const imageToVideoConfig: ToolPageConfig = {
       "photo to video AI",
       "AI video maker from photo",
       "animate image",
-      "Seedance 1.5",
+      "Seedance 2.0",
       "image to video free",
       "photo video generator",
       "AI photo animator",
@@ -100,7 +100,7 @@ export const imageToVideoConfig: ToolPageConfig = {
     ],
 
     supportedModels: [
-      { name: "Seedance 1.5 Pro", provider: "ByteDance", color: "#10b981" },
+      { name: "Seedance 2.0", provider: "ByteDance", color: "#10b981" },
       { name: "Seedance 1.0 Fast", provider: "ByteDance", color: "#34d399" },
       { name: "Seedance 1.0 Quality", provider: "ByteDance", color: "#059669" },
     ],

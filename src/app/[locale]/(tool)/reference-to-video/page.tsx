@@ -4,7 +4,6 @@ import type { Locale } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
-import { buildHowToSchema } from "@/components/seo/howto-schema";
 import { buildToolBreadcrumbs } from "@/components/seo/breadcrumb-schema";
 import Script from "next/script";
 
@@ -53,18 +52,6 @@ export default async function ReferenceToVideoPage({ params }: ReferenceToVideoP
     getConfiguredAIProvider()
   );
   const { locale } = await params;
-  const howToSchema = buildHowToSchema({
-    locale,
-    pathname: "/reference-to-video",
-    toolName: config.seo.title,
-    toolDescription: config.seo.description,
-    steps: [
-      { name: "Upload Reference Video", text: "Upload a reference video clip to define style and motion" },
-      { name: "Enter Prompt", text: "Describe what you want to create using the reference style" },
-      { name: "Set Options", text: "Choose duration and aspect ratio for the output" },
-      { name: "Generate & Download", text: "Generate and download your AI video using reference style" },
-    ],
-  });
   const breadcrumbSchema = buildToolBreadcrumbs(
     locale === "zh" ? "参考视频生成" : "Reference to Video",
     "/reference-to-video",
@@ -72,11 +59,6 @@ export default async function ReferenceToVideoPage({ params }: ReferenceToVideoP
   );
   return (
     <>
-      <Script
-        id="howto-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: howToSchema }}
-      />
       <Script
         id="breadcrumb-schema"
         type="application/ld+json"
