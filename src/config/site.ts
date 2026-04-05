@@ -24,7 +24,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "VideoAI",
-  description: "AI-powered short video creation platform - Create stunning videos with AI",
+  description: "AI-powered short video creation platform built around Seedance 2.0",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://donney.pro",
   ogImage: "/og.png",
   links: {},

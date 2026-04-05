@@ -15,7 +15,7 @@ export const priceFaqDataMap: Record<string, FAQItem[]> = {
       id: "item-1",
       question: "积分是如何工作的？",
       answer:
-        "每次生成视频时会消耗积分。不同模型和不同分辨率消耗的积分不同。例如，Veo 3.1 生成一个视频消耗 10 积分。您可以随时在账户中查看积分余额。",
+        "每次生成视频时会消耗积分。不同模型和不同分辨率消耗的积分不同。例如，Seedance 2.0 生成一个视频会消耗相应积分。您可以随时在账户中查看积分余额。",
     },
     {
       id: "item-2",
@@ -53,7 +53,7 @@ export const priceFaqDataMap: Record<string, FAQItem[]> = {
       id: "item-1",
       question: "How do credits work?",
       answer:
-        "Each video generation consumes credits. Different models and resolutions consume different amounts. For example, Veo 3.1 consumes 10 credits per video. You can check your credit balance anytime in your account.",
+        "Each video generation consumes credits. Different models and resolutions consume different amounts. For example, Seedance 2.0 consumes credits based on the selected output settings. You can check your credit balance anytime in your account.",
     },
     {
       id: "item-2",
@@ -91,7 +91,7 @@ export const priceFaqDataMap: Record<string, FAQItem[]> = {
       id: "item-1",
       question: "クレジットはどのように機能しますか？",
       answer:
-        "動画を生成するたびにクレジットが消費されます。モデルや解像度によって消費量が異なります。例えば、Veo 3.1 は動画あたり 10 クレジットを消費します。アカウントでいつでもクレジット残高を確認できます。",
+        "動画を生成するたびにクレジットが消費されます。モデルや解像度によって消費量が異なります。例えば、Seedance 2.0 は選択した出力設定に応じてクレジットを消費します。アカウントでいつでもクレジット残高を確認できます。",
     },
     {
       id: "item-2",
@@ -129,7 +129,7 @@ export const priceFaqDataMap: Record<string, FAQItem[]> = {
       id: "item-1",
       question: "크레딧은 어떻게 작동하나요?",
       answer:
-        "비디오를 생성할 때마다 크레딧이 소비됩니다. 모델과 해상도에 따라 소비량이 다릅니다. 예를 들어, Veo 3.1은 비디오당 10 크레딧을 소비합니다. 계정에서 언제든지 크레딧 잔액을 확인할 수 있습니다.",
+        "비디오를 생성할 때마다 크레딧이 소비됩니다. 모델과 해상도에 따라 소비량이 다릅니다. 예를 들어, Seedance 2.0은 선택한 출력 설정에 따라 크레딧을 소비합니다. 계정에서 언제든지 크레딧 잔액을 확인할 수 있습니다.",
     },
     {
       id: "item-2",

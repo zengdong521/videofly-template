@@ -98,7 +98,7 @@ export const referenceToVideoConfig: ToolPageConfig = {
     ],
 
     supportedModels: [
-      { name: "Seedance 1.5 Pro", provider: "ByteDance", color: "#10b981" },
+      { name: "Seedance 2.0", provider: "ByteDance", color: "#10b981" },
     ],
 
     stats: {

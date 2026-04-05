@@ -46,7 +46,7 @@ export const DEFAULT_VIDEO_MODELS: VideoModel[] = [
   // ============================================================================
   {
     id: "seedance-1.5-pro",
-    name: "Seedance 1.5 Pro",
+    name: "Seedance 2.0",
     icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
     color: "#10b981",
     description: "Text/Image/Frames to video with audio",

@@ -15,7 +15,6 @@ import { i18n } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { getConfiguredAIProvider } from "@/ai";
 import { buildServiceSchema } from "@/components/seo/service-schema";
-import { buildFAQPageSchema } from "@/components/seo/faq-schema";
 import { LocaleLink } from "@/i18n/navigation";
 
 interface HomePageProps {
@@ -34,13 +33,13 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   const { locale } = await params;
 
   const titles = {
-    en: "AI Video Generator - Create Stunning Videos with Sora 2 & Veo 3.1",
-    zh: "AI视频生成器 - 使用Sora 2和Veo 3.1创建精彩视频",
+    en: "AI Video Generator - Create Stunning Videos with Seedance 2.0",
+    zh: "AI视频生成器 - 使用 Seedance 2.0 创建精彩视频",
   };
 
   const descriptions = {
-    en: "Transform your ideas into stunning videos with AI. Access Sora 2, Veo 3.1, and more. Fast, easy, and professional quality video generation in minutes. Start creating today!",
-    zh: "用AI将您的想法转化为精彩视频。访问Sora 2、Veo 3.1等模型。快速、简单、专业品质的视频生成，几分钟内完成。立即开始创作！",
+    en: "Transform your ideas into stunning videos with Seedance 2.0. Fast, easy, and professional quality video generation in minutes. Start creating today!",
+    zh: "用 Seedance 2.0 将您的想法转化为精彩视频。快速、简单、专业品质的视频生成，几分钟内完成。立即开始创作！",
   };
 
   const canonicalUrl = `${siteConfig.url}${locale === i18n.defaultLocale ? "" : `/${locale}`}`;
@@ -75,18 +74,12 @@ export async function generateMetadata({ params }: PageMetadataProps) {
 export default async function HomePage({ params: _params }: HomePageProps) {
   const { locale } = await _params;
   const serviceSchema = buildServiceSchema();
-  const faqSchema = buildFAQPageSchema(locale);
   return (
     <>
       <Script
         id="service-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serviceSchema }}
-      />
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: faqSchema }}
       />
       <HeroSection currentProvider={getConfiguredAIProvider()} />
       {/* <ShowcaseSection /> */}
@@ -104,8 +97,8 @@ export default async function HomePage({ params: _params }: HomePageProps) {
             </h2>
             <p className="mt-4 leading-8 text-muted-foreground">
               {locale === "zh"
-                ? "查看 Sora 2、Veo 3.1 和 Seedance 1.5 的静态对比页，快速理解不同模型更适合哪类内容。"
-                : "Use the comparison pages to understand whether Sora 2, Veo 3.1, or Seedance 1.5 is the best fit for your workflow."}
+                ? "查看不同 AI 视频工作流的静态对比页，快速理解 Seedance 2.0 与其他路线分别适合哪类内容。"
+                : "Use the comparison pages to understand whether Seedance 2.0 or another AI video workflow is the best fit for your goals."}
             </p>
             <div className="mt-6">
               <Button asChild variant="outline">

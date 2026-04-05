@@ -68,7 +68,7 @@ export default async function AIDisclaimerPage({
                         <ul>
                             <li><strong>Sora 2</strong> - 由 OpenAI 开发</li>
                             <li><strong>Veo 3.1</strong> - 由 Google DeepMind 开发</li>
-                            <li><strong>Seedance 1.5</strong> - 由 ByteDance 开发</li>
+                            <li><strong>Seedance 2.0</strong> - 由 ByteDance 开发</li>
                         </ul>
 
                         <h2>独立关系声明</h2>
@@ -114,7 +114,7 @@ export default async function AIDisclaimerPage({
                         <ul>
                             <li><strong>Sora 2</strong> - Developed by OpenAI</li>
                             <li><strong>Veo 3.1</strong> - Developed by Google DeepMind</li>
-                            <li><strong>Seedance 1.5</strong> - Developed by ByteDance</li>
+                            <li><strong>Seedance 2.0</strong> - Developed by ByteDance</li>
                         </ul>
 
                         <h2>Independent Relationship Statement</h2>

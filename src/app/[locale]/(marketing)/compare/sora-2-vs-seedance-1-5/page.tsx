@@ -22,7 +22,7 @@ export async function generateMetadata({
     title: copy.title,
     description: copy.description,
     keywords: [
-      "Sora 2 vs Seedance 1.5",
+      "Sora 2 vs Seedance 2.0",
       "AI video model comparison",
       "Sora vs Seedance",
       "short form AI video comparison",

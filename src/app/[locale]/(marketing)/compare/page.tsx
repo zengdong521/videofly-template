@@ -18,8 +18,8 @@ export async function generateMetadata({
     locale === "zh" ? "AI 视频模型对比" : "AI Video Model Comparisons";
   const description =
     locale === "zh"
-      ? "查看 Sora 2、Veo 3.1、Seedance 1.5 等 AI 视频模型对比，快速理解不同模型适合的创作场景。"
-      : "Compare AI video models like Sora 2, Veo 3.1, and Seedance 1.5 to understand which workflow fits your content goals.";
+      ? "查看 Seedance 2.0 与其他 AI 视频工作流的对比，快速理解不同路线适合的创作场景。"
+      : "Compare Seedance 2.0 with other AI video workflows to understand which direction fits your content goals.";
 
   return {
     title,

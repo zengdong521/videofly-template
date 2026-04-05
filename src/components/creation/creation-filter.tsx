@@ -23,7 +23,7 @@ const availableModels = [
   { value: "all", label: "All Models" },
   { value: "sora-2", label: "Sora 2" },
   { value: "veo-3-1", label: "Veo 3.1" },
-  { value: "seedance-1-5", label: "Seedance 1.5" },
+  { value: "seedance-1-5", label: "Seedance 2.0" },
 ];
 
 const statusOptions = [

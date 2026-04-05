@@ -190,22 +190,22 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
   },
   "sora-2-vs-seedance-1-5": {
     slug: "sora-2-vs-seedance-1-5",
-    models: ["Sora 2", "Seedance 1.5"],
+    models: ["Sora 2", "Seedance 2.0"],
     ogImage: "/og-home.jpg",
     copy: {
       en: {
-        title: "Sora 2 vs Seedance 1.5",
+        title: "Sora 2 vs Seedance 2.0",
         description:
-          "Compare Sora 2 vs Seedance 1.5 for cinematic generation, social-first output, iteration speed, and short-form content production.",
-        heroTitle: "Sora 2 vs Seedance 1.5 for short-form AI video creation",
+          "Compare Sora 2 vs Seedance 2.0 for cinematic generation, social-first output, iteration speed, and short-form content production.",
+        heroTitle: "Sora 2 vs Seedance 2.0 for short-form AI video creation",
         heroDescription:
           "This is the comparison for teams choosing between cinematic concept quality and fast-moving social video iteration.",
         summaryTitle: "Quick summary",
         summaryBody:
-          "Sora 2 is better for concept-led cinematic generation. Seedance 1.5 is better for social-native speed, hook testing, and creating many short-form variants quickly.",
+          "Sora 2 is better for concept-led cinematic generation. Seedance 2.0 is better for social-native speed, hook testing, and creating many short-form variants quickly.",
         winnerTitle: "Best fit by workflow",
         winnerBody:
-          "If you care about mood and storytelling, start with Sora 2. If you care about rapid variant volume for social channels, Seedance 1.5 is usually the better choice.",
+          "If you care about mood and storytelling, start with Sora 2. If you care about rapid variant volume for social channels, Seedance 2.0 is usually the better choice.",
         categoryTitle: "Category breakdown",
         categories: [
           {
@@ -215,12 +215,12 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             label: "Short-form iteration speed",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "Better fit for producing many variants quickly and testing hooks at scale.",
           },
           {
             label: "Social-native content",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "A more natural fit for creator workflows focused on attention-grabbing short clips.",
           },
           {
@@ -235,19 +235,19 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
             body: "Sora 2 wins when the creative idea itself is the hero. If you are pitching a visual narrative or trying to land a cinematic emotional feel, it is usually the better tool direction.",
           },
           {
-            title: "When Seedance 1.5 wins",
-            body: "Seedance 1.5 wins when your team needs more volume, faster variation, and social-ready content loops for TikTok, Reels, or paid creative testing.",
+            title: "When Seedance 2.0 wins",
+            body: "Seedance 2.0 wins when your team needs more volume, faster variation, and social-ready content loops for TikTok, Reels, or paid creative testing.",
           },
           {
             title: "How to choose in practice",
-            body: "Choose Sora 2 for big-idea creative. Choose Seedance 1.5 for growth teams optimizing hooks, retention, and variant throughput.",
+            body: "Choose Sora 2 for big-idea creative. Choose Seedance 2.0 for growth teams optimizing hooks, retention, and variant throughput.",
           },
         ],
-        faqTitle: "Sora 2 vs Seedance 1.5 FAQ",
+        faqTitle: "Sora 2 vs Seedance 2.0 FAQ",
         faqs: [
           {
             question: "Which is better for TikTok content?",
-            answer: "Seedance 1.5 is usually the better fit for fast-moving TikTok style content and variant testing.",
+            answer: "Seedance 2.0 is usually the better fit for fast-moving TikTok style content and variant testing.",
           },
           {
             question: "Which is better for cinematic teasers?",
@@ -262,18 +262,18 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
         secondaryCta: "Animate an Image",
       },
       zh: {
-        title: "Sora 2 vs Seedance 1.5",
+        title: "Sora 2 vs Seedance 2.0",
         description:
-          "对比 Sora 2 和 Seedance 1.5 在电影感创意、社媒短视频、高频试稿和短内容生产效率上的差异。",
-        heroTitle: "Sora 2 vs Seedance 1.5：短视频创作该怎么选？",
+          "对比 Sora 2 和 Seedance 2.0 在电影感创意、社媒短视频、高频试稿和短内容生产效率上的差异。",
+        heroTitle: "Sora 2 vs Seedance 2.0：短视频创作该怎么选？",
         heroDescription:
           "如果你在犹豫是要更强的电影感概念表现，还是更快的社媒短视频迭代，这一页会更直接。",
         summaryTitle: "快速结论",
         summaryBody:
-          "Sora 2 更适合电影感创意和概念短片，Seedance 1.5 更适合社媒内容、高频测试和短视频变体生产。",
+          "Sora 2 更适合电影感创意和概念短片，Seedance 2.0 更适合社媒内容、高频测试和短视频变体生产。",
         winnerTitle: "按工作流看谁更合适",
         winnerBody:
-          "如果你看重情绪氛围和叙事表达，优先 Sora 2；如果你看重产能、速度和社媒适配，通常 Seedance 1.5 更合适。",
+          "如果你看重情绪氛围和叙事表达，优先 Sora 2；如果你看重产能、速度和社媒适配，通常 Seedance 2.0 更合适。",
         categoryTitle: "维度对比",
         categories: [
           {
@@ -283,12 +283,12 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             label: "短视频试稿速度",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "更适合快速生成多个变体并测试 hook。",
           },
           {
             label: "社媒原生感",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "更适合创作者团队和社媒导向的内容工作流。",
           },
           {
@@ -303,19 +303,19 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
             body: "当创意本身是核心、你希望快速做出更有电影感的概念短片时，Sora 2 通常更合适。",
           },
           {
-            title: "什么时候 Seedance 1.5 更强",
-            body: "当你需要更多产量、更快迭代，以及适合 TikTok、Reels 一类平台的内容时，Seedance 1.5 通常更合适。",
+            title: "什么时候 Seedance 2.0 更强",
+            body: "当你需要更多产量、更快迭代，以及适合 TikTok、Reels 一类平台的内容时，Seedance 2.0 通常更合适。",
           },
           {
             title: "实际怎么选",
-            body: "做大创意和情绪表达选 Sora 2；做增长测试、短视频 hook 和大量变体时选 Seedance 1.5。",
+            body: "做大创意和情绪表达选 Sora 2；做增长测试、短视频 hook 和大量变体时选 Seedance 2.0。",
           },
         ],
-        faqTitle: "Sora 2 vs Seedance 1.5 常见问题",
+        faqTitle: "Sora 2 vs Seedance 2.0 常见问题",
         faqs: [
           {
             question: "哪个更适合 TikTok 内容？",
-            answer: "通常 Seedance 1.5 更适合强调速度、短节奏和高频试稿的 TikTok 内容生产。",
+            answer: "通常 Seedance 2.0 更适合强调速度、短节奏和高频试稿的 TikTok 内容生产。",
           },
           {
             question: "哪个更适合电影感 teaser？",
@@ -333,22 +333,22 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
   },
   "veo-3-1-vs-seedance-1-5": {
     slug: "veo-3-1-vs-seedance-1-5",
-    models: ["Veo 3.1", "Seedance 1.5"],
+    models: ["Veo 3.1", "Seedance 2.0"],
     ogImage: "/og-home.jpg",
     copy: {
       en: {
-        title: "Veo 3.1 vs Seedance 1.5",
+        title: "Veo 3.1 vs Seedance 2.0",
         description:
-          "Compare Veo 3.1 vs Seedance 1.5 for realism, social content speed, polished marketing output, and short-form variation workflows.",
-        heroTitle: "Veo 3.1 vs Seedance 1.5: polish or speed?",
+          "Compare Veo 3.1 vs Seedance 2.0 for realism, social content speed, polished marketing output, and short-form variation workflows.",
+        heroTitle: "Veo 3.1 vs Seedance 2.0: polish or speed?",
         heroDescription:
           "This page is for teams choosing between cleaner, more realistic output and faster social-first iteration.",
         summaryTitle: "Quick summary",
         summaryBody:
-          "Veo 3.1 is better for realistic, polished, brand-safe output. Seedance 1.5 is better for social content velocity, rapid hook testing, and short-form creative volume.",
+          "Veo 3.1 is better for realistic, polished, brand-safe output. Seedance 2.0 is better for social content velocity, rapid hook testing, and short-form creative volume.",
         winnerTitle: "Best fit by workflow",
         winnerBody:
-          "Choose Veo 3.1 for product marketing and realistic motion. Choose Seedance 1.5 for creator teams publishing many short variants.",
+          "Choose Veo 3.1 for product marketing and realistic motion. Choose Seedance 2.0 for creator teams publishing many short variants.",
         categoryTitle: "Category breakdown",
         categories: [
           {
@@ -358,7 +358,7 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             label: "Social velocity",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "Better choice when you need more versions, faster iteration, and channel-native pacing.",
           },
           {
@@ -368,7 +368,7 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             label: "Hook testing",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "Usually better for testing short intros, retention angles, and fast edits at scale.",
           },
         ],
@@ -378,15 +378,15 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
             body: "Use Veo 3.1 when you need a more premium, realistic feel for product launches, brand clips, or landing-page visuals where perceived quality matters.",
           },
           {
-            title: "When Seedance 1.5 is better",
-            body: "Use Seedance 1.5 when your workflow depends on quick content cycles, hook experiments, and turning one message into many short variants.",
+            title: "When Seedance 2.0 is better",
+            body: "Use Seedance 2.0 when your workflow depends on quick content cycles, hook experiments, and turning one message into many short variants.",
           },
           {
             title: "How to choose in practice",
-            body: "If output polish is the bottleneck, choose Veo 3.1. If iteration speed is the bottleneck, choose Seedance 1.5.",
+            body: "If output polish is the bottleneck, choose Veo 3.1. If iteration speed is the bottleneck, choose Seedance 2.0.",
           },
         ],
-        faqTitle: "Veo 3.1 vs Seedance 1.5 FAQ",
+        faqTitle: "Veo 3.1 vs Seedance 2.0 FAQ",
         faqs: [
           {
             question: "Which is better for product videos?",
@@ -394,29 +394,29 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             question: "Which is better for short-form creators?",
-            answer: "Seedance 1.5 is usually better for short-form creators who need more variations and faster publishing loops.",
+            answer: "Seedance 2.0 is usually better for short-form creators who need more variations and faster publishing loops.",
           },
           {
             question: "Which should a growth team start with?",
-            answer: "A growth team should start with the bottleneck: choose Veo 3.1 if quality is the problem, or Seedance 1.5 if throughput is the problem.",
+            answer: "A growth team should start with the bottleneck: choose Veo 3.1 if quality is the problem, or Seedance 2.0 if throughput is the problem.",
           },
         ],
         primaryCta: "Open Text to Video",
         secondaryCta: "Open Reference to Video",
       },
       zh: {
-        title: "Veo 3.1 vs Seedance 1.5",
+        title: "Veo 3.1 vs Seedance 2.0",
         description:
-          "对比 Veo 3.1 和 Seedance 1.5 在真实感、社媒内容产能、营销输出质感和短视频变体工作流上的差异。",
-        heroTitle: "Veo 3.1 vs Seedance 1.5：要质感还是要速度？",
+          "对比 Veo 3.1 和 Seedance 2.0 在真实感、社媒内容产能、营销输出质感和短视频变体工作流上的差异。",
+        heroTitle: "Veo 3.1 vs Seedance 2.0：要质感还是要速度？",
         heroDescription:
           "如果你在高质感真实输出和高频社媒迭代之间权衡，这个页面会更适合直接做判断。",
         summaryTitle: "快速结论",
         summaryBody:
-          "Veo 3.1 更适合真实感更强、质感更稳的品牌与产品内容；Seedance 1.5 更适合社媒短视频、高频测试和变体生产。",
+          "Veo 3.1 更适合真实感更强、质感更稳的品牌与产品内容；Seedance 2.0 更适合社媒短视频、高频测试和变体生产。",
         winnerTitle: "按工作流看谁更合适",
         winnerBody:
-          "做产品营销和更稳的真实画面时选 Veo 3.1；做创作者内容和大量短视频变体时选 Seedance 1.5。",
+          "做产品营销和更稳的真实画面时选 Veo 3.1；做创作者内容和大量短视频变体时选 Seedance 2.0。",
         categoryTitle: "维度对比",
         categories: [
           {
@@ -426,7 +426,7 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             label: "社媒内容速度",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "更适合高频试稿和更快的内容循环。",
           },
           {
@@ -436,7 +436,7 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             label: "Hook 测试",
-            winner: "Seedance 1.5",
+            winner: "Seedance 2.0",
             reason: "更适合批量测试前几秒留存点和不同开头版本。",
           },
         ],
@@ -446,15 +446,15 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
             body: "如果你需要更高级的真实感、更稳定的运动表现，以及更接近品牌成片的输出，Veo 3.1 通常更适合。",
           },
           {
-            title: "什么时候 Seedance 1.5 更适合",
-            body: "如果你的流程更依赖快速更新内容、不断测试不同 hook 和大量短视频版本，Seedance 1.5 通常更适合。",
+            title: "什么时候 Seedance 2.0 更适合",
+            body: "如果你的流程更依赖快速更新内容、不断测试不同 hook 和大量短视频版本，Seedance 2.0 通常更适合。",
           },
           {
             title: "实际怎么选",
-            body: "如果卡在“内容质感不够”，先选 Veo 3.1；如果卡在“版本不够多、节奏不够快”，先选 Seedance 1.5。",
+            body: "如果卡在“内容质感不够”，先选 Veo 3.1；如果卡在“版本不够多、节奏不够快”，先选 Seedance 2.0。",
           },
         ],
-        faqTitle: "Veo 3.1 vs Seedance 1.5 常见问题",
+        faqTitle: "Veo 3.1 vs Seedance 2.0 常见问题",
         faqs: [
           {
             question: "哪个更适合产品视频？",
@@ -462,11 +462,11 @@ export const comparePageConfigs: Record<ComparePageSlug, ComparePageConfig> = {
           },
           {
             question: "哪个更适合短视频创作者？",
-            answer: "通常 Seedance 1.5 更适合短视频创作者，因为它更适合快速做很多版本。",
+            answer: "通常 Seedance 2.0 更适合短视频创作者，因为它更适合快速做很多版本。",
           },
           {
             question: "增长团队应该先选哪个？",
-            answer: "看你的瓶颈。如果问题是成片质感，先选 Veo 3.1；如果问题是产能和试稿速度，先选 Seedance 1.5。",
+            answer: "看你的瓶颈。如果问题是成片质感，先选 Veo 3.1；如果问题是产能和试稿速度，先选 Seedance 2.0。",
           },
         ],
         primaryCta: "打开文生视频",

@@ -22,8 +22,8 @@ export async function generateMetadata({
     title: copy.title,
     description: copy.description,
     keywords: [
-      "Seedance 1.5",
-      "Seedance 1.5 AI video generator",
+      "Seedance 2.0",
+      "Seedance 2.0 AI video generator",
       "ByteDance AI video",
       "short form AI video",
       "text to video",
@@ -51,7 +51,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Seedance15Page({
+export default async function Seedance20Page({
   params,
 }: {
   params: Promise<{ locale: Locale }>;

@@ -37,23 +37,10 @@ export function CompareLandingPage({
     ],
   });
 
-  const faqSchema = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: copy.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  });
-
   const webPageSchema = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: copy.title,
+    "@type": "WebPage",
+    name: copy.title,
     description: copy.description,
     url: pageUrl,
     inLanguage: locale === "zh" ? "zh-CN" : "en-US",
@@ -71,12 +58,7 @@ export function CompareLandingPage({
         dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
       />
       <Script
-        id={`${config.slug}-faq-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: faqSchema }}
-      />
-      <Script
-        id={`${config.slug}-article-schema`}
+        id={`${config.slug}-webpage-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: webPageSchema }}
       />
@@ -87,6 +69,18 @@ export function CompareLandingPage({
               <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-primary/80">
                 {config.models[0]} vs {config.models[1]}
               </p>
+              <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-primary/80">
+                <span>
+                  {locale === "zh"
+                    ? `作者：${siteConfig.name} Team`
+                    : `By ${siteConfig.name} Team`}
+                </span>
+                <span>
+                  {locale === "zh"
+                    ? "更新于 2026-04-01"
+                    : "Updated 2026-04-01"}
+                </span>
+              </div>
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
                 {copy.heroTitle}
               </h1>
@@ -113,6 +107,11 @@ export function CompareLandingPage({
           <aside className="rounded-3xl border border-border/70 bg-muted/30 p-8">
             <h2 className="text-2xl font-semibold tracking-tight">{copy.winnerTitle}</h2>
             <p className="mt-4 leading-8 text-muted-foreground">{copy.winnerBody}</p>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">
+              {locale === "zh"
+                ? "本页用于帮助你比较不同工作流的适用场景，不代表任一模型方的官方性能声明。"
+                : "This page is intended to help compare workflow fit and should not be interpreted as an official performance claim from any model provider."}
+            </p>
           </aside>
         </section>
 

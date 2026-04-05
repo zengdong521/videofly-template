@@ -44,7 +44,7 @@ export function ContentPanel({ lang = "en" }: ContentPanelProps) {
             Transform Your Images into Stunning Videos
           </h2>
           <p className="text-muted-foreground">
-            Powered by the latest AI models: Sora 2, Veo 3.1, and Seedance 1.5
+            Powered by Seedance 2.0
           </p>
         </div>
 

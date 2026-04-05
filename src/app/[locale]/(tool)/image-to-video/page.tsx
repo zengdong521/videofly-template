@@ -4,7 +4,6 @@ import type { Locale } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { getConfiguredAIProvider } from "@/ai";
-import { buildHowToSchema } from "@/components/seo/howto-schema";
 import { buildToolBreadcrumbs } from "@/components/seo/breadcrumb-schema";
 import Script from "next/script";
 
@@ -53,18 +52,6 @@ export default async function ImageToVideoPage({ params }: ImageToVideoPageProps
     getConfiguredAIProvider()
   );
   const { locale } = await params;
-  const howToSchema = buildHowToSchema({
-    locale,
-    pathname: "/image-to-video",
-    toolName: config.seo.title,
-    toolDescription: config.seo.description,
-    steps: [
-      { name: "Upload Image", text: "Upload a photo (JPG, PNG, WEBP up to 10MB)" },
-      { name: "Add Description", text: "Describe how you want the image to be animated" },
-      { name: "Set Options", text: "Choose video duration and aspect ratio" },
-      { name: "Generate & Download", text: "Generate and download your animated video in minutes" },
-    ],
-  });
   const breadcrumbSchema = buildToolBreadcrumbs(
     locale === "zh" ? "图片转视频" : "Image to Video",
     "/image-to-video",
@@ -72,11 +59,6 @@ export default async function ImageToVideoPage({ params }: ImageToVideoPageProps
   );
   return (
     <>
-      <Script
-        id="howto-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: howToSchema }}
-      />
       <Script
         id="breadcrumb-schema"
         type="application/ld+json"

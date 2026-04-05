@@ -90,7 +90,7 @@ export const headerModels = [
   { id: "veo", title: "Veo 3.1", subtitle: "by Google", href: "/veo-3-1" },
   {
     id: "seedance",
-    title: "Seedance 1.5",
+    title: "Seedance 2.0",
     subtitle: "by ByteDance",
     href: "/seedance-1-5",
   },
