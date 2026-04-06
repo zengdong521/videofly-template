@@ -2,6 +2,8 @@
  * Site configuration
  * Central place for website settings, auth providers, and features
  */
+import { getSiteUrl } from "@/lib/site-url";
+
 export interface SiteConfig {
   name: string;
   description: string;
@@ -25,7 +27,7 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "VideoAI",
   description: "AI-powered short video creation platform built around Seedance 2.0",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://donney.pro",
+  url: getSiteUrl(),
   ogImage: "/og.png",
   links: {},
   auth: {
