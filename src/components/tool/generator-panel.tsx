@@ -16,7 +16,7 @@ import { cn } from "@/components/ui";
 import { DEFAULT_VIDEO_MODELS } from "@/components/video-generator";
 import { getAvailableModels, calculateModelCredits } from "@/config/credits";
 import { useTranslations } from "next-intl";
-import { ChevronDown, X, Sparkles, Image as ImageIcon, Clock, Check } from "lucide-react";
+import { ChevronDown, X, Sparkles, Image as ImageIcon, Clock, Check, Music2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -70,6 +70,8 @@ export interface GeneratorData {
   generateAudio?: boolean;
   imageFile?: File;
   imageUrl?: string;
+  audioFile?: File;
+  audioUrl?: string;
   estimatedCredits: number;
 }
 
@@ -95,6 +97,7 @@ export function GeneratorPanel({
   const [quality, setQuality] = useState(initialQuality || "standard");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(initialImageUrl || null);
+  const [audioFile, setAudioFile] = useState<File | null>(null);
   const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false);
 
   // Filter models based on tool type
@@ -209,19 +212,50 @@ export function GeneratorPanel({
 
   const estimatedCredits = useMemo(() => {
     if (!selectedModel) return 0;
+    const mode =
+      toolType === "reference-to-video"
+        ? "reference-to-video"
+        : toolType === "image-to-video"
+          ? "image-to-video"
+          : "text-to-video";
     return calculateModelCredits(selectedModel, {
       duration,
       quality: currentModel?.qualities?.includes(quality) ? quality : undefined,
+      mode,
+      hasVideoInput: false,
     });
-  }, [selectedModel, duration, quality, currentModel]);
+  }, [selectedModel, duration, quality, currentModel, toolType]);
+
+  const startingCredits = useMemo(() => {
+    if (!currentModel) return 0;
+    const minimumDuration = currentModel.durations?.[0] || duration;
+    const minimumQuality = currentModel.qualities?.includes("480P")
+      ? "480P"
+      : currentModel.qualities?.[0];
+    const mode =
+      toolType === "reference-to-video"
+        ? "reference-to-video"
+        : toolType === "image-to-video"
+          ? "image-to-video"
+          : "text-to-video";
+
+    return calculateModelCredits(currentModel.id, {
+      duration: minimumDuration,
+      quality: minimumQuality,
+      mode,
+      hasVideoInput: false,
+    });
+  }, [currentModel, duration, toolType]);
 
   const handleSubmit = useCallback(() => {
     if (!currentModel) return;
     const hasPrompt = prompt.trim().length > 0;
-    const requiresImage = toolType !== "text-to-video";
+    const requiresImage = toolType === "image-to-video";
+    const requiresReferenceMedia = toolType === "reference-to-video";
     const hasImage = Boolean(imageFile || imageUrl);
     if (!hasPrompt || isLoading) return;
     if (requiresImage && !hasImage) return;
+    if (requiresReferenceMedia && !hasImage) return;
 
     const data: GeneratorData = {
       toolType,
@@ -233,6 +267,7 @@ export function GeneratorPanel({
       outputNumber: 1,
       imageFile: imageFile || undefined,
       imageUrl: imageUrl || undefined,
+      audioFile: audioFile || undefined,
       estimatedCredits,
     };
 
@@ -245,6 +280,7 @@ export function GeneratorPanel({
     quality,
     imageFile,
     imageUrl,
+    audioFile,
     estimatedCredits,
     isLoading,
     toolType,
@@ -260,15 +296,27 @@ export function GeneratorPanel({
     }
   };
 
+  const handleAudioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAudioFile(file);
+    }
+  };
+
   const handleRemoveImage = () => {
     setImageFile(null);
     setImageUrl(null);
   };
 
+  const handleRemoveAudio = () => {
+    setAudioFile(null);
+  };
+
   const canSubmit = hasAvailableModels &&
     Boolean(currentModel) &&
     prompt.trim().length > 0 &&
-    (!((toolType !== "text-to-video") && !imageFile && !imageUrl)) &&
+    !((toolType === "image-to-video") && !imageFile && !imageUrl) &&
+    !((toolType === "reference-to-video") && !imageFile && !imageUrl) &&
     !isLoading;
 
 
@@ -353,7 +401,22 @@ export function GeneratorPanel({
                             <span>•</span>
                           </>
                         )}
-                        <span>{model.creditCost?.base ?? ""} credits</span>
+                        <span>
+                          {model.id === currentModel.id ? startingCredits : calculateModelCredits(model.id, {
+                            duration: model.durations?.[0] || 5,
+                            quality: model.qualities?.includes("480P")
+                              ? "480P"
+                              : model.qualities?.[0],
+                            mode: toolType === "reference-to-video"
+                              ? "reference-to-video"
+                              : toolType === "image-to-video"
+                                ? "image-to-video"
+                                : "text-to-video",
+                            hasVideoInput: false,
+                          })}+
+                          {" "}
+                          credits
+                        </span>
                       </div>
                     </DropdownMenuItem>
                   ))}
@@ -378,13 +441,18 @@ export function GeneratorPanel({
             />
           </div>
 
-          {/* Image Upload (for image-to-video) */}
+          {/* Media Upload */}
           {(toolType === "image-to-video" || toolType === "reference-to-video") &&
             currentModel?.supportImageToVideo && (
               <div>
-                <SectionLabel required={toolType === "image-to-video"}>
+                <SectionLabel required>
                   {toolType === "reference-to-video" ? t("referenceImage") : t("imageSource")}
                 </SectionLabel>
+                {toolType === "reference-to-video" && (
+                  <div className="mb-3 rounded-lg border border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                    {t("referenceModeNotice")}
+                  </div>
+                )}
                 {imageFile || imageUrl ? (
                   <div className="relative group h-32 rounded-lg overflow-hidden border-2 border-zinc-700">
                     {imageUrl ? (
@@ -414,7 +482,11 @@ export function GeneratorPanel({
                       <ImageIcon className="w-6 h-6 text-muted-foreground group-hover:text-primary" />
                     </div>
                     <p className="text-sm text-muted-foreground mt-3">{t("uploadImage")}</p>
-                    <p className="text-xs text-muted-foreground/70 mt-1">{t("uploadImageHint")}</p>
+                    <p className="text-xs text-muted-foreground/70 mt-1">
+                      {toolType === "reference-to-video"
+                        ? t("uploadReferenceImageHint")
+                        : t("uploadImageHint")}
+                    </p>
                     <input
                       type="file"
                       accept="image/*"
@@ -426,6 +498,46 @@ export function GeneratorPanel({
                 )}
               </div>
             )}
+
+          {toolType === "reference-to-video" && currentModel?.supportsReferenceAudio && (
+            <div>
+              <SectionLabel>REFERENCE AUDIO (OPTIONAL)</SectionLabel>
+              {audioFile ? (
+                <div className="relative group h-20 rounded-lg overflow-hidden border-2 border-zinc-700 bg-muted/30">
+                  <div className="absolute inset-0 flex items-center gap-3 px-4">
+                    <Music2 className="w-5 h-5 text-muted-foreground" />
+                    <span className="text-sm font-medium text-foreground truncate">
+                      {audioFile.name}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleRemoveAudio}
+                    className="absolute top-2 right-2 p-1.5 rounded-full bg-muted/80 hover:bg-muted opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <X className="w-3.5 h-3.5 text-foreground" />
+                  </button>
+                </div>
+              ) : (
+                <label className="flex flex-col items-center justify-center w-full h-24 rounded-lg border-2 border-dashed border-border hover:border-primary/50 cursor-pointer transition-colors group">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center bg-muted/60 group-hover:bg-muted transition-colors">
+                    <Music2 className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">Upload audio</p>
+                  <p className="text-xs text-muted-foreground/70 mt-1">
+                    MP3, WAV, M4A, AAC
+                  </p>
+                  <input
+                    type="file"
+                    accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/mp4,audio/aac,audio/m4a"
+                    onChange={handleAudioChange}
+                    className="hidden"
+                    disabled={isLoading}
+                  />
+                </label>
+              )}
+            </div>
+          )}
 
 
           {/* Settings Group */}

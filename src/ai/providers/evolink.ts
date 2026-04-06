@@ -30,6 +30,10 @@ export class EvolinkProvider implements AIVideoProvider {
       "evolink",
       params
     );
+    const {
+      callback_url,
+      ...requestParams
+    } = transformedParams as Record<string, unknown>;
 
     const response = await fetch(`${this.baseUrl}/videos/generations`, {
       method: "POST",
@@ -38,8 +42,15 @@ export class EvolinkProvider implements AIVideoProvider {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ...transformedParams,
         model: providerModelId,
+        ...requestParams,
+        ...(typeof callback_url === "string" && callback_url
+          ? {
+            model_params: {
+              callback_url,
+            },
+          }
+          : {}),
       }),
     });
 
@@ -58,7 +69,7 @@ export class EvolinkProvider implements AIVideoProvider {
     const data = await response.json();
 
     return {
-      taskId: data.id,
+      taskId: data.id || data.task_id,
       provider: "evolink",
       status: this.mapStatus(data.status),
       progress: data.progress,

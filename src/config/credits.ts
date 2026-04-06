@@ -36,6 +36,8 @@ export interface ModelConfig {
   provider: ProviderType;
   description: string;
   supportImageToVideo: boolean;
+  supportsReferenceVideo?: boolean;
+  supportsReferenceAudio?: boolean;
   maxDuration: number;
   durations: number[];
   aspectRatios: string[];
@@ -176,7 +178,7 @@ export const CREDITS_CONFIG = {
           },
           "seedance-1.5-pro": {
             id: "seedance-1.5-pro",
-            name: "Seedance 2.0",
+            name: "Seedance 1.5 Pro",
             provider: "apimart" as const,
             description: "models.seedance.description",
             supportImageToVideo: true,
@@ -206,6 +208,32 @@ export const CREDITS_CONFIG = {
             durations: [2, 4, 5, 6, 8, 10, 12],
             aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
             qualities: ["480P", "720P", "1080P"],
+          },
+          "seedance-2.0": {
+            id: "seedance-2.0",
+            name: "Seedance 2.0",
+            provider: "evolink" as const,
+            description: "models.seedance.description",
+            supportImageToVideo: true,
+            supportsReferenceVideo: true,
+            supportsReferenceAudio: true,
+            maxDuration: 15,
+            durations: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"],
+            qualities: ["480P", "720P"],
+          },
+          "seedance-2.0-fast": {
+            id: "seedance-2.0-fast",
+            name: "Seedance 2.0 Fast",
+            provider: "evolink" as const,
+            description: "models.seedancefast.description",
+            supportImageToVideo: true,
+            supportsReferenceVideo: true,
+            supportsReferenceAudio: true,
+            maxDuration: 15,
+            durations: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"],
+            qualities: ["480P", "720P"],
           },
         };
 
@@ -310,10 +338,17 @@ export function getModelConfig(modelId: string): ModelConfig | null {
 /** 计算模型积分消耗（基于 Evolink 1:1 成本） */
 export function calculateModelCredits(
   modelId: string,
-  params: { duration: number; quality?: string }
+  params: {
+    duration: number;
+    quality?: string;
+    mode?: GenerationMode | string;
+    hasVideoInput?: boolean;
+    billedDuration?: number;
+  }
 ): number {
   const config = getModelConfig(modelId);
   if (!config) return 0;
+  const pricing = VIDEO_MODEL_PRICING[modelId];
 
   const { base, perExtraSecond = 0, highQualityMultiplier = 1 } = config.creditCost;
 
@@ -326,10 +361,37 @@ export function calculateModelCredits(
     if (normalized === "high") return 1080;
     return 720;
   };
+
+  const resolutionToKey = (resolution: number): "480p" | "720p" | "1080p" => {
+    if (resolution >= 1080) return "1080p";
+    if (resolution <= 480) return "480p";
+    return "720p";
+  };
+
   const resolution = parseQualityToResolution(params.quality);
+  const resolutionKey = resolutionToKey(resolution);
   const isHighQuality = resolution >= 1080 || params.quality?.toLowerCase() === "high";
+  const isReferenceWithVideo =
+    params.mode === "reference-to-video" && params.hasVideoInput;
+  const billedDuration =
+    params.billedDuration ??
+    (isReferenceWithVideo ? params.duration * 2 : params.duration);
 
   let credits = 0;
+
+  if (pricing?.sceneRates) {
+    const rateTable = isReferenceWithVideo
+      ? pricing.sceneRates.referenceWithVideo
+      : pricing.sceneRates.standard;
+    const rate =
+      rateTable?.[resolutionKey] ??
+      rateTable?.["720p"] ??
+      pricing.sceneRates.standard?.[resolutionKey];
+
+    if (typeof rate === "number" && rate > 0) {
+      return Math.ceil(billedDuration * rate);
+    }
+  }
 
   // 根据模型使用不同的计算逻辑
   switch (modelId) {
@@ -372,6 +434,26 @@ export function calculateModelCredits(
         perSecondQuality = 10;
       }
       credits = params.duration * perSecondQuality;
+      break;
+    }
+
+    case "seedance-2.0": {
+      // Seedance 2.0 legacy fallback
+      let perSecond = 12;
+      if (resolution === 480) {
+        perSecond = 6;
+      }
+      credits = params.duration * perSecond;
+      break;
+    }
+
+    case "seedance-2.0-fast": {
+      // Seedance 2.0 Fast legacy fallback
+      let perSecond = 10;
+      if (resolution === 480) {
+        perSecond = 5;
+      }
+      credits = params.duration * perSecond;
       break;
     }
 

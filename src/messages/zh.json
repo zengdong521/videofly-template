@@ -95,12 +95,14 @@
     "prompt": "提示词",
     "promptPlaceholder": "描述您想创建的视频，例如：阳光下的猫在花园里玩耍，自然光线氛围感...",
     "referenceImage": "参考图片",
+    "referenceModeNotice": "参考模式当前仅支持图片参考，参考视频上传会在后续开放。",
     "imageSource": "图片来源",
     "aspectRatio": "宽高比",
     "videoLength": "视频时长",
     "resolution": "分辨率",
     "totalCredits": "总积分",
-    "uploadImageHint": "JPG、PNG、WEBP • 最大 10MB"
+    "uploadImageHint": "JPG、PNG、WEBP • 最大 10MB",
+    "uploadReferenceImageHint": "当前仅支持参考图片 • JPG、PNG、WEBP • 最大 10MB"
   },
   "Showcase": {
     "badge": "亲眼见证",

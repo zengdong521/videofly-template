@@ -7,8 +7,8 @@ import { NEW_USER_GIFT } from "@/config/pricing-user";
 export const referenceToVideoConfig: ToolPageConfig = {
   // SEO 配置
   seo: {
-    title: "Reference to Video - Transform Videos with AI",
-    description: "Upload a reference video and transform it into something new with AI. Change style, add effects, or create variations while maintaining the essence of your original video.",
+    title: "Reference to Video - Create Videos from Reference Images",
+    description: "Use reference images to guide AI video generation. Keep character identity, style, and composition while creating a brand-new video.",
     keywords: [
       "reference to video",
       "video to video AI",
@@ -32,15 +32,15 @@ export const referenceToVideoConfig: ToolPageConfig = {
     uiMode: "compact",
 
     defaults: {
-      model: "seedance-1.5-pro",
+      model: "seedance-2.0",
       duration: 5,
       aspectRatio: "16:9",
       outputNumber: 1,
     },
 
     models: {
-      available: ["seedance-1.5-pro"],
-      default: "seedance-1.5-pro",
+      available: ["seedance-2.0", "seedance-2.0-fast"],
+      default: "seedance-2.0",
     },
 
     features: {
@@ -49,24 +49,24 @@ export const referenceToVideoConfig: ToolPageConfig = {
       showModeSelector: false,
     },
 
-    promptPlaceholder: "Describe how you want to transform the video... e.g., 'Change to anime style, add snow effect'",
+    promptPlaceholder: "Describe the motion and style you want... e.g., 'Keep the character design, add cinematic camera movement and snowfall'",
 
     settings: {
-      showDuration: false, // 使用原始视频时长
-      showAspectRatio: true, // 可以保持原始或修改
+      showDuration: true,
+      showAspectRatio: true,
       showQuality: false,
       showOutputNumber: false,
       showAudioGeneration: false,
 
-      aspectRatios: ["same-as-original", "16:9", "9:16", "1:1", "4:3"],
+      aspectRatios: ["16:9", "9:16", "1:1", "4:3"],
     },
   },
 
   // Landing Page 配置
   landing: {
     hero: {
-      title: "Transform Your Videos with AI Magic",
-      description: "Upload a reference video and let AI create stunning variations, style transfers, or seamless edits while preserving the core content.",
+      title: "Guide AI Videos with Reference Images",
+      description: "Upload one or more reference images and let AI generate a new video that keeps the look, characters, and style cues you care about.",
       ctaText: "Try It Now",
       ctaSubtext: `${NEW_USER_GIFT.credits} free credits to start`,
     },
@@ -74,27 +74,27 @@ export const referenceToVideoConfig: ToolPageConfig = {
     examples: [
       {
         thumbnail: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&q=80",
-        title: "Style Transfer",
-        prompt: "Transform video into anime style with vibrant colors",
+        title: "Character Consistency",
+        prompt: "Keep the same character appearance while adding soft camera motion and anime-style lighting",
       },
       {
         thumbnail: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=600&q=80",
-        title: "Add Weather Effects",
-        prompt: "Add rain and fog atmosphere to the scene",
+        title: "Mood Transformation",
+        prompt: "Preserve the subject design, add fog, rain, and a moody cinematic atmosphere",
       },
       {
         thumbnail: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80",
-        title: "Change Season",
-        prompt: "Convert summer scene to winter with snow",
+        title: "Scene Variation",
+        prompt: "Use the reference composition and turn the scene into a snowy winter night with gentle motion",
       },
     ],
 
     features: [
-      "Upload reference videos (MP4, MOV, AVI up to 100MB)",
-      "AI-powered style transfer and transformation",
-      "Maintain original video timing and flow",
-      "Create multiple variations from one reference",
-      "Support for various artistic styles and effects",
+      "Upload reference images (JPG, PNG, WEBP up to 10MB)",
+      "Guide character design, style, framing, and composition",
+      "Generate brand-new motion from still references",
+      "Create multiple visual variations from one image set",
+      "Reference video upload is temporarily unavailable",
     ],
 
     supportedModels: [

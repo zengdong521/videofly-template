@@ -9,7 +9,7 @@
 import type { VideoModel, ImageModel, GeneratorMode } from "@/components/video-generator/types";
 import type { VideoGeneratorCoreConfig } from "@/components/video-generator/video-generator-core";
 import type { ToolPageConfig } from "@/config/tool-pages/types";
-import { CREDITS_CONFIG, getAvailableModels } from "@/config/credits";
+import { CREDITS_CONFIG, getAvailableModels, calculateModelCredits } from "@/config/credits";
 
 // ============================================================================
 // 类型转换函数
@@ -19,12 +19,19 @@ import { CREDITS_CONFIG, getAvailableModels } from "@/config/credits";
  * 将 credits.ts 的 ModelConfig 转换为 VideoModel
  */
 function convertToVideoModel(modelConfig: any): VideoModel {
+  const startingCredits = calculateModelCredits(modelConfig.id, {
+    duration: modelConfig.durations?.[0] || 5,
+    quality: modelConfig.qualities?.includes("480P")
+      ? "480P"
+      : modelConfig.qualities?.[0],
+  });
+
   return {
     id: modelConfig.id,
     name: modelConfig.name,
     description: modelConfig.description,
-    creditCost: modelConfig.creditCost.base,
-    creditDisplay: `${modelConfig.creditCost.base}+`,
+    creditCost: startingCredits,
+    creditDisplay: `${startingCredits}+`,
     color: getModelColor(modelConfig.id),
     durations: modelConfig.durations?.map((d: number) => `${d}s`),
     aspectRatios: modelConfig.aspectRatios,

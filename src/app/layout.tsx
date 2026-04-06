@@ -2,6 +2,7 @@ import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { getLocale, getMessages } from "next-intl/server";
+import Script from "next/script";
 
 import "@/styles/globals.css";
 
@@ -156,6 +157,19 @@ export default async function RootLayout({
             }),
           }}
         />
+        {/* Google Analytics 4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LJ4CJMPVVG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-LJ4CJMPVVG');
+          `}
+        </Script>
       </head>
       <body
         suppressHydrationWarning

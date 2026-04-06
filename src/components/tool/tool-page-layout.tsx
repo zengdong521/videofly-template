@@ -27,7 +27,7 @@ import { siteConfig } from "@/config/site";
 import type { Video } from "@/db";
 import type { ToolPageConfig } from "@/config/tool-pages";
 import { GeneratorPanel, type GeneratorData } from "@/components/tool/generator-panel";
-import { uploadImage } from "@/lib/video-api";
+import { uploadFile } from "@/lib/video-api";
 import { ToolLandingPage } from "@/components/tool/tool-landing-page";
 import { VideoHistoryPanel } from "@/components/tool/video-history-panel";
 import { toast } from "sonner";
@@ -443,10 +443,12 @@ export function ToolPageLayout({
 
     try {
       const selectedMode = config.generator.mode || toolRoute;
-      const imageUrl = data.imageFile
-        ? await uploadImage(data.imageFile)
-        : data.imageUrl;
+      const [imageUrl, audioUrl] = await Promise.all([
+        data.imageFile ? uploadFile(data.imageFile) : Promise.resolve(data.imageUrl),
+        data.audioFile ? uploadFile(data.audioFile) : Promise.resolve(data.audioUrl),
+      ]);
       const imageUrls = imageUrl ? [imageUrl] : undefined;
+      const audioUrls = audioUrl ? [audioUrl] : undefined;
       const response = await fetch("/api/v1/video/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -461,6 +463,7 @@ export function ToolPageLayout({
           generateAudio: data.generateAudio,
           imageUrls,
           imageUrl,
+          audioUrls,
         }),
       });
 

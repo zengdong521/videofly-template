@@ -38,10 +38,18 @@
 // ============================================
 
 /** 视频模型积分配置 */
+export type VideoPricingResolution = "480p" | "720p" | "1080p";
+
+export interface VideoModelSceneRates {
+  standard?: Partial<Record<VideoPricingResolution, number>>;
+  referenceWithVideo?: Partial<Record<VideoPricingResolution, number>>;
+}
+
 export interface VideoModelPricing {
   baseCredits: number;
   perSecond: number;
   qualityMultiplier?: number;
+  sceneRates?: VideoModelSceneRates;
   enabled: boolean;
 }
 
@@ -247,11 +255,18 @@ export const CREDIT_PACKAGES: CreditPackageConfig[] = [
  *                          480p: 1.636 Credits/秒 → 2 积分/秒
  *                          720p: 3.557 Credits/秒 → 4 积分/秒
  *                          1080p: 7.932 Credits/秒 → 8 积分/秒
+ * 4. **Seedance 2.0**: 按官方 credits 向上取整，并保留利润空间
+ *    - 标准生成 / 无视频参考：480p 6积分/秒，720p 12积分/秒
+ *    - 参考视频（含视频输入）: 480p 4积分/计费秒，720p 7积分/计费秒
+ * 5. **Seedance 2.0 Fast**: 按官方 credits 向上取整，并保留利润空间
+ *    - 标准生成 / 无视频参考：480p 5积分/秒，720p 10积分/秒
+ *    - 参考视频（含视频输入）: 480p 3积分/计费秒，720p 6积分/计费秒
  *
  * 计费规则说明：
  * - baseCredits: 基础积分（最短时长、最低画质）
  * - perSecond: 每秒积分（用于按秒计费的模型）
  * - qualityMultiplier: 画质乘数（1080p vs 720p）
+ * - sceneRates: 按场景细分的积分规则（标准生成 / 含视频输入的参考视频）
  */
 export const VIDEO_MODEL_PRICING: Record<string, VideoModelPricing> = {
   /** Seedance 1.5 Pro - 按秒计费（默认有音频） */
@@ -290,6 +305,40 @@ export const VIDEO_MODEL_PRICING: Record<string, VideoModelPricing> = {
     baseCredits: 2,
     perSecond: 0,
     enabled: false,
+  },
+
+  /** Seedance 2.0 - Evolink */
+  "seedance-2.0": {
+    baseCredits: 0,
+    perSecond: 12, // 标准生成 720p
+    sceneRates: {
+      standard: {
+        "480p": 6,
+        "720p": 12,
+      },
+      referenceWithVideo: {
+        "480p": 4,
+        "720p": 7,
+      },
+    },
+    enabled: true,
+  },
+
+  /** Seedance 2.0 Fast - Evolink */
+  "seedance-2.0-fast": {
+    baseCredits: 0,
+    perSecond: 10, // 标准生成 720p
+    sceneRates: {
+      standard: {
+        "480p": 5,
+        "720p": 10,
+      },
+      referenceWithVideo: {
+        "480p": 3,
+        "720p": 6,
+      },
+    },
+    enabled: true,
   },
 };
 

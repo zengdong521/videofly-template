@@ -153,6 +153,24 @@ export interface VideoModel {
   supportsAudio?: boolean;
 
   /**
+   * Whether this model supports reference video input.
+   * @default false
+   */
+  supportsReferenceVideo?: boolean;
+
+  /**
+   * Whether this model supports reference audio input.
+   * @default false
+   */
+  supportsReferenceAudio?: boolean;
+
+  /**
+   * Whether this model supports returning the last frame.
+   * @default false
+   */
+  supportsReturnLastFrame?: boolean;
+
+  /**
    * Audio constraints for models that support audio.
    */
   audioConstraints?: {

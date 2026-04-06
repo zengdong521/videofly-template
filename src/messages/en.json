@@ -95,12 +95,14 @@
     "prompt": "Prompt",
     "promptPlaceholder": "Describe the video you want to create, e.g., A cat playing in a sunny garden with natural lighting and fresh atmosphere...",
     "referenceImage": "Reference Image",
+    "referenceModeNotice": "Reference mode currently supports image references only. Video reference upload will return soon.",
     "imageSource": "Image Source",
     "aspectRatio": "Aspect Ratio",
     "videoLength": "Video Length",
     "resolution": "Resolution",
     "totalCredits": "Total Credits",
-    "uploadImageHint": "JPG, PNG, WEBP • Max 10MB"
+    "uploadImageHint": "JPG, PNG, WEBP • Max 10MB",
+    "uploadReferenceImageHint": "Reference images only for now • JPG, PNG, WEBP • Max 10MB"
   },
   "Showcase": {
     "badge": "See It in Action",

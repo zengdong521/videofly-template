@@ -42,11 +42,11 @@ import type {
 
 export const DEFAULT_VIDEO_MODELS: VideoModel[] = [
   // ============================================================================
-  // Seedance Series (Primary - APImart)
+  // Seedance Series
   // ============================================================================
   {
     id: "seedance-1.5-pro",
-    name: "Seedance 2.0",
+    name: "Seedance 1.5 Pro",
     icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
     color: "#10b981",
     description: "Text/Image/Frames to video with audio",
@@ -61,6 +61,48 @@ export const DEFAULT_VIDEO_MODELS: VideoModel[] = [
       formats: ["jpg", "jpeg", "png", "webp"],
     },
     supportsAudio: true,
+  },
+  {
+    id: "seedance-2.0",
+    name: "Seedance 2.0 Pro",
+    icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
+    color: "#10b981",
+    description: "Advanced video generation with reference video/audio support",
+    maxDuration: "15 sec",
+    creditCost: 30, // 5s 480p = 5×6 = 30 积分
+    durations: ["5s", "6s", "7s", "8s", "9s", "10s", "11s", "12s", "13s", "14s", "15s"],
+    aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"],
+    resolutions: ["480P", "720P"],
+    maxImages: 9,
+    imageConstraints: {
+      maxSizeMB: 10,
+      formats: ["jpg", "jpeg", "png", "webp"],
+    },
+    supportsAudio: true,
+    supportsReferenceVideo: true,
+    supportsReferenceAudio: true,
+    supportsReturnLastFrame: true,
+  },
+  {
+    id: "seedance-2.0-fast",
+    name: "Seedance 2.0 Fast",
+    icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
+    color: "#34d399",
+    description: "Fast video generation with reference video/audio support",
+    maxDuration: "15 sec",
+    creditCost: 25, // 5s 480p = 5×5 = 25 积分
+    durations: ["5s", "6s", "7s", "8s", "9s", "10s", "11s", "12s", "13s", "14s", "15s"],
+    aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"],
+    resolutions: ["480P", "720P"],
+    maxImages: 9,
+    imageConstraints: {
+      maxSizeMB: 10,
+      formats: ["jpg", "jpeg", "png", "webp"],
+    },
+    supportsAudio: true,
+    supportsReferenceVideo: true,
+    supportsReferenceAudio: true,
+    supportsReturnLastFrame: true,
   },
   {
     id: "seedance-1.0-pro-fast",
@@ -152,6 +194,8 @@ export const DEFAULT_VIDEO_MODES: GeneratorMode[] = [
     // Supports T2V and I2V (upload image for I2V mode)
     // Sora, Veo, Seedance
     supportedModels: [
+      "seedance-2.0",
+      "seedance-2.0-fast",
       "seedance-1.5-pro",
       "seedance-1.0-pro-fast",
       "seedance-1.0-pro-quality",
@@ -166,7 +210,7 @@ export const DEFAULT_VIDEO_MODES: GeneratorMode[] = [
     uploadType: "start-end",
     description: "Generate video from start and end frame images",
     // Seedance first-last-frame mode
-    supportedModels: ["seedance-1.5-pro"],
+    supportedModels: ["seedance-2.0", "seedance-2.0-fast", "seedance-1.5-pro"],
     aspectRatios: ["16:9", "9:16"],
   },
   {
@@ -176,7 +220,7 @@ export const DEFAULT_VIDEO_MODES: GeneratorMode[] = [
     uploadType: "characters",
     description: "Generate video using character reference images or videos",
     // Seedance reference mode
-    supportedModels: ["seedance-1.5-pro"],
+    supportedModels: ["seedance-2.0", "seedance-2.0-fast", "seedance-1.5-pro"],
     // REFERENCE mode only supports 16:9 (Veo)
     aspectRatios: ["16:9"],
     // REFERENCE mode fixed 8s (Veo)
@@ -311,7 +355,7 @@ export const DEFAULT_CONFIG: GeneratorConfig = {
  */
 export const DEFAULT_DEFAULTS: GeneratorDefaults = {
   generationType: "video",
-  videoModel: "seedance-1.5-pro",
+  videoModel: "seedance-2.0",
   imageModel: "flux-pro",
   videoMode: "text-image-to-video",
   imageMode: "text-to-image",

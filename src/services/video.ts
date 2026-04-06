@@ -24,6 +24,8 @@ export interface GenerateVideoParams {
   quality?: string; // "standard" | "high"
   imageUrl?: string; // image-to-video
   imageUrls?: string[]; // image-to-video (multi-image)
+  videoUrls?: string[]; // reference-to-video
+  audioUrls?: string[]; // reference-to-video
   mode?: string;
   outputNumber?: number;
   generateAudio?: boolean;
@@ -85,21 +87,25 @@ export class VideoService {
 
     const effectiveDuration = params.duration || modelConfig.durations[0] || 5;
 
+    const hasImageInput =
+      (params.imageUrls && params.imageUrls.length > 0) || Boolean(params.imageUrl);
+    const hasVideoInput = Boolean(params.videoUrls && params.videoUrls.length > 0);
+    const hasAudioInput = Boolean(params.audioUrls && params.audioUrls.length > 0);
+    const hasInputMedia = hasImageInput || hasVideoInput || hasAudioInput;
+    const resolvedMode = normalizeGenerationMode(params.mode, hasImageInput);
     const outputNumber = Math.max(1, params.outputNumber ?? 1);
     const creditsRequired = calculateModelCredits(params.model, {
       duration: effectiveDuration,
       quality: params.quality,
+      mode: resolvedMode,
+      hasVideoInput,
     }) * outputNumber;
-
-    const hasImageInput =
-      (params.imageUrls && params.imageUrls.length > 0) || Boolean(params.imageUrl);
-    const resolvedMode = normalizeGenerationMode(params.mode, hasImageInput);
 
     if (
       (resolvedMode === "image-to-video" ||
         resolvedMode === "reference-to-video" ||
         resolvedMode === "frames-to-video") &&
-      !hasImageInput
+      !hasInputMedia
     ) {
       throw new ApiError(
         `Mode ${resolvedMode} requires uploaded input media`,
@@ -112,9 +118,26 @@ export class VideoService {
       );
     }
 
-    if (hasImageInput && !modelConfig.supportImageToVideo) {
+    if (
+      (resolvedMode === "reference-to-video" || resolvedMode === "frames-to-video") &&
+      hasAudioInput &&
+      !hasImageInput &&
+      !hasVideoInput
+    ) {
       throw new ApiError(
-        `Model ${params.model} does not support image-to-video`,
+        "Reference audio requires at least one image or video input",
+        400,
+        {
+          code: "INVALID_REFERENCE_AUDIO_INPUT",
+          mode: resolvedMode,
+          model: params.model,
+        }
+      );
+    }
+
+    if (hasInputMedia && !modelConfig.supportImageToVideo) {
+      throw new ApiError(
+        `Model ${params.model} does not support media-guided video generation`,
         400,
         {
           code: "IMAGE_TO_VIDEO_NOT_SUPPORTED",
@@ -167,6 +190,8 @@ export class VideoService {
           mode: resolvedMode,
           imageUrl: params.imageUrl,
           imageUrls: params.imageUrls,
+          videoUrls: params.videoUrls,
+          audioUrls: params.audioUrls,
           generateAudio: params.generateAudio,
         },
         status: VideoStatus.PENDING,
@@ -243,6 +268,8 @@ export class VideoService {
         quality: params.quality,
         imageUrl: params.imageUrl,
         imageUrls: params.imageUrls,
+        videoUrls: params.videoUrls,
+        audioUrls: params.audioUrls,
         mode: resolvedMode,
         outputNumber,
         generateAudio: params.generateAudio,

@@ -160,6 +160,88 @@ function evolinkParamsTransformer(
   return result;
 }
 
+function getSeedance2EvolinkVariant(
+  internalModelId: string,
+  params: Record<string, any>
+): string {
+  const imageUrls = Array.isArray(params.imageUrls)
+    ? params.imageUrls.filter(Boolean)
+    : params.imageUrl
+      ? [params.imageUrl]
+      : [];
+  const videoUrls = Array.isArray(params.videoUrls)
+    ? params.videoUrls.filter(Boolean)
+    : [];
+  const audioUrls = Array.isArray(params.audioUrls)
+    ? params.audioUrls.filter(Boolean)
+    : [];
+  const normalizedMode = normalizeGenerationMode(
+    params.mode,
+    imageUrls.length > 0
+  );
+  const fastSuffix = internalModelId === "seedance-2.0-fast" ? "fast-" : "";
+
+  if (
+    normalizedMode === "reference-to-video" ||
+    normalizedMode === "frames-to-video" ||
+    videoUrls.length > 0 ||
+    audioUrls.length > 0
+  ) {
+    return `seedance-2.0-${fastSuffix}reference-to-video`;
+  }
+
+  if (imageUrls.length > 0) {
+    return `seedance-2.0-${fastSuffix}image-to-video`;
+  }
+
+  return `seedance-2.0-${fastSuffix}text-to-video`;
+}
+
+function evolinkSeedance2ParamsTransformer(
+  internalModelId: string,
+  params: Record<string, any>
+): Record<string, any> {
+  const imageUrls = Array.isArray(params.imageUrls)
+    ? params.imageUrls.filter(Boolean)
+    : params.imageUrl
+      ? [params.imageUrl]
+      : [];
+  const videoUrls = Array.isArray(params.videoUrls)
+    ? params.videoUrls.filter(Boolean)
+    : [];
+  const audioUrls = Array.isArray(params.audioUrls)
+    ? params.audioUrls.filter(Boolean)
+    : [];
+  const normalizedQuality =
+    normalizeQuality(params.quality, "evolink", internalModelId) || "720p";
+  const quality = normalizedQuality === "1080p" ? "720p" : normalizedQuality;
+  const variant = getSeedance2EvolinkVariant(internalModelId, params);
+
+  const result: Record<string, any> = {
+    prompt: params.prompt,
+    duration: params.duration || 5,
+    aspect_ratio: params.aspectRatio || "16:9",
+    quality,
+    generate_audio: params.generateAudio ?? true,
+    callback_url: params.callbackUrl,
+  };
+
+  if (variant.includes("image-to-video") || variant.includes("reference-to-video")) {
+    result.image_urls = imageUrls;
+  }
+
+  if (variant.includes("reference-to-video")) {
+    if (videoUrls.length > 0) {
+      result.video_urls = videoUrls;
+    }
+    if (audioUrls.length > 0) {
+      result.audio_urls = audioUrls;
+    }
+  }
+
+  return result;
+}
+
 /**
  * KIE parameter transformer
  */
@@ -243,7 +325,7 @@ function kieParamsTransformer(
  * APImart parameter transformer
  *
  * APImart uses the same endpoint for all models: POST /v1/videos/generations
- * Currently supports Seedance models (1.0 Pro Fast/Quality, 1.5 Pro).
+ * Currently supports Seedance models (1.0 Pro Fast/Quality, 1.5 Pro, 2.0).
  * To add new models, add model-specific logic below.
  */
 function apimartParamsTransformer(
@@ -258,29 +340,67 @@ function apimartParamsTransformer(
 
   const result: Record<string, any> = {
     prompt: params.prompt,
-    aspect_ratio: params.aspectRatio || "16:9",
     duration: params.duration || 5,
     callback_url: params.callbackUrl,
   };
 
-  if (imageUrls && imageUrls.length > 0) {
-    result.image_urls = imageUrls;
-  }
+  // Seedance 2.0 uses 'size' instead of 'aspect_ratio'
+  const isSeedance2 =
+    internalModelId === "seedance-2.0" ||
+    internalModelId === "seedance-2.0-fast";
 
-  // Seedance 1.5 Pro
-  if (internalModelId === "seedance-1.5-pro") {
+  if (isSeedance2) {
+    // Seedance 2.0: use 'size' parameter
+    result.size = params.aspectRatio || "16:9";
     result.resolution =
-      normalizeQuality(params.quality, "apimart", internalModelId) || "720p";
-    result.audio = params.generateAudio ?? false;
-  }
+      normalizeQuality(params.quality, "apimart", internalModelId) || "480p";
+    result.generate_audio = params.generateAudio ?? false;
 
-  // Seedance 1.0 Pro (Fast / Quality)
-  if (
-    internalModelId === "seedance-1.0-pro-fast" ||
-    internalModelId === "seedance-1.0-pro-quality"
-  ) {
-    result.resolution =
-      normalizeQuality(params.quality, "apimart", internalModelId) || "1080p";
+    // Optional Seedance 2.0 specific params
+    if (params.seed !== undefined) {
+      result.seed = params.seed;
+    }
+    if (params.cameraFixed !== undefined) {
+      result.camera_fixed = params.cameraFixed;
+    }
+    if (params.returnLastFrame !== undefined) {
+      result.return_last_frame = params.returnLastFrame;
+    }
+    if (params.videoUrls && params.videoUrls.length > 0) {
+      result.video_urls = params.videoUrls;
+    }
+    if (params.audioUrls && params.audioUrls.length > 0) {
+      result.audio_urls = params.audioUrls;
+    }
+    if (params.imageWithRoles && params.imageWithRoles.length > 0) {
+      result.image_with_roles = params.imageWithRoles;
+    } else if (imageUrls && imageUrls.length > 0) {
+      result.image_urls = imageUrls;
+    }
+    if (params.tools && params.tools.length > 0) {
+      result.tools = params.tools;
+    }
+  } else {
+    // Seedance 1.5 Pro / 1.0 Pro
+    result.aspect_ratio = params.aspectRatio || "16:9";
+
+    if (internalModelId === "seedance-1.5-pro") {
+      result.resolution =
+        normalizeQuality(params.quality, "apimart", internalModelId) || "720p";
+      result.audio = params.generateAudio ?? false;
+    }
+
+    if (
+      internalModelId === "seedance-1.0-pro-fast" ||
+      internalModelId === "seedance-1.0-pro-quality"
+    ) {
+      result.resolution =
+        normalizeQuality(params.quality, "apimart", internalModelId) || "1080p";
+    }
+
+    if (imageUrls && imageUrls.length > 0) {
+      result.image_urls = imageUrls;
+    }
   }
 
   return result;
@@ -423,6 +543,48 @@ export const MODEL_MAPPINGS: Record<string, ModelMapping> = {
       },
     },
   },
+
+  // -------------------------------------------------------------------------
+  // Seedance 2.0 (APImart only)
+  // -------------------------------------------------------------------------
+  "seedance-2.0": {
+    internalId: "seedance-2.0",
+    displayName: "Seedance 2.0",
+    providers: {
+      evolink: {
+        providerModelId: (params: any) =>
+          getSeedance2EvolinkVariant("seedance-2.0", params),
+        supported: true,
+        transformParams: evolinkSeedance2ParamsTransformer,
+      },
+      apimart: {
+        providerModelId: "doubao-seedance-2.0",
+        supported: true,
+        transformParams: apimartParamsTransformer,
+      },
+    },
+  },
+
+  // -------------------------------------------------------------------------
+  // Seedance 2.0 Fast (APImart only)
+  // -------------------------------------------------------------------------
+  "seedance-2.0-fast": {
+    internalId: "seedance-2.0-fast",
+    displayName: "Seedance 2.0 Fast",
+    providers: {
+      evolink: {
+        providerModelId: (params: any) =>
+          getSeedance2EvolinkVariant("seedance-2.0-fast", params),
+        supported: true,
+        transformParams: evolinkSeedance2ParamsTransformer,
+      },
+      apimart: {
+        providerModelId: "doubao-seedance-2.0-fast",
+        supported: true,
+        transformParams: apimartParamsTransformer,
+      },
+    },
+  },
 };
 
 const MODEL_MODE_SUPPORT: Record<
@@ -452,6 +614,24 @@ const MODEL_MODE_SUPPORT: Record<
   },
   "seedance-1.0-pro-quality": {
     apimart: ["text-to-video", "image-to-video"],
+  },
+  "seedance-2.0": {
+    evolink: [
+      "text-to-video",
+      "image-to-video",
+      "reference-to-video",
+      "frames-to-video",
+    ],
+    apimart: ["text-to-video", "image-to-video", "reference-to-video", "frames-to-video"],
+  },
+  "seedance-2.0-fast": {
+    evolink: [
+      "text-to-video",
+      "image-to-video",
+      "reference-to-video",
+      "frames-to-video",
+    ],
+    apimart: ["text-to-video", "image-to-video", "reference-to-video", "frames-to-video"],
   },
 };
 

@@ -11,6 +11,8 @@ export interface VideoGenerateRequest {
   quality?: string;
   imageUrl?: string;
   imageUrls?: string[];
+  videoUrls?: string[];
+  audioUrls?: string[];
   generateAudio?: boolean;
 }
 
@@ -41,9 +43,9 @@ export function resolutionToQuality(resolution?: string): string {
 }
 
 /**
- * Upload image and return public URL
+ * Upload file and return public URL
  */
-export async function uploadImage(file: File): Promise<string> {
+export async function uploadFile(file: File): Promise<string> {
   const formData = new FormData();
   formData.append("file", file);
 
@@ -58,6 +60,13 @@ export async function uploadImage(file: File): Promise<string> {
   }
 
   return uploadData.data.publicUrl as string;
+}
+
+/**
+ * Backward-compatible alias for image uploads.
+ */
+export async function uploadImage(file: File): Promise<string> {
+  return uploadFile(file);
 }
 
 /**
