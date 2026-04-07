@@ -44,27 +44,10 @@ export const DEFAULT_VIDEO_MODELS: VideoModel[] = [
   // ============================================================================
   // Seedance Series
   // ============================================================================
-  {
-    id: "seedance-1.5-pro",
-    name: "Seedance 1.5 Pro",
-    icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
-    color: "#10b981",
-    description: "Text/Image/Frames to video with audio",
-    maxDuration: "12 sec",
-    creditCost: 16, // 最小 4s 720p 有音频 = 16 积分 (4秒 × 4积分/秒)
-    durations: ["4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s", "12s"],
-    aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
-    resolutions: ["480P", "720P", "1080P"],
-    maxImages: 2,
-    imageConstraints: {
-      maxSizeMB: 10,
-      formats: ["jpg", "jpeg", "png", "webp"],
-    },
-    supportsAudio: true,
-  },
+
   {
     id: "seedance-2.0",
-    name: "Seedance 2.0 Pro",
+    name: "Seedance 2.0",
     icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
     color: "#10b981",
     description: "Advanced video generation with reference video/audio support",
@@ -120,6 +103,24 @@ export const DEFAULT_VIDEO_MODELS: VideoModel[] = [
       maxSizeMB: 10,
       formats: ["jpg", "jpeg", "png", "webp"],
     },
+  },
+    {
+    id: "seedance-1.5-pro",
+    name: "Seedance 1.5 Pro",
+    icon: "https://videocdn.pollo.ai/web-cdn/pollo/production/cm3po9yyf0003oh0c2iyt8ajy/image/1754894158793-1e7ef687-c3c1-4f44-8b06-d044a8121f66.svg",
+    color: "#10b981",
+    description: "Text/Image/Frames to video with audio",
+    maxDuration: "12 sec",
+    creditCost: 16, // 最小 4s 720p 有音频 = 16 积分 (4秒 × 4积分/秒)
+    durations: ["4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s", "12s"],
+    aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+    resolutions: ["480P", "720P", "1080P"],
+    maxImages: 2,
+    imageConstraints: {
+      maxSizeMB: 10,
+      formats: ["jpg", "jpeg", "png", "webp"],
+    },
+    supportsAudio: true,
   },
   {
     id: "seedance-1.0-pro-quality",
@@ -197,35 +198,35 @@ export const DEFAULT_VIDEO_MODES: GeneratorMode[] = [
       "seedance-2.0",
       "seedance-2.0-fast",
       "seedance-1.5-pro",
-      "seedance-1.0-pro-fast",
-      "seedance-1.0-pro-quality",
-      "sora-2",
-      "veo-3.1",
+      // "seedance-1.0-pro-fast",
+      // "seedance-1.0-pro-quality",
+      // "sora-2",
+      // "veo-3.1",
     ],
   },
-  {
-    id: "frames-to-video",
-    name: "Frames to Video",
-    icon: "frames",
-    uploadType: "start-end",
-    description: "Generate video from start and end frame images",
-    // Seedance first-last-frame mode
-    supportedModels: ["seedance-2.0", "seedance-2.0-fast", "seedance-1.5-pro"],
-    aspectRatios: ["16:9", "9:16"],
-  },
-  {
-    id: "reference-to-video",
-    name: "Reference to Video",
-    icon: "reference",
-    uploadType: "characters",
-    description: "Generate video using character reference images or videos",
-    // Seedance reference mode
-    supportedModels: ["seedance-2.0", "seedance-2.0-fast", "seedance-1.5-pro"],
-    // REFERENCE mode only supports 16:9 (Veo)
-    aspectRatios: ["16:9"],
-    // REFERENCE mode fixed 8s (Veo)
-    durations: ["8s"],
-  },
+  // {
+  //   id: "frames-to-video",
+  //   name: "Frames to Video",
+  //   icon: "frames",
+  //   uploadType: "start-end",
+  //   description: "Generate video from start and end frame images",
+  //   // Seedance first-last-frame mode
+  //   supportedModels: ["seedance-2.0", "seedance-2.0-fast", "seedance-1.5-pro"],
+  //   aspectRatios: ["16:9", "9:16"],
+  // },
+  // {
+  //   id: "reference-to-video",
+  //   name: "Reference to Video",
+  //   icon: "reference",
+  //   uploadType: "characters",
+  //   description: "Generate video using character reference images or videos",
+  //   // Seedance reference mode
+  //   supportedModels: ["seedance-2.0", "seedance-2.0-fast", "seedance-1.5-pro"],
+  //   // REFERENCE mode only supports 16:9 (Veo)
+  //   aspectRatios: ["16:9"],
+  //   // REFERENCE mode fixed 8s (Veo)
+  //   durations: ["8s"],
+  // },
 ];
 
 export const DEFAULT_IMAGE_MODES: GeneratorMode[] = [];
