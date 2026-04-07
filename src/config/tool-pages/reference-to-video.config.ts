@@ -7,21 +7,22 @@ import { NEW_USER_GIFT } from "@/config/pricing-user";
 export const referenceToVideoConfig: ToolPageConfig = {
   // SEO 配置
   seo: {
-    title: "Reference to Video - Create Videos from Reference Images",
-    description: "Use reference images to guide AI video generation. Keep character identity, style, and composition while creating a brand-new video.",
+    title: "Seedance 2.0 Reference to Video - Generate Video from Reference Images",
+    description: "Use Seedance 2.0 reference to video workflows to generate clips from reference images. Keep character identity, composition, and style while creating new motion.",
     keywords: [
+      "Seedance 2.0 reference to video",
+      "Seedance reference image to video",
+      "Seedance character consistency video",
+      "Seedance style reference video generator",
+      "reference image to video AI",
       "reference to video",
-      "video to video AI",
       "AI video transformation",
-      "video restyle AI",
       "video variation generator",
-      "AI video editing",
-      "video style transfer",
       "AI video maker from reference",
       "reference video AI",
-      "video to video free",
-      "video remix AI",
-      "AI video generator from video",
+      "character consistency video generator",
+      "image reference video generator",
+      "AI video generator from reference image",
     ],
     ogImage: "/og-reference-to-video.jpg",
   },
@@ -65,8 +66,8 @@ export const referenceToVideoConfig: ToolPageConfig = {
   // Landing Page 配置
   landing: {
     hero: {
-      title: "Guide AI Videos with Reference Images",
-      description: "Upload one or more reference images and let AI generate a new video that keeps the look, characters, and style cues you care about.",
+      title: "Generate Video from Reference Images with Seedance 2.0",
+      description: "Upload reference images and create AI videos that preserve character identity, composition, and style cues while adding new motion.",
       ctaText: "Try It Now",
       ctaSubtext: `${NEW_USER_GIFT.credits} free credits to start`,
     },
@@ -91,7 +92,7 @@ export const referenceToVideoConfig: ToolPageConfig = {
 
     features: [
       "Upload reference images (JPG, PNG, WEBP up to 10MB)",
-      "Guide character design, style, framing, and composition",
+      "Guide character design, style, framing, and composition with Seedance 2.0",
       "Generate brand-new motion from still references",
       "Create multiple visual variations from one image set",
       "Reference video upload is temporarily unavailable",

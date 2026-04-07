@@ -10,7 +10,7 @@ export function buildServiceSchema(): string {
     "@type": "SoftwareApplication",
     name: "VideoAI",
     description:
-      "AI-powered short video creation platform. Generate stunning videos from text, images, or reference footage using Seedance 2.0.",
+      "Seedance AI video generator for text to video, image to video, and reference to video workflows. Create short-form videos with Seedance 2.0 and Seedance 2.0 Fast.",
     url: siteConfig.url,
     applicationCategory: "MultimediaApplication",
     operatingSystem: "Web",
@@ -24,10 +24,10 @@ export function buildServiceSchema(): string {
       name: "Worldwide",
     },
     featureList: [
-      "Text to Video AI generation",
-      "Image to Video animation",
-      "Reference Video style transfer",
-      "Seedance 2.0 powered video generation",
+      "Seedance 2.0 text to video generation",
+      "Seedance 2.0 image to video animation",
+      "Seedance reference image to video generation",
+      "Seedance 2.0 Fast short-form video generation",
       "Multiple aspect ratios",
       "Commercial license",
       "No watermark on paid plans",

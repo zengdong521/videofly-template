@@ -7,22 +7,27 @@ import { NEW_USER_GIFT } from "@/config/pricing-user";
 export const textToVideoConfig: ToolPageConfig = {
   // SEO 配置
   seo: {
-    title: "Text to Video - Create Videos from Text with AI",
-    description: "Transform your text descriptions into stunning videos using AI. Simply describe what you want, and watch Seedance 2.0 bring your vision to life.",
+    title: "Seedance 2.0 Text to Video - AI Video Generator from Text",
+    description: "Turn prompts into short-form videos with Seedance 2.0 text to video. Create AI video ads, product demos, and social clips from text with fast iteration.",
     keywords: [
+      "Seedance 2.0 text to video",
+      "Seedance text to video",
+      "Seedance AI video generator from text",
+      "ByteDance Seedance text to video",
+      "short-form AI video generator",
       "text to video",
       "text to video AI",
       "AI video generator from text",
       "AI video creation",
       "video generator online",
-      "Seedance 2.0",
       "Seedance 2.0 video AI",
+      "AI video generator for TikTok ads",
+      "AI video generator for product demos",
       "text to video free",
       "AI video maker",
       "generate video from description",
       "video AI tool",
       "online video generator",
-      "text to video API",
     ],
     ogImage: "/og-text-to-video.jpg",
   },
@@ -67,8 +72,8 @@ export const textToVideoConfig: ToolPageConfig = {
   // Landing Page 配置
   landing: {
     hero: {
-      title: "Create Stunning Videos from Text",
-      description: "Describe your vision in plain text and let AI bring it to life. From cinematic scenes to product showcases, the possibilities are endless.",
+      title: "Create Videos from Text with Seedance 2.0",
+      description: "Describe your scene in plain text and generate short-form AI videos for ads, product marketing, and social content with Seedance 2.0.",
       ctaText: "Start Creating",
       ctaSubtext: `${NEW_USER_GIFT.credits} free credits to try`,
     },
@@ -93,7 +98,7 @@ export const textToVideoConfig: ToolPageConfig = {
 
     features: [
       "Simply describe what you want to see",
-      "Access to Seedance-powered video generation workflows",
+      "Access to Seedance 2.0 and Seedance 2.0 Fast workflows",
       "Cinematic quality up to 1080p",
       "Generate audio and sound effects automatically",
       "Multiple aspect ratios for any platform",

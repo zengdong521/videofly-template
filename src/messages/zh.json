@@ -33,9 +33,9 @@
   },
   "Hero": {
     "badge": "由 Seedance 2.0 驱动",
-    "title": "将您的想法转化为精彩视频",
-    "subtitle": "使用 AI",
-    "description": "在几分钟内创建专业的 AI 生成视频。支持文本转视频、图片转视频，或增强现有素材。",
+    "title": "用 Seedance 2.0 制作短视频",
+    "subtitle": "以及 Seedance 2.0 Fast",
+    "description": "几分钟内生成文生视频、图生视频和参考图生视频，适合 TikTok 广告、产品演示和社媒内容制作。",
     "startCreating": "免费开始创作",
     "viewExamples": "查看示例",
     "features": {

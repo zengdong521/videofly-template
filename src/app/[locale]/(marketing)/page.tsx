@@ -33,13 +33,46 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   const { locale } = await params;
 
   const titles = {
-    en: "AI Video Generator - Create Stunning Videos with Seedance 2.0",
-    zh: "AI视频生成器 - 使用 Seedance 2.0 创建精彩视频",
+    en: "Seedance AI Video Generator - Text to Video, Image to Video & Reference to Video",
+    zh: "Seedance AI 视频生成器 - 文生视频、图生视频与参考图生视频",
   };
 
   const descriptions = {
-    en: "Transform your ideas into stunning videos with Seedance 2.0. Fast, easy, and professional quality video generation in minutes. Start creating today!",
-    zh: "用 Seedance 2.0 将您的想法转化为精彩视频。快速、简单、专业品质的视频生成，几分钟内完成。立即开始创作！",
+    en: "Create short-form AI videos with Seedance 2.0 and Seedance 2.0 Fast. Generate text to video, image to video, and reference to video clips for TikTok ads, product demos, and social content.",
+    zh: "使用 Seedance 2.0 与 Seedance 2.0 Fast 生成短视频。支持文生视频、图生视频和参考图生视频，适合 TikTok 广告、产品演示和社媒内容制作。",
+  };
+
+  const keywords = {
+    en: [
+      "Seedance AI video generator",
+      "Seedance 2.0 AI video generator",
+      "Seedance 2.0 text to video",
+      "Seedance 2.0 image to video",
+      "Seedance 2.0 reference to video",
+      "Seedance 2.0 Fast",
+      "ByteDance Seedance 2.0",
+      "short-form AI video generator",
+      "AI video generator for TikTok ads",
+      "AI video generator for product demos",
+      "reference image to video",
+      "text to video with Seedance",
+      "image to video with Seedance",
+    ],
+    zh: [
+      "Seedance AI 视频生成器",
+      "Seedance 2.0 视频生成",
+      "Seedance 文生视频",
+      "Seedance 图生视频",
+      "Seedance 参考图生视频",
+      "Seedance 2.0 Fast",
+      "ByteDance Seedance 2.0",
+      "短视频 AI 生成器",
+      "TikTok 广告视频生成",
+      "产品演示视频生成",
+      "参考图生成视频",
+      "Seedance 短视频生成",
+      "Seedance 营销视频制作",
+    ],
   };
 
   const canonicalUrl = `${siteConfig.url}${locale === i18n.defaultLocale ? "" : `/${locale}`}`;
@@ -49,6 +82,7 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   return {
     title: titles[locale] || titles.en,
     description: descriptions[locale] || descriptions.en,
+    keywords: keywords[locale] || keywords.en,
     alternates: {
       canonical: alternates.canonical,
       languages: alternates.languages,
@@ -97,8 +131,8 @@ export default async function HomePage({ params: _params }: HomePageProps) {
             </h2>
             <p className="mt-4 leading-8 text-muted-foreground">
               {locale === "zh"
-                ? "查看不同 AI 视频工作流的静态对比页，快速理解 Seedance 2.0 与其他路线分别适合哪类内容。"
-                : "Use the comparison pages to understand whether Seedance 2.0 or another AI video workflow is the best fit for your goals."}
+                ? "查看不同 AI 视频工作流的静态对比页，快速理解 Seedance 2.0、Seedance 2.0 Fast 与其他路线分别适合哪类内容。"
+                : "Use the comparison pages to understand whether Seedance 2.0, Seedance 2.0 Fast, or another AI video workflow is the best fit for your goals."}
             </p>
             <div className="mt-6">
               <Button asChild variant="outline">
@@ -119,8 +153,8 @@ export default async function HomePage({ params: _params }: HomePageProps) {
             </h2>
             <p className="mt-4 leading-8 text-muted-foreground">
               {locale === "zh"
-                ? "阅读 prompt 写法、产品发布流程和短视频广告创作指南，把搜索流量和用户教育一起做起来。"
-                : "Browse practical guides on prompt writing, product launch workflows, and short-form AI ad creation."}
+                ? "阅读 Seedance prompt 写法、产品发布流程和短视频广告创作指南，把搜索流量和用户教育一起做起来。"
+                : "Browse practical guides on Seedance prompting, product launch workflows, and short-form AI ad creation."}
             </p>
             <div className="mt-6">
               <Button asChild variant="outline">

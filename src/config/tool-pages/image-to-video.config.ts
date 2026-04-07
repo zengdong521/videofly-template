@@ -7,9 +7,14 @@ import { NEW_USER_GIFT } from "@/config/pricing-user";
 export const imageToVideoConfig: ToolPageConfig = {
   // SEO 配置
   seo: {
-    title: "Image to Video - Transform Photos into AI Videos",
-    description: "Convert your images into stunning videos using AI. Upload any photo and watch it come to life with smooth, realistic motion powered by Seedance 2.0.",
+    title: "Seedance 2.0 Image to Video - Animate Photos with AI",
+    description: "Animate photos with Seedance 2.0 image to video. Turn product shots, portraits, and still scenes into short AI videos with natural motion.",
     keywords: [
+      "Seedance 2.0 image to video",
+      "Seedance image to video",
+      "Seedance AI photo animator",
+      "ByteDance Seedance image to video",
+      "reference image animation",
       "image to video",
       "image to video AI",
       "photo animation",
@@ -20,6 +25,7 @@ export const imageToVideoConfig: ToolPageConfig = {
       "AI video maker from photo",
       "animate image",
       "Seedance 2.0",
+      "AI image to video for product marketing",
       "image to video free",
       "photo video generator",
       "AI photo animator",
@@ -67,8 +73,8 @@ export const imageToVideoConfig: ToolPageConfig = {
   // Landing Page 配置
   landing: {
     hero: {
-      title: "Transform Your Images into Stunning Videos",
-      description: "Upload any photo and watch AI bring it to life with smooth, realistic motion. Perfect for social media, marketing, and creative projects.",
+      title: "Animate Images with Seedance 2.0",
+      description: "Upload a photo and turn it into a short AI video with smooth motion. Great for product shots, creator content, and social media campaigns.",
       ctaText: "Get Started Free",
       ctaSubtext: `${NEW_USER_GIFT.credits} free credits to try`,
     },
@@ -93,7 +99,7 @@ export const imageToVideoConfig: ToolPageConfig = {
 
     features: [
       "Upload any photo (JPG, PNG, WEBP up to 10MB)",
-      "Multiple AI models for different animation styles",
+      "Seedance-powered image to video generation",
       "Full HD output up to 1080p resolution",
       "Fast generation in 2-5 minutes",
       "Commercial use rights included",
