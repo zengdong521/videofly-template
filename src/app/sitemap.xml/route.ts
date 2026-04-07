@@ -1,16 +1,16 @@
-import { buildSitemapEntries, renderSitemapXml, SITEMAP_REVALIDATE_SECONDS } from "@/lib/sitemap";
+import { buildSitemapEntries, renderSitemapXml } from "@/lib/sitemap";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 export const runtime = "nodejs";
 
 export async function GET() {
-  const entries = await buildSitemapEntries();
+  const entries = buildSitemapEntries();
   const xml = renderSitemapXml(entries);
 
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": `public, s-maxage=${SITEMAP_REVALIDATE_SECONDS}, stale-while-revalidate=${SITEMAP_REVALIDATE_SECONDS}`,
+      "Cache-Control": "public, max-age=0, must-revalidate",
     },
   });
 }
