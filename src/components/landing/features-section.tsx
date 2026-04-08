@@ -279,7 +279,7 @@ export function FeaturesSection() {
               </p>
               <div className="mt-5">
                 <Button asChild variant="outline">
-                  <LocaleLink href="/compare">
+                  <LocaleLink href="/compare" title={locale === "zh" ? "查看模型对比" : "Explore comparisons"}>
                     {locale === "zh" ? "查看模型对比" : "Explore comparisons"}
                   </LocaleLink>
                 </Button>
@@ -303,7 +303,7 @@ export function FeaturesSection() {
               </p>
               <div className="mt-5">
                 <Button asChild variant="outline">
-                  <LocaleLink href="/guides">
+                  <LocaleLink href="/guides" title={locale === "zh" ? "阅读指南" : "Explore guides"}>
                     {locale === "zh" ? "阅读指南" : "Explore guides"}
                   </LocaleLink>
                 </Button>
@@ -319,7 +319,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             className="mt-16 flex justify-center"
           >
-            <LocaleLink href="/#generator">
+            <LocaleLink href="/#generator" title={locale === "zh" ? "开始创建视频" : "Start creating videos"}>
               <ShimmerButton
                 shimmerColor="#ffffff"
                 shimmerSize="0.05em"

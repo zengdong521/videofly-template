@@ -26,7 +26,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "VideoAI",
-  description: "Seedance AI video generator for text to video, image to video, and reference to video workflows powered by Seedance 2.0 and Seedance 2.0 Fast.",
+  description: "Seedance 2.0 AI video generator for text to video, image to video, and reference image to video. Create short-form clips for ads, demos, and social media.",
   url: getSiteUrl(),
   ogImage: "/og.png",
   links: {},

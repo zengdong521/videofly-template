@@ -2,7 +2,7 @@
 
 import { Type, Upload, Video, Download, Clock, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { MagicCard } from "@/components/magicui/magic-card";
@@ -58,6 +58,7 @@ const steps = [
 
 export function HowItWorks() {
   const t = useTranslations("HowItWorks");
+  const locale = useLocale();
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -197,7 +198,7 @@ export function HowItWorks() {
             viewport={{ once: true }}
             className="mt-16 flex justify-center"
           >
-            <LocaleLink href="/#generator">
+            <LocaleLink href="/#generator" title={locale === "zh" ? "立即开始创作" : "Start creating now"}>
               <ShimmerButton
                 shimmerColor="#ffffff"
                 shimmerSize="0.05em"

@@ -33,45 +33,29 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   const { locale } = await params;
 
   const titles = {
-    en: "Seedance AI Video Generator - Text to Video, Image to Video & Reference to Video",
-    zh: "Seedance AI 视频生成器 - 文生视频、图生视频与参考图生视频",
+    en: "Seedance 2.0 AI Video Generator | VideoAI",
+    zh: "Seedance 2.0 AI 视频生成器 | VideoAI",
   };
 
   const descriptions = {
-    en: "Create short-form AI videos with Seedance 2.0 and Seedance 2.0 Fast. Generate text to video, image to video, and reference to video clips for TikTok ads, product demos, and social content.",
-    zh: "使用 Seedance 2.0 与 Seedance 2.0 Fast 生成短视频。支持文生视频、图生视频和参考图生视频，适合 TikTok 广告、产品演示和社媒内容制作。",
+    en: "Seedance 2.0 AI video generator for text to video, image to video, and reference image to video. Create short-form clips for ads, demos, and social media.",
+    zh: "Seedance 2.0 AI 视频生成器，支持文生视频、图生视频和参考图生视频。",
   };
 
   const keywords = {
     en: [
-      "Seedance AI video generator",
-      "Seedance 2.0 AI video generator",
-      "Seedance 2.0 text to video",
-      "Seedance 2.0 image to video",
-      "Seedance 2.0 reference to video",
-      "Seedance 2.0 Fast",
-      "ByteDance Seedance 2.0",
-      "short-form AI video generator",
-      "AI video generator for TikTok ads",
-      "AI video generator for product demos",
+      "Seedance 2.0",
+      "Seedance AI",
+      "text to video",
+      "image to video",
       "reference image to video",
-      "text to video with Seedance",
-      "image to video with Seedance",
     ],
     zh: [
-      "Seedance AI 视频生成器",
-      "Seedance 2.0 视频生成",
-      "Seedance 文生视频",
-      "Seedance 图生视频",
-      "Seedance 参考图生视频",
-      "Seedance 2.0 Fast",
-      "ByteDance Seedance 2.0",
-      "短视频 AI 生成器",
-      "TikTok 广告视频生成",
-      "产品演示视频生成",
-      "参考图生成视频",
-      "Seedance 短视频生成",
-      "Seedance 营销视频制作",
+      "Seedance 2.0",
+      "Seedance AI",
+      "文生视频",
+      "图生视频",
+      "参考图生视频",
     ],
   };
 
@@ -136,7 +120,7 @@ export default async function HomePage({ params: _params }: HomePageProps) {
             </p>
             <div className="mt-6">
               <Button asChild variant="outline">
-                <LocaleLink href="/compare">
+                <LocaleLink href="/compare" title={locale === "zh" ? "查看模型对比" : "Explore comparisons"}>
                   {locale === "zh" ? "查看模型对比" : "Explore comparisons"}
                 </LocaleLink>
               </Button>
@@ -158,7 +142,7 @@ export default async function HomePage({ params: _params }: HomePageProps) {
             </p>
             <div className="mt-6">
               <Button asChild variant="outline">
-                <LocaleLink href="/guides">
+                <LocaleLink href="/guides" title={locale === "zh" ? "阅读指南" : "Read guides"}>
                   {locale === "zh" ? "阅读指南" : "Read guides"}
                 </LocaleLink>
               </Button>

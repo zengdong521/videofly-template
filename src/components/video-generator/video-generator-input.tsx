@@ -1416,7 +1416,11 @@ export function VideoGeneratorInput({
               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 hover:bg-muted/50 transition-colors text-sm text-foreground/80 hover:text-foreground"
             >
               {template.image && (
-                <img src={template.image} alt="" className="w-5 h-5 rounded object-cover" />
+                <img
+                  src={template.image}
+                  alt={`Prompt suggestion: ${template.text}`}
+                  className="w-5 h-5 rounded object-cover"
+                />
               )}
               <span className="max-w-[120px] truncate">{template.text}</span>
             </button>

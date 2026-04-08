@@ -215,7 +215,7 @@ export function ShowcaseSection() {
             className="text-center"
           >
             <p className="text-muted-foreground mb-6">{t("ctaText")}</p>
-            <LocaleLink href="/#generator">
+            <LocaleLink href="/#generator" title={t("ctaButton")}>
               <ShimmerButton
                 shimmerColor="#ffffff"
                 shimmerSize="0.05em"

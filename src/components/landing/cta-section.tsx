@@ -2,7 +2,7 @@
 
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
@@ -30,6 +30,7 @@ const benefits = [
 
 export function CTASection() {
   const t = useTranslations("CTA");
+  const locale = useLocale();
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -113,7 +114,7 @@ export function CTASection() {
 
                   {/* CTA 按钮组 */}
                   <div className="flex flex-wrap gap-4 pt-4">
-                    <LocaleLink href="/#generator">
+                    <LocaleLink href="/#generator" title={locale === "zh" ? "免费开始创作" : "Get started free"}>
                       <ShimmerButton
                         shimmerColor="#ffffff"
                         shimmerSize="0.05em"

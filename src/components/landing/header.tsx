@@ -60,6 +60,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
   const [isPending, startTransition] = useTransition();
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
+  const homeTitle = locale === "zh" ? "VideoAI 首页" : "VideoAI Home";
 
   const handleSignOut = async () => {
     await authClient.signOut();
@@ -118,6 +119,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
           {/* Logo */}
           <LocaleLink
             href="/"
+            title={homeTitle}
             className="flex items-center gap-2 text-xl font-semibold"
           >
             <Image src="/logo.svg" alt="VideoAI" width={28} height={28} className="rounded-md" />
@@ -169,6 +171,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                           <NavigationMenuLink asChild>
                             <LocaleLink
                               href={tool.href}
+                              title={tool.title}
                               className="flex items-center gap-3 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                             >
                               {Icon && <Icon className="h-4 w-4" />}
@@ -187,6 +190,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                 <NavigationMenuLink asChild>
                   <LocaleLink
                     href="/pricing"
+                    title={t('Header.pricing')}
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
                     )}
@@ -200,6 +204,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                 <NavigationMenuLink asChild>
                   <LocaleLink
                     href="/compare"
+                    title={t('Header.compare')}
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center gap-2 rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
                     )}
@@ -214,6 +219,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                 <NavigationMenuLink asChild>
                   <LocaleLink
                     href="/guides"
+                    title={t('Header.guides')}
                     className={cn(
                       "group inline-flex h-10 w-max items-center justify-center gap-2 rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
                     )}
@@ -327,13 +333,13 @@ export function LandingHeader({ user }: { user?: User | null }) {
                   className="w-48 border-border/50 bg-background/95 backdrop-blur-sm shadow-xl"
                 >
                   <DropdownMenuItem asChild className="cursor-pointer hover:bg-accent">
-                    <LocaleLink href="/my-creations">{t('Header.myCreations')}</LocaleLink>
+                    <LocaleLink href="/my-creations" title={t('Header.myCreations')}>{t('Header.myCreations')}</LocaleLink>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild className="cursor-pointer hover:bg-accent">
-                    <LocaleLink href="/credits">{t('Header.credits')}</LocaleLink>
+                    <LocaleLink href="/credits" title={t('Header.credits')}>{t('Header.credits')}</LocaleLink>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild className="cursor-pointer hover:bg-accent">
-                    <LocaleLink href="/settings">{t('Header.settings')}</LocaleLink>
+                    <LocaleLink href="/settings" title={t('Header.settings')}>{t('Header.settings')}</LocaleLink>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-border/50" />
                   <DropdownMenuItem
@@ -357,6 +363,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
           {/* Logo */}
           <LocaleLink
             href="/"
+            title={homeTitle}
             className="flex items-center gap-2 text-lg font-semibold"
           >
             <Image src="/logo.svg" alt="VideoAI" width={28} height={28} className="rounded-md" />
@@ -387,6 +394,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                   <SheetTitle>
                     <LocaleLink
                       href="/"
+                      title={homeTitle}
                       className="flex items-center gap-2"
                     >
                       <Image src="/logo.svg" alt="VideoAI" width={28} height={28} className="rounded-md" />
@@ -434,6 +442,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                             <LocaleLink
                               key={tool.id}
                               href={tool.href}
+                              title={tool.title}
                               className="flex items-center gap-3 p-2 rounded-md hover:bg-accent transition-colors"
                             >
                               {Icon && <Icon className="h-4 w-4" />}
@@ -448,6 +457,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
                   {/* Pricing */}
                   <LocaleLink
                     href="/pricing"
+                    title={t('Header.pricing')}
                     className="font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     {t('Header.pricing')}
@@ -455,6 +465,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
 
                   <LocaleLink
                     href="/compare"
+                    title={t('Header.compare')}
                     className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     <Scale className="h-4 w-4" />
@@ -463,6 +474,7 @@ export function LandingHeader({ user }: { user?: User | null }) {
 
                   <LocaleLink
                     href="/guides"
+                    title={t('Header.guides')}
                     className="flex items-center gap-2 font-semibold p-2 hover:bg-accent rounded-md transition-colors"
                   >
                     <BookOpen className="h-4 w-4" />
@@ -526,18 +538,21 @@ export function LandingHeader({ user }: { user?: User | null }) {
                     <div className="flex flex-col gap-2">
                       <LocaleLink
                         href="/my-creations"
+                        title={t('Header.myCreations')}
                         className="p-2 hover:bg-accent rounded-md transition-colors"
                       >
                         {t('Header.myCreations')}
                       </LocaleLink>
                       <LocaleLink
                         href="/credits"
+                        title={t('Header.credits')}
                         className="p-2 hover:bg-accent rounded-md transition-colors"
                       >
                         {t('Header.credits')}
                       </LocaleLink>
                       <LocaleLink
                         href="/settings"
+                        title={t('Header.settings')}
                         className="p-2 hover:bg-accent rounded-md transition-colors"
                       >
                         {t('Header.settings')}

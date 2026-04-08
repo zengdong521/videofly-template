@@ -10,6 +10,7 @@ export function LandingFooter() {
   const t = useTranslations('Footer');
   const locale = useLocale();
   const currentYear = new Date().getFullYear();
+  const homeTitle = locale === "zh" ? "VideoAI 首页" : "VideoAI Home";
 
   const footerSections = [
     {
@@ -48,6 +49,7 @@ export function LandingFooter() {
           <div className="col-span-2 md:col-span-1">
             <LocaleLink
               href="/"
+              title={homeTitle}
               className="flex items-center gap-2 text-xl font-semibold mb-4"
             >
               🎬 VideoAI
@@ -68,6 +70,7 @@ export function LandingFooter() {
                   <li key={link.title}>
                     <LocaleLink
                       href={link.href}
+                      title={link.title}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.title}
@@ -98,6 +101,7 @@ export function LandingFooter() {
             {" "}
             <LocaleLink
               href="/ai-disclaimer"
+              title={t('readAiDisclaimer')}
               className="underline hover:text-foreground transition-colors"
             >
               {t('readAiDisclaimer')}
