@@ -4,6 +4,8 @@ import { getLocale } from "next-intl/server";
 export default async function NotFound() {
   const locale = await getLocale();
   const isZh = locale === "zh";
+  const homeHref = isZh ? "/zh" : "/";
+  const generatorHref = isZh ? "/zh/text-to-video" : "/text-to-video";
 
   return (
     <div className="flex min-h-[100dvh] flex-col">
@@ -22,13 +24,13 @@ export default async function NotFound() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href={`/${locale}`}
+              href={homeHref}
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
             >
               {isZh ? "返回首页" : "Back to Home"}
             </Link>
             <Link
-              href={`/${locale}/text-to-video`}
+              href={generatorHref}
               className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-lg hover:bg-accent transition-colors"
             >
               {isZh ? "体验 AI 视频生成" : "Try AI Video Generator"}
