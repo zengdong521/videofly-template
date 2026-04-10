@@ -38,8 +38,8 @@ export async function generateMetadata({
 
     // Title: 50-70 characters (Google 会截断过长的标题)
     const titles = {
-        en: "Privacy Policy | VideoAI Data Protection & Privacy Commitment",
-        zh: "隐私政策 | VideoAI 用户数据保护与隐私承诺",
+        en: "Privacy Policy and Data Protection",
+        zh: "隐私政策与数据保护",
     };
 
     // Description: 150-170 characters
@@ -88,7 +88,7 @@ export async function generateMetadata({
 }
 
 // 字符数验证（仅供参考）
-// English Title: "Privacy Policy | VideoAI Data Protection & Privacy Commitment" = 66 chars ✓
+// English Title: "Privacy Policy and Data Protection" = 34 chars
 // English Description: "Read VideoAI's privacy policy. Learn how we protect your data..." = 156 chars ✓
 
 export default async function PrivacyPage({

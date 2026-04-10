@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: PageMetadataProps) {
   const { locale } = await params;
 
   const titles = {
-    en: "Seedance 2.0 AI Video Generator | VideoAI",
-    zh: "Seedance 2.0 AI 视频生成器 | VideoAI",
+    en: "Seedance 2.0 AI Video Generator",
+    zh: "Seedance 2.0 AI 视频生成器",
   };
 
   const descriptions = {
