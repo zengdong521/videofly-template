@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { getTranslations } from "next-intl/server";
 
 import { PricingSection } from "@/components/landing/pricing-section";
 import { FAQSection } from "@/components/landing/faq-section";
 import type { Locale } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
+import { buildFaqSchema } from "@/components/seo/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -53,10 +56,25 @@ export default async function PricingPage({
 }: {
   params: Promise<{ locale: Locale }>;
 }) {
-  void _params;
+  const { locale } = await _params;
+
+  const t = await getTranslations({ locale, namespace: "FAQ" });
+  const faqKeys = ["general", "commercial", "aiModels", "credits", "refund", "support"];
+  const faqItems = faqKeys.map((key) => ({
+    question: t(`${key}.question`),
+    answer: t(`${key}.answer`),
+  }));
+  const faqSchema = buildFaqSchema(faqItems);
 
   return (
     <>
+      {faqSchema && (
+        <Script
+          id="pricing-faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqSchema }}
+        />
+      )}
       <div className="flex w-full flex-col gap-0">
         <PricingSection />
         <FAQSection />

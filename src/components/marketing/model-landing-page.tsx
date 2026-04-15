@@ -5,6 +5,7 @@ import type { Locale } from "@/config/i18n-config";
 import type { ModelPageConfig } from "@/config/model-pages";
 import { siteConfig } from "@/config/site";
 import { buildBreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
+import { buildFaqSchema } from "@/components/seo/faq-schema";
 import { Button } from "@/components/ui/button";
 import { LocaleLink } from "@/i18n/navigation";
 
@@ -51,6 +52,8 @@ export function ModelLandingPage({ config, locale }: ModelLandingPageProps) {
     inLanguage: locale === "zh" ? "zh-CN" : "en-US",
   });
 
+  const faqSchema = copy.faqs.length > 0 ? buildFaqSchema(copy.faqs) : "";
+
   return (
     <>
       <Script
@@ -63,6 +66,13 @@ export function ModelLandingPage({ config, locale }: ModelLandingPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: webPageSchema }}
       />
+      {faqSchema && (
+        <Script
+          id={`${config.slug}-faq-schema`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqSchema }}
+        />
+      )}
       <div className="bg-background">
         <section className="border-b border-border/60 bg-gradient-to-b from-primary/5 via-background to-background">
           <div className="container mx-auto px-4 py-20 md:py-28">

@@ -1,0 +1,183 @@
+# VideoAI — Full Documentation for AI Systems
+
+> Comprehensive product documentation for VideoAI, an AI video generation platform powered by Seedance 2.0. This document is intended for large language models, AI search engines, and automated systems to understand VideoAI's product, features, pricing, and content.
+
+---
+
+## 1. Product overview
+
+VideoAI is a web-based SaaS application that enables users to generate short-form AI videos from text prompts, images, and reference images. It is designed for content creators, marketers, and businesses who need fast, high-quality video content for ads, social media, product demos, and marketing campaigns.
+
+The platform abstracts multiple AI video generation models behind a unified interface, with Seedance 2.0 (by ByteDance) as the primary model. Users interact through three core workflows:
+
+1. **Text to Video** — type a text prompt, select a model and settings, receive a generated video
+2. **Image to Video** — upload a static image, the AI animates it into video
+3. **Reference to Video** — provide a reference image to guide the visual style of the generated video
+
+All video generation uses a credit-based system. Users receive free credits on signup and can purchase more through subscriptions or one-time credit packs.
+
+---
+
+## 2. Core features
+
+### Video generation workflows
+
+| Workflow | Input | Output | URL |
+|----------|-------|--------|-----|
+| Text to Video | Text prompt | AI-generated video | /text-to-video |
+| Image to Video | Uploaded image + optional prompt | Animated video from image | /image-to-video |
+| Reference to Video | Reference image + text prompt | Video guided by reference style | /reference-to-video |
+
+### Video settings
+
+- **Aspect ratios**: multiple options including 16:9, 9:16, 1:1, and more
+- **Resolutions**: 480p, 720p, 1080p (varies by model)
+- **Duration**: model-dependent, typically 5-10 seconds
+- **Quality modes**: standard and high quality (model-dependent)
+
+### Platform features
+
+- Credit-based billing with FIFO consumption
+- Commercial license on paid plans
+- No watermark on paid plans
+- Multi-language support (English and Chinese)
+- Google OAuth and Magic Link authentication
+- Video gallery for managing generated content
+- Real-time generation status tracking
+
+---
+
+## 3. Supported AI models
+
+### Seedance 2.0 (ByteDance) — Primary model
+- Supports text-to-video, image-to-video, and reference-to-video
+- Available in standard and fast variants
+- Resolutions: 480p, 720p
+- Scene-based credit rates for standard and reference-with-video generation
+
+### Seedance 2.0 Fast (ByteDance)
+- Faster generation variant of Seedance 2.0
+- Lower credit cost per second
+- Same workflow support as Seedance 2.0
+
+### Seedance 1.5 Pro (ByteDance)
+- Per-second billing model
+- Includes audio generation by default
+- Resolutions: 480p, 720p, 1080p
+- Credit cost: 2-8 credits/second depending on resolution
+
+### Sora 2 (OpenAI)
+- Cinematic-quality video generation
+- Fixed credit cost per generation
+- Currently in limited availability
+
+### Veo 3.1 (Google DeepMind)
+- High-quality video output
+- Fixed 10-credit cost per generation
+- Currently in limited availability
+
+---
+
+## 4. Pricing and credits
+
+### Free tier
+- 10 free credits on signup
+- Valid for 30 days
+- Enough for approximately 1 Seedance 1.5 video
+
+### Subscription plans (monthly)
+
+| Plan | Price | Credits | Key features |
+|------|-------|---------|--------------|
+| Basic | $9.90/mo | 280 | HD videos, fast generation |
+| Pro | $29.90/mo | 960 | + No watermark, commercial use |
+| Ultimate | $79.90/mo | 2,850 | + Priority support, API access |
+
+### Annual subscriptions
+- Pay for 10 months, get 12 months of credits (~17% savings)
+- Basic Yearly: $99/year (3,360 credits)
+- Pro Yearly: $299/year (11,520 credits)
+- Ultimate Yearly: $799/year (34,200 credits)
+
+### One-time credit packs
+
+| Pack | Price | Credits | Availability |
+|------|-------|---------|-------------|
+| Starter Pack | $14.90 | 280 | All users |
+| Standard Pack | $39.90 | 960 | Subscribers only |
+| Pro Pack | $99.90 | 2,850 | Subscribers only |
+
+### Credit consumption by model
+
+- **Seedance 2.0**: 5-12 credits/second (varies by resolution and scene type)
+- **Seedance 2.0 Fast**: 3-10 credits/second
+- **Seedance 1.5 Pro**: 2-8 credits/second (resolution-dependent)
+- **Sora 2**: 2-3 credits per generation (fixed)
+- **Veo 3.1**: 10 credits per generation (fixed)
+
+### Credit rules
+- Subscription credits expire after 30 days
+- One-time purchase credits expire after 365 days
+- Credits are consumed using FIFO (first-in, first-out)
+- Credits are frozen at generation start and settled on completion
+- Failed generations refund frozen credits
+
+---
+
+## 5. Frequently asked questions
+
+### What is VideoAI?
+VideoAI is a cutting-edge AI video generation platform that allows you to transform text and images into high-quality videos in minutes. Powered by Seedance 2.0, it enables creators to bring their visions to life without expensive equipment.
+
+### Can I use the videos for commercial purposes?
+Yes. Videos generated with Pro and Team plans come with a full commercial license, allowing you to use them in marketing, social media, and commercial projects.
+
+### Which AI models do you use?
+The current primary video generation workflow is built around Seedance 2.0. The platform continuously updates to keep output quality, speed, and reliability aligned with the latest production needs.
+
+### How does the credit system work?
+You use credits to generate videos. Different models and video durations consume different amounts of credits. You can purchase credit packs or subscribe to a monthly plan to receive a steady supply of credits at a discount.
+
+### Do you offer refunds?
+VideoAI offers a satisfaction guarantee. If a generated video fails due to a system error, credits are refunded. For subscription payments, contact support within 7 days if not satisfied.
+
+### How can I get support?
+The support team is available 24/7 via the contact form on the website or by emailing support@donney.pro.
+
+---
+
+## 6. Content resources
+
+### Guides
+- **How to Write Better AI Video Prompts** (/guides/how-to-write-better-ai-video-prompts) — Learn prompt engineering techniques specifically for AI video generation, including structure, style keywords, and common mistakes.
+- **Best AI Video Workflow for Product Launches** (/guides/best-ai-video-workflow-for-product-launches) — Step-by-step workflow for creating product launch videos using AI, from concept to final export.
+- **How to Make TikTok-Style AI Video Ads** (/guides/how-to-make-tiktok-style-ai-video-ads) — Guide to creating short-form, attention-grabbing AI video ads optimized for TikTok and social media.
+
+### Model comparisons
+- **Sora 2 vs Veo 3.1** (/compare/sora-2-vs-veo-3-1) — Side-by-side comparison of OpenAI's Sora 2 and Google's Veo 3.1 for video generation workflows.
+- **Sora 2 vs Seedance 1.5** (/compare/sora-2-vs-seedance-1-5) — Comparison of Sora 2 and Seedance 1.5 for different content creation scenarios.
+- **Veo 3.1 vs Seedance 1.5** (/compare/veo-3-1-vs-seedance-1-5) — Comparison of Veo 3.1 and Seedance 1.5 capabilities and use cases.
+
+### Model information pages
+- **Sora 2** (/sora-2) — Overview of Sora 2 capabilities, strengths, use cases, and workflows within VideoAI.
+- **Veo 3.1** (/veo-3-1) — Overview of Veo 3.1 features, strengths, and how to use it in VideoAI.
+- **Seedance 1.5** (/seedance-1-5) — Overview of Seedance 1.5 Pro model features, pricing, and use cases.
+
+---
+
+## 7. Legal and compliance
+
+- **Privacy Policy** (/privacy) — How VideoAI collects, uses, and protects user data
+- **Terms of Service** (/terms) — Terms governing use of the VideoAI platform
+- **AI Provider Disclaimer** (/ai-disclaimer) — Disclaimer about third-party AI model providers including OpenAI, Google DeepMind, and ByteDance
+
+---
+
+## 8. Technical details
+
+- Built with Next.js 15 (App Router)
+- Supports English and Chinese (i18n)
+- Authentication via Google OAuth and Magic Link (Better Auth)
+- Payment processing via Creem (primary) and Stripe (backup)
+- Video storage on R2/S3-compatible storage
+- Deployed as standalone Next.js application

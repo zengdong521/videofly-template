@@ -137,12 +137,32 @@ export default async function RootLayout({
                   url: siteConfig.url,
                   description: siteConfig.description,
                   inLanguage: ["en", "zh"],
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: `${siteConfig.url}/guides?q={search_term_string}`,
+                    "query-input": "required name=search_term_string",
+                  },
                 },
                 {
                   "@type": "Organization",
                   name: siteConfig.name,
                   url: siteConfig.url,
                   logo: `${siteConfig.url}/logo.svg`,
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    email: "support@donney.pro",
+                    contactType: "customer support",
+                    availableLanguage: ["English", "Chinese"],
+                  },
+                  ...(siteConfig.links.twitter || siteConfig.links.github || siteConfig.links.discord
+                    ? {
+                        sameAs: [
+                          siteConfig.links.twitter,
+                          siteConfig.links.github,
+                          siteConfig.links.discord,
+                        ].filter(Boolean),
+                      }
+                    : {}),
                 },
               ],
             }),

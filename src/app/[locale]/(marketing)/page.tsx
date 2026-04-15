@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { getTranslations } from "next-intl/server";
 
 import { HeroSection } from "@/components/landing/hero-section";
 import { FeaturesSection } from "@/components/landing/features-section";
@@ -15,6 +16,8 @@ import { i18n } from "@/config/i18n-config";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { getConfiguredAIProvider } from "@/ai";
 import { buildServiceSchema } from "@/components/seo/service-schema";
+import { buildFaqSchema } from "@/components/seo/faq-schema";
+import { buildSpeakableSchema } from "@/components/seo/speakable-schema";
 import { LocaleLink } from "@/i18n/navigation";
 
 interface HomePageProps {
@@ -92,12 +95,39 @@ export async function generateMetadata({ params }: PageMetadataProps) {
 export default async function HomePage({ params: _params }: HomePageProps) {
   const { locale } = await _params;
   const serviceSchema = buildServiceSchema();
+
+  const t = await getTranslations({ locale, namespace: "FAQ" });
+  const faqKeys = ["general", "commercial", "aiModels", "credits", "refund", "support"];
+  const faqItems = faqKeys.map((key) => ({
+    question: t(`${key}.question`),
+    answer: t(`${key}.answer`),
+  }));
+  const faqSchema = buildFaqSchema(faqItems);
+
+  const canonicalUrl = `${siteConfig.url}${locale === i18n.defaultLocale ? "" : `/${locale}`}`;
+  const speakableSchema = buildSpeakableSchema(canonicalUrl, [
+    "[data-speakable='hero-title']",
+    "[data-speakable='hero-description']",
+  ]);
+
   return (
     <>
       <Script
         id="service-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serviceSchema }}
+      />
+      {faqSchema && (
+        <Script
+          id="faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqSchema }}
+        />
+      )}
+      <Script
+        id="speakable-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: speakableSchema }}
       />
       <HeroSection currentProvider={getConfiguredAIProvider()} />
       {/* <ShowcaseSection /> */}

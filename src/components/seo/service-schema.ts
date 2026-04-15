@@ -2,7 +2,7 @@ import { siteConfig } from "@/config/site";
 
 /**
  * Build a SoftwareApplication / Service schema for VideoAI
- * Used on homepage to help Google understand the product
+ * Used on homepage to help Google and AI search engines understand the product
  */
 export function buildServiceSchema(): string {
   const serviceSchema = {
@@ -31,6 +31,39 @@ export function buildServiceSchema(): string {
       "Multiple aspect ratios",
       "Commercial license",
       "No watermark on paid plans",
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free Tier",
+        price: "0",
+        priceCurrency: "USD",
+        description: "10 free credits on signup",
+      },
+      {
+        "@type": "Offer",
+        name: "Basic Plan",
+        price: "9.90",
+        priceCurrency: "USD",
+        billingIncrement: "P1M",
+        description: "280 credits per month, HD videos, fast generation",
+      },
+      {
+        "@type": "Offer",
+        name: "Pro Plan",
+        price: "29.90",
+        priceCurrency: "USD",
+        billingIncrement: "P1M",
+        description: "960 credits per month, no watermark, commercial use",
+      },
+      {
+        "@type": "Offer",
+        name: "Ultimate Plan",
+        price: "79.90",
+        priceCurrency: "USD",
+        billingIncrement: "P1M",
+        description: "2,850 credits per month, priority support, API access",
+      },
     ],
   };
 

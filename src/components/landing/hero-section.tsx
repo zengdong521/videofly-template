@@ -338,14 +338,14 @@ export function HeroSection({ currentProvider }: HeroSectionProps) {
 
             {/* 主标题 */}
             <BlurFade delay={0.1} inView>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <h1 data-speakable="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 {t("title")}
               </h1>
             </BlurFade>
 
             {/* 描述 */}
             <BlurFade delay={0.2} inView>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p data-speakable="hero-description" className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {t("description")}
               </p>
             </BlurFade>

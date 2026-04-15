@@ -1,6 +1,9 @@
 import Script from "next/script";
 
 import { buildBreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
+import { buildFaqSchema } from "@/components/seo/faq-schema";
+import { buildHowToSchema } from "@/components/seo/howto-schema";
+import { buildSpeakableSchema } from "@/components/seo/speakable-schema";
 import { Button } from "@/components/ui/button";
 import type { GuideConfig } from "@/config/guides";
 import type { Locale } from "@/config/i18n-config";
@@ -57,6 +60,21 @@ export function GuideArticlePage({ config, locale }: GuideArticlePageProps) {
     },
   });
 
+  const faqSchema = copy.faqs.length > 0 ? buildFaqSchema(copy.faqs) : "";
+
+  const howToSchema =
+    copy.steps.length > 0
+      ? buildHowToSchema(
+          copy.title,
+          copy.description,
+          copy.steps.map((step) => ({ name: step.title, text: step.description })),
+        )
+      : "";
+
+  const speakableSchema = buildSpeakableSchema(pageUrl, [
+    "[data-speakable='guide-intro']",
+  ]);
+
   return (
     <>
       <Script
@@ -68,6 +86,25 @@ export function GuideArticlePage({ config, locale }: GuideArticlePageProps) {
         id={`${config.slug}-article-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: articleSchema }}
+      />
+      {faqSchema && (
+        <Script
+          id={`${config.slug}-faq-schema`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqSchema }}
+        />
+      )}
+      {howToSchema && (
+        <Script
+          id={`${config.slug}-howto-schema`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: howToSchema }}
+        />
+      )}
+      <Script
+        id={`${config.slug}-speakable-schema`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: speakableSchema }}
       />
       <div className="bg-background">
         <section className="border-b border-border/60 bg-gradient-to-b from-primary/5 via-background to-background">
@@ -103,7 +140,7 @@ export function GuideArticlePage({ config, locale }: GuideArticlePageProps) {
           <div className="grid gap-8 md:grid-cols-[1fr_280px]">
             <div className="space-y-8">
               <section className="rounded-3xl border border-border/70 bg-card p-8">
-                <p className="leading-8 text-muted-foreground">{copy.intro}</p>
+                <p data-speakable="guide-intro" className="leading-8 text-muted-foreground">{copy.intro}</p>
               </section>
 
               {copy.sections.map((section) => (

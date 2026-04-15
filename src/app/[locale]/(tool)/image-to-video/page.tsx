@@ -34,6 +34,7 @@ export async function generateMetadata({
       description: config.seo?.description,
       url: alternates.canonical,
       siteName: siteConfig.name,
+      locale: locale === "zh" ? "zh_CN" : "en_US",
       type: "website",
       images: ogImage ? [ogImage] : undefined,
     },

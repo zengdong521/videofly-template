@@ -1,6 +1,8 @@
 import Script from "next/script";
 
 import { buildBreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
+import { buildFaqSchema } from "@/components/seo/faq-schema";
+import { buildSpeakableSchema } from "@/components/seo/speakable-schema";
 import { Button } from "@/components/ui/button";
 import type { Locale } from "@/config/i18n-config";
 import type { ComparePageConfig } from "@/config/compare-pages";
@@ -50,6 +52,13 @@ export function CompareLandingPage({
     })),
   });
 
+  const faqSchema = copy.faqs.length > 0 ? buildFaqSchema(copy.faqs) : "";
+
+  const speakableSchema = buildSpeakableSchema(pageUrl, [
+    "[data-speakable='compare-summary']",
+    "[data-speakable='compare-winner']",
+  ]);
+
   return (
     <>
       <Script
@@ -61,6 +70,18 @@ export function CompareLandingPage({
         id={`${config.slug}-webpage-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: webPageSchema }}
+      />
+      {faqSchema && (
+        <Script
+          id={`${config.slug}-faq-schema`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqSchema }}
+        />
+      )}
+      <Script
+        id={`${config.slug}-speakable-schema`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: speakableSchema }}
       />
       <div className="bg-background">
         <section className="border-b border-border/60 bg-gradient-to-b from-primary/5 via-background to-background">
@@ -102,11 +123,11 @@ export function CompareLandingPage({
         <section className="container mx-auto grid gap-8 px-4 py-14 md:grid-cols-[1.2fr_0.8fr]">
           <article className="rounded-3xl border border-border/70 bg-card p-8">
             <h2 className="text-2xl font-semibold tracking-tight">{copy.summaryTitle}</h2>
-            <p className="mt-4 leading-8 text-muted-foreground">{copy.summaryBody}</p>
+            <p data-speakable="compare-summary" className="mt-4 leading-8 text-muted-foreground">{copy.summaryBody}</p>
           </article>
           <aside className="rounded-3xl border border-border/70 bg-muted/30 p-8">
             <h2 className="text-2xl font-semibold tracking-tight">{copy.winnerTitle}</h2>
-            <p className="mt-4 leading-8 text-muted-foreground">{copy.winnerBody}</p>
+            <p data-speakable="compare-winner" className="mt-4 leading-8 text-muted-foreground">{copy.winnerBody}</p>
             <p className="mt-4 text-sm leading-7 text-muted-foreground">
               {locale === "zh"
                 ? "本页用于帮助你比较不同工作流的适用场景，不代表任一模型方的官方性能声明。"

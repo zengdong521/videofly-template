@@ -1,0 +1,59 @@
+# VideoAI
+
+> AI video generation platform powered by Seedance 2.0. Turn text prompts and images into short-form video clips for ads, demos, and social media.
+
+## Product overview
+
+VideoAI is a web-based SaaS tool that lets users generate AI videos through three workflows: text-to-video, image-to-video, and reference-image-to-video. The primary model is Seedance 2.0 by ByteDance, with additional models including Seedance 1.5 Pro, Sora 2 (OpenAI), and Veo 3.1 (Google DeepMind).
+
+## Key features
+
+- Text to Video: generate videos from text prompts using Seedance 2.0
+- Image to Video: animate a static image into video
+- Reference to Video: use a reference image to guide video generation style
+- Multiple aspect ratios and resolutions (480p, 720p, 1080p)
+- Commercial license on paid plans
+- No watermark on paid plans
+- Credit-based pay-as-you-go and subscription pricing
+
+## Tools
+
+- [Text to Video](/text-to-video): Generate video from text prompts
+- [Image to Video](/image-to-video): Animate an image into video
+- [Reference to Video](/reference-to-video): Use reference images to guide generation
+
+## Pricing
+
+- Free tier: 10 credits on signup (enough for 1 video)
+- Basic Plan: $9.90/month — 280 credits
+- Pro Plan: $29.90/month — 960 credits (most popular)
+- Ultimate Plan: $79.90/month — 2,850 credits
+- Annual plans save ~17% (pay for 10 months, get 12)
+- One-time credit packs also available starting at $14.90
+
+## Supported models
+
+- Seedance 2.0 (ByteDance) — flagship model, text and image to video
+- Seedance 2.0 Fast — faster generation, lower cost
+- Seedance 1.5 Pro — per-second billing, includes audio
+- Sora 2 (OpenAI) — cinematic generation
+- Veo 3.1 (Google DeepMind) — high-quality output
+
+## Guides
+
+- [How to Write Better AI Video Prompts](/guides/how-to-write-better-ai-video-prompts)
+- [Best AI Video Workflow for Product Launches](/guides/best-ai-video-workflow-for-product-launches)
+- [How to Make TikTok-Style AI Video Ads](/guides/how-to-make-tiktok-style-ai-video-ads)
+
+## Model comparisons
+
+- [Sora 2 vs Veo 3.1](/compare/sora-2-vs-veo-3-1)
+- [Sora 2 vs Seedance 1.5](/compare/sora-2-vs-seedance-1-5)
+- [Veo 3.1 vs Seedance 1.5](/compare/veo-3-1-vs-seedance-1-5)
+
+## Links
+
+- [Pricing](/pricing)
+- [Privacy Policy](/privacy)
+- [Terms of Service](/terms)
+- [AI Provider Disclaimer](/ai-disclaimer)
