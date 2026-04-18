@@ -8,6 +8,8 @@ import type { Locale } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
 import { buildAlternates, resolveOgImage } from "@/lib/seo";
 import { buildFaqSchema } from "@/components/seo/faq-schema";
+import { buildProductOfferSchema } from "@/components/seo/product-offer-schema";
+import { SUBSCRIPTION_PRODUCTS, CREDIT_PACKAGES } from "@/config/pricing-user";
 
 export async function generateMetadata({
   params,
@@ -66,8 +68,37 @@ export default async function PricingPage({
   }));
   const faqSchema = buildFaqSchema(faqItems);
 
+  const pricingUrl = `${siteConfig.url}${locale === "en" ? "" : `/${locale}`}/pricing`;
+  const productSchema = buildProductOfferSchema([
+    ...SUBSCRIPTION_PRODUCTS.filter((p) => p.enabled).map((p) => ({
+      name: `${siteConfig.name} ${p.name}`,
+      description: `${p.credits} credits per ${p.period} for AI video generation on ${siteConfig.name}.`,
+      priceUsd: p.priceUsd,
+      credits: p.credits,
+      period: p.period,
+      url: pricingUrl,
+      sku: p.id || undefined,
+    })),
+    ...CREDIT_PACKAGES.filter((p) => p.enabled).map((p) => ({
+      name: `${siteConfig.name} ${p.name}`,
+      description: `One-time purchase of ${p.credits} credits for AI video generation on ${siteConfig.name}.`,
+      priceUsd: p.priceUsd,
+      credits: p.credits,
+      period: "one-time" as const,
+      url: pricingUrl,
+      sku: p.id || undefined,
+    })),
+  ]);
+
   return (
     <>
+      {productSchema && (
+        <Script
+          id="pricing-product-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: productSchema }}
+        />
+      )}
       {faqSchema && (
         <Script
           id="pricing-faq-schema"

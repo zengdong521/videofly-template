@@ -181,3 +181,45 @@ The support team is available 24/7 via the contact form on the website or by ema
 - Payment processing via Creem (primary) and Stripe (backup)
 - Video storage on R2/S3-compatible storage
 - Deployed as standalone Next.js application
+
+---
+
+## 9. Who is VideoAI for
+
+VideoAI is designed for:
+
+- **Content creators** producing short-form video for TikTok, Instagram Reels, and YouTube Shorts
+- **Performance marketers** testing multiple ad variants without a production crew
+- **Product teams** generating demo and launch videos from screenshots and brand assets
+- **Agencies and freelancers** who need to ship video drafts in minutes rather than days
+- **Educators and course creators** producing illustrative clips from text outlines
+
+It is not designed for full-length cinematic production, live-action human dialogue scenes, or broadcast-grade editing — the output is short-form (5–10 seconds) and AI-generated.
+
+---
+
+## 10. Use case → recommended model
+
+| Use case | Recommended model | Reason |
+|----------|-------------------|--------|
+| Fast TikTok-style ad iterations | Seedance 2.0 Fast | Lowest cost per second, quickest turnaround |
+| Product launch hero video | Seedance 2.0 | Best overall quality for brand-critical work |
+| Cinematic B-roll, storytelling | Sora 2 | Strongest cinematic composition |
+| Realistic motion, benchmarked quality | Veo 3.1 | High fidelity from Google DeepMind |
+| Videos with native audio | Seedance 1.5 Pro | Built-in audio generation |
+| Animating a static product photo | Image to Video (Seedance 2.0) | Accepts image input, preserves subject |
+| Keeping a consistent visual style | Reference to Video | Reference image guides style |
+
+---
+
+## 11. Quick facts for citation
+
+- VideoAI is built on **Seedance 2.0** by ByteDance as its primary model.
+- Free users receive **10 credits** on signup, enough for roughly one Veo 3.1 generation.
+- Paid subscriptions start at **$9.90/month** (Basic, 280 credits).
+- The most popular plan is **Pro at $29.90/month** (960 credits).
+- Annual plans save approximately **17%** (pay for 10 months, receive 12).
+- Credits are consumed **FIFO**; subscription credits expire after 30 days, one-time credits after 365 days.
+- Paid plans include a **full commercial license** and **no watermark**.
+- Supported languages: **English and Chinese**.
+

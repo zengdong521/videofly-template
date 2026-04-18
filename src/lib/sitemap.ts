@@ -1,6 +1,6 @@
 import { getComparePageEntries } from "@/config/compare-pages";
 import { getGuideEntries } from "@/config/guides";
-import { i18n } from "@/config/i18n-config";
+import { i18n, localeConfig, type Locale } from "@/config/i18n-config";
 import { modelPageConfigs } from "@/config/model-pages";
 import { getToolPageRoutes } from "@/config/tool-pages";
 import { getSiteUrl } from "@/lib/site-url";
@@ -14,11 +14,17 @@ interface SitemapRoute {
   lastModified: string;
 }
 
+interface SitemapAlternate {
+  hreflang: string;
+  url: string;
+}
+
 interface SitemapEntry {
   url: string;
   changeFrequency: SitemapChangeFrequency;
   priority: number;
   lastModified: string;
+  alternates: SitemapAlternate[];
 }
 
 function escapeXml(value: string): string {
@@ -119,18 +125,26 @@ export function buildSitemapEntries(): SitemapEntry[] {
 
   console.log("🗺️ Sitemap: 发现页面:", routes.length);
 
-  const entries = routes.flatMap((route) =>
-    i18n.locales.map((locale) => {
-      const localePath = locale === i18n.defaultLocale ? "" : `/${locale}`;
-      const pagePath = route.path ? `/${route.path}` : "";
+  const buildUrl = (locale: Locale, path: string) => {
+    const localePath = locale === i18n.defaultLocale ? "" : `/${locale}`;
+    const pagePath = path ? `/${path}` : "";
+    return `${baseUrl}${localePath}${pagePath}`;
+  };
 
-      return {
-        url: `${baseUrl}${localePath}${pagePath}`,
-        changeFrequency: route.changeFrequency,
-        priority: route.priority,
-        lastModified: route.lastModified,
-      };
-    })
+  const entries = routes.flatMap((route) =>
+    i18n.locales.map((locale) => ({
+      url: buildUrl(locale, route.path),
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      lastModified: route.lastModified,
+      alternates: [
+        ...i18n.locales.map((loc) => ({
+          hreflang: localeConfig[loc].hreflang,
+          url: buildUrl(loc, route.path),
+        })),
+        { hreflang: "x-default", url: buildUrl(i18n.defaultLocale, route.path) },
+      ],
+    }))
   );
 
   console.log(`🗺️ Sitemap: 生成 ${entries.length} 个 URL`);
@@ -147,6 +161,10 @@ export function renderSitemapXml(entries: SitemapEntry[]): string {
         `<lastmod>${entry.lastModified}</lastmod>`,
         `<changefreq>${entry.changeFrequency}</changefreq>`,
         `<priority>${entry.priority.toString()}</priority>`,
+        ...entry.alternates.map(
+          (alt) =>
+            `<xhtml:link rel="alternate" hreflang="${escapeXml(alt.hreflang)}" href="${escapeXml(alt.url)}" />`
+        ),
         "</url>",
       ].join("\n")
     )
@@ -154,7 +172,7 @@ export function renderSitemapXml(entries: SitemapEntry[]): string {
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     body,
     "</urlset>",
     "",

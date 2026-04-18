@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import { Button } from "@/components/ui/button";
+import { buildItemListSchema } from "@/components/seo/itemlist-schema";
 import { getGuideEntries } from "@/config/guides";
 import type { Locale } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
@@ -50,9 +52,27 @@ export default async function GuidesHubPage({
 }) {
   const { locale } = await params;
   const guides = getGuideEntries();
+  const localePrefix = locale === "en" ? "" : `/${locale}`;
+  const listUrl = `${siteConfig.url}${localePrefix}/guides`;
+  const itemListSchema = buildItemListSchema(
+    locale === "zh" ? "AI 视频指南" : "AI Video Guides",
+    listUrl,
+    guides.map((g) => ({
+      name: g.copy[locale].title,
+      url: `${siteConfig.url}${localePrefix}/guides/${g.slug}`,
+      description: g.copy[locale].excerpt,
+    })),
+  );
 
   return (
     <div className="bg-background">
+      {itemListSchema && (
+        <Script
+          id="guides-itemlist-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: itemListSchema }}
+        />
+      )}
       <section className="border-b border-border/60 bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container mx-auto px-4 py-20 md:py-28">
           <div className="max-w-4xl">

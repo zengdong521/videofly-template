@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import { Button } from "@/components/ui/button";
+import { buildItemListSchema } from "@/components/seo/itemlist-schema";
 import { getComparePageEntries } from "@/config/compare-pages";
 import type { Locale } from "@/config/i18n-config";
 import { siteConfig } from "@/config/site";
@@ -51,9 +53,27 @@ export default async function CompareHubPage({
 }) {
   const { locale } = await params;
   const entries = getComparePageEntries();
+  const localePrefix = locale === "en" ? "" : `/${locale}`;
+  const listUrl = `${siteConfig.url}${localePrefix}/compare`;
+  const itemListSchema = buildItemListSchema(
+    locale === "zh" ? "AI 视频模型对比" : "AI Video Model Comparisons",
+    listUrl,
+    entries.map((entry) => ({
+      name: entry.copy[locale].title,
+      url: `${siteConfig.url}${localePrefix}/compare/${entry.slug}`,
+      description: entry.copy[locale].description,
+    })),
+  );
 
   return (
     <div className="bg-background">
+      {itemListSchema && (
+        <Script
+          id="compare-itemlist-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: itemListSchema }}
+        />
+      )}
       <section className="border-b border-border/60 bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container mx-auto px-4 py-20 md:py-28">
           <div className="max-w-4xl">
