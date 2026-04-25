@@ -1,5 +1,5 @@
 import { permanentRedirect } from "next/navigation";
-import type { Locale } from "@/config/i18n-config";
+import { i18n, type Locale } from "@/config/i18n-config";
 
 export default async function TermsOfServicePage({
   params,
@@ -7,5 +7,6 @@ export default async function TermsOfServicePage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  permanentRedirect(`/${locale}/terms`);
+  const localePrefix = locale === i18n.defaultLocale ? "" : `/${locale}`;
+  permanentRedirect(`${localePrefix}/terms`);
 }

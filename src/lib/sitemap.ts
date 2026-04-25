@@ -51,12 +51,6 @@ function getSitemapRoutes(): SitemapRoute[] {
       lastModified: "2026-04-10",
     },
     {
-      path: "ai-disclaimer",
-      priority: 0.5,
-      changeFrequency: "monthly",
-      lastModified: "2026-04-01",
-    },
-    {
       path: "compare",
       priority: 0.8,
       changeFrequency: "weekly",
@@ -67,18 +61,6 @@ function getSitemapRoutes(): SitemapRoute[] {
       priority: 0.8,
       changeFrequency: "weekly",
       lastModified: "2026-04-01",
-    },
-    {
-      path: "privacy",
-      priority: 0.2,
-      changeFrequency: "monthly",
-      lastModified: "2026-03-15",
-    },
-    {
-      path: "terms",
-      priority: 0.2,
-      changeFrequency: "monthly",
-      lastModified: "2026-03-15",
     },
   ];
 
